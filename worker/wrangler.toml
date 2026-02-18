@@ -13,4 +13,4 @@ compatibility_date = "2025-12-01"
 
 [vars]
 ORG_NAME = "MicrosoftCloudEssentials-LearningHub"
-ALLOWED_RETURN_ORIGINS = "http://localhost:4173"
+ALLOWED_RETURN_ORIGINS = "http://localhost:4173,https://microsoftcloudessentials-learninghub.github.io"

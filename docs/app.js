@@ -9,10 +9,14 @@ const signInEl = document.getElementById('signIn');
 const signOutEl = document.getElementById('signOut');
 const authRowEl = document.getElementById('authRow');
 
+const languageFilterEl = document.getElementById('languageFilter');
+const topicFilterEl = document.getElementById('topicFilter');
+const includeArchivedEl = document.getElementById('includeArchived');
+
 const TOKEN_KEY = 'orgCatalogOAuthToken';
 const CONFIG_URL = './config.json';
 
-/** @typedef {{name:string, fullName:string, url:string, description:string, topics:string[], language:string|null, updatedAt:string, archived:boolean, private:boolean, stargazersCount?:number}} Repo */
+/** @typedef {{name:string, fullName:string, url:string, description:string, topics:string[], language:string|null, updatedAt:string, archived:boolean, private:boolean, stargazersCount?:number, imageUrl?:string|null}} Repo */
 
 /** @type {{generatedAt?:string, org?:string, repos?:Repo[]}} */
 let publicCatalog = {};
@@ -41,11 +45,32 @@ function formatDate(iso) {
 
 function repoMatches(repo, q) {
   if (!q) return true;
-  const haystack = [repo.name, repo.fullName, repo.description, ...(repo.topics ?? [])]
+  const haystack = [repo.name, repo.fullName, repo.description, repo.language, ...(repo.topics ?? [])]
     .filter(Boolean)
     .join('\n')
     .toLowerCase();
   return haystack.includes(q);
+}
+
+function getFilters() {
+  const language = (languageFilterEl?.value || '').trim();
+  const topic = (topicFilterEl?.value || '').trim().toLowerCase();
+  const includeArchived = Boolean(includeArchivedEl?.checked);
+  return {
+    language: language && language !== 'all' ? language : '',
+    topic,
+    includeArchived,
+  };
+}
+
+function repoPassesFilters(repo, filters) {
+  if (!filters.includeArchived && repo.archived) return false;
+  if (filters.language && String(repo.language || '') !== filters.language) return false;
+  if (filters.topic) {
+    const topics = (repo.topics ?? []).map((t) => String(t || '').toLowerCase());
+    if (!topics.some((t) => t.includes(filters.topic))) return false;
+  }
+  return true;
 }
 
 function render(list) {
@@ -56,6 +81,20 @@ function render(list) {
       card.href = repo.url;
       card.target = '_blank';
       card.rel = 'noreferrer';
+
+      if (repo.imageUrl) {
+        const media = document.createElement('div');
+        media.className = 'cardMedia';
+
+        const img = document.createElement('img');
+        img.className = 'cardThumb';
+        img.loading = 'lazy';
+        img.alt = '';
+        img.src = repo.imageUrl;
+
+        media.appendChild(img);
+        card.appendChild(media);
+      }
 
       const title = document.createElement('h2');
       title.className = 'cardTitle';
@@ -91,11 +130,42 @@ function render(list) {
   );
 }
 
+function setLanguageOptionsFrom(list) {
+  if (!languageFilterEl) return;
+
+  const current = String(languageFilterEl.value || 'all');
+  const languages = new Set(
+    list
+      .map((r) => (r && r.language ? String(r.language) : ''))
+      .filter(Boolean)
+  );
+
+  const sorted = Array.from(languages).sort((a, b) => a.localeCompare(b));
+
+  const options = [
+    { value: 'all', label: 'All' },
+    ...sorted.map((lang) => ({ value: lang, label: lang })),
+  ];
+
+  languageFilterEl.replaceChildren(
+    ...options.map(({ value, label }) => {
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = label;
+      return opt;
+    })
+  );
+
+  const stillExists = options.some((o) => o.value === current);
+  languageFilterEl.value = stillExists ? current : 'all';
+}
+
 function setActiveView(view) {
   activeView = view;
   viewPublicEl.classList.toggle('active', view === 'public');
   viewPrivateEl.classList.toggle('active', view === 'private');
   qEl.value = '';
+  setLanguageOptionsFrom(activeView === 'public' ? publicRepos : privateRepos);
   update();
 }
 
@@ -121,7 +191,7 @@ function setSignedIn(signedIn) {
 function openAuthPopup() {
   const authBaseUrl = String(config.authBaseUrl || '').trim();
   if (!authBaseUrl) {
-    setStatus('Auth is not configured yet. Set docs/config.json authBaseUrl.');
+    setStatus('Sign-in is not configured yet. Set docs/config.json authBaseUrl to your OAuth worker URL.');
     return;
   }
 
@@ -141,13 +211,28 @@ function openAuthPopup() {
   if (!win) {
     setStatus('Popup blocked. Allow popups and try again.');
     authRowEl.hidden = true;
+    return;
   }
+
+  const startedAt = Date.now();
+  const timer = window.setInterval(() => {
+    if (!win || win.closed) {
+      window.clearInterval(timer);
+      authRowEl.hidden = true;
+
+      // If we didn't receive a token within a reasonable window, tell the user.
+      if (!getToken() && Date.now() - startedAt > 1000) {
+        setStatus('Sign-in was cancelled or blocked. Try again (and allow popups).');
+      }
+    }
+  }, 400);
 }
 
 function update() {
   const q = qEl.value.trim().toLowerCase();
   const list = activeView === 'public' ? publicRepos : privateRepos;
-  const filtered = list.filter((r) => repoMatches(r, q));
+  const filters = getFilters();
+  const filtered = list.filter((r) => repoPassesFilters(r, filters)).filter((r) => repoMatches(r, q));
 
   const label = activeView === 'public' ? 'public' : 'private';
   setStatus(`${filtered.length} of ${list.length} ${label} repositories`);
@@ -188,6 +273,10 @@ async function loadConfig() {
   } catch {
     config = {};
   }
+
+  const configured = Boolean(String(config.authBaseUrl || '').trim());
+  signInEl.disabled = !configured;
+  signInEl.title = configured ? '' : 'Set docs/config.json authBaseUrl to enable GitHub sign-in.';
 }
 
 async function fetchPrivateRepos({ org, headers }) {
@@ -267,6 +356,10 @@ async function signInWithToken(token) {
 
 // Events
 qEl.addEventListener('input', update);
+
+languageFilterEl?.addEventListener('change', update);
+topicFilterEl?.addEventListener('input', update);
+includeArchivedEl?.addEventListener('change', update);
 
 viewPublicEl.addEventListener('click', () => setActiveView('public'));
 viewPrivateEl.addEventListener('click', () => {

@@ -78,9 +78,9 @@ Security notes:
 
 ## Repo layout
 
-- `docs/` — GitHub Pages site (static)
-- `scripts/fetch-catalog.mjs` — generates `docs/catalog.json`
-- `.github/workflows/build-catalog.yml` — scheduled + manual generator workflow
+- `docs/` →  GitHub Pages site (static)
+- `scripts/fetch-catalog.mjs` →  generates `docs/catalog.json`
+- `.github/workflows/build-catalog.yml` →  scheduled + manual generator workflow
 
 <!-- START BADGE -->
 <div align="center">
