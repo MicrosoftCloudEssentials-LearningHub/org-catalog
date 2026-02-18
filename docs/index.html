@@ -81,6 +81,21 @@
           <button id="signOut" class="button secondary" type="button" hidden>Sign out</button>
         </div>
 
+        <div class="filters" aria-label="Filters">
+          <label class="filterLabel" for="languageFilter">Language</label>
+          <select id="languageFilter" class="select">
+            <option value="all">All</option>
+          </select>
+
+          <label class="filterLabel" for="topicFilter">Topic</label>
+          <input id="topicFilter" class="search topic" placeholder="e.g. azure" autocomplete="off" />
+
+          <label class="checkbox">
+            <input id="includeArchived" type="checkbox" />
+            Include archived
+          </label>
+        </div>
+
         <div id="authRow" class="authRow" hidden>
           <span class="hint">Redirecting to GitHub sign-in…</span>
         </div>

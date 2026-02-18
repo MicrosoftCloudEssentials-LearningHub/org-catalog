@@ -5,7 +5,7 @@ Costa Rica
 [![GitHub](https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff)](https://github.com/)
 [brown9804](https://github.com/brown9804)
 
-Last updated: 2026-02-17
+Last updated: 2026-02-18
 
 ----------
 
@@ -29,7 +29,7 @@ In your repo settings:
 
 This catalog is intended to index only:
 
-- https://github.com/MicrosoftCloudEssentials-LearningHub
+- <https://github.com/MicrosoftCloudEssentials-LearningHub>
 
 By default the generator targets `MicrosoftCloudEssentials-LearningHub`.
 
@@ -78,13 +78,13 @@ Security notes:
 
 ## Repo layout
 
-- `docs/` — GitHub Pages site (static)
-- `scripts/fetch-catalog.mjs` — generates `docs/catalog.json`
-- `.github/workflows/build-catalog.yml` — scheduled + manual generator workflow
+- `docs/` →  GitHub Pages site (static)
+- `scripts/fetch-catalog.mjs` →  generates `docs/catalog.json`
+- `.github/workflows/build-catalog.yml` →  scheduled + manual generator workflow
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1930-limegreen" alt="Total views">
+  <img src="https://img.shields.io/badge/Total%20views-0-limegreen" alt="Total views">
   <p>Refresh Date: 2026-02-18</p>
 </div>
 <!-- END BADGE -->

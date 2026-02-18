@@ -1,18 +1,19 @@
 {
-  "generatedAt": "2026-02-18T16:01:52.760Z",
+  "generatedAt": "2026-02-18T21:04:34.667Z",
   "org": "MicrosoftCloudEssentials-LearningHub",
   "repos": [
     {
       "name": "org-catalog",
       "fullName": "MicrosoftCloudEssentials-LearningHub/org-catalog",
       "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog",
-      "description": "",
+      "description": "Quick demo of a lightweight repo catalog designed to be hosted with GitHub Pages.",
       "topics": [],
-      "language": null,
-      "updatedAt": "2026-02-18T15:50:14Z",
+      "language": "JavaScript",
+      "updatedAt": "2026-02-18T18:30:39Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "AzureTerraformTemplates-v0.0.0",
@@ -29,7 +30,8 @@
       "updatedAt": "2026-02-18T04:36:21Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 2
+      "stargazersCount": 2,
+      "imageUrl": "https://github.com/user-attachments/assets/53b47aa7-134e-4cf7-b0b8-cdebdd0583ed"
     },
     {
       "name": "DP-100StudyGuide",
@@ -48,7 +50,8 @@
       "updatedAt": "2026-02-18T03:35:35Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/4577e8fa-6d58-4785-a749-96dedd22669b"
     },
     {
       "name": "AI-102StudyGuide",
@@ -70,7 +73,8 @@
       "updatedAt": "2026-02-18T02:11:47Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 5
+      "stargazersCount": 5,
+      "imageUrl": "https://github.com/user-attachments/assets/4577e8fa-6d58-4785-a749-96dedd22669b"
     },
     {
       "name": "GitHub-Overview",
@@ -87,7 +91,8 @@
       "updatedAt": "2026-02-17T21:23:47Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/a3d413ce-b0d8-40a6-85d3-a3da825b34e3"
     },
     {
       "name": "Fabric-EnterpriseFramework",
@@ -107,7 +112,8 @@
       "updatedAt": "2026-02-03T17:07:54Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 6
+      "stargazersCount": 6,
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Agentic-DevOps-AI-Shopping",
@@ -130,7 +136,8 @@
       "updatedAt": "2026-02-02T23:24:22Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": "https://github.com/user-attachments/assets/886cca9f-9630-4d5f-aca1-b4d37a42fa2d"
     },
     {
       "name": "DemosScenarios-TechTalks",
@@ -158,7 +165,8 @@
       "updatedAt": "2026-02-02T17:27:00Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 4
+      "stargazersCount": 4,
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/9bb7da30-96d0-4bf2-aa58-d53c46b20c90"
     },
     {
       "name": "RAG-ChatBot-Implementation",
@@ -186,7 +194,8 @@
       "updatedAt": "2026-01-28T19:13:43Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 3
+      "stargazersCount": 3,
+      "imageUrl": "https://github.com/user-attachments/assets/5444e87c-32af-44e8-aa86-22fe4082c4f4"
     },
     {
       "name": "Agentic-AI-Media-Assistant",
@@ -207,7 +216,8 @@
       "updatedAt": "2026-01-23T16:40:16Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": "https://github.com/user-attachments/assets/b53017b9-4229-46b2-9759-b8aab8316b89"
     },
     {
       "name": "azDataBase-Freeing-Unused-Space",
@@ -225,7 +235,8 @@
       "updatedAt": "2026-01-13T21:55:23Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/81d088ab-da80-4643-9c2c-2558709c90ff"
     },
     {
       "name": "Azure-MCP-blueprint",
@@ -244,7 +255,8 @@
       "updatedAt": "2025-12-04T23:42:13Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": ".github",
@@ -256,7 +268,8 @@
       "updatedAt": "2025-12-02T23:45:11Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": null
     },
     {
       "name": "AzureFunctionApp-TempUsage",
@@ -275,7 +288,8 @@
       "updatedAt": "2025-11-17T19:19:39Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/4964fb4e-360c-4844-afda-7d0cddc1593c"
     },
     {
       "name": "Fabric-AI-Retail-Demo",
@@ -297,7 +311,8 @@
       "updatedAt": "2025-11-14T05:03:49Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 2
+      "stargazersCount": 2,
+      "imageUrl": "https://github.com/user-attachments/assets/ef1db682-1673-421e-a9cf-370894ce7be3"
     },
     {
       "name": "AI-900StudyGuide",
@@ -321,7 +336,8 @@
       "updatedAt": "2025-11-14T05:03:06Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": "https://github.com/user-attachments/assets/1a24a5f6-51d1-497c-8065-e9a8449145d2"
     },
     {
       "name": "Demystifying-Cloud-Evolution",
@@ -338,7 +354,8 @@
       "updatedAt": "2025-11-14T05:02:31Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/4096eb52-7a0e-4a98-8b01-0b8e7884cdd8"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-OpenFramework",
@@ -363,7 +380,8 @@
       "updatedAt": "2025-11-14T05:01:13Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
@@ -382,7 +400,8 @@
       "updatedAt": "2025-11-14T04:59:48Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "PDFs-Layouts-Processing-Fapp-DocIntelligence",
@@ -407,7 +426,8 @@
       "updatedAt": "2025-11-14T04:59:30Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-DocIntelligence",
@@ -433,7 +453,8 @@
       "updatedAt": "2025-11-14T04:58:23Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "Fabric-MCP-Agent2Agent",
@@ -458,7 +479,8 @@
       "updatedAt": "2025-11-14T04:57:39Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 2
+      "stargazersCount": 2,
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "AI-Agent-Infra-Blueprint",
@@ -476,7 +498,8 @@
       "updatedAt": "2025-11-14T04:54:03Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "SAP-integration-AzLogicApps",
@@ -492,7 +515,8 @@
       "updatedAt": "2025-11-13T21:41:22Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "Azure-App-Dev-Overview",
@@ -504,7 +528,8 @@
       "updatedAt": "2025-11-13T21:34:22Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "MS-Fabric-Essentials-Workshop",
@@ -529,7 +554,8 @@
       "updatedAt": "2025-11-03T23:10:10Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 2
+      "stargazersCount": 2,
+      "imageUrl": null
     },
     {
       "name": "Fabric-SKU-EstimationTool",
@@ -545,7 +571,8 @@
       "updatedAt": "2025-10-15T22:38:04Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "Fabric-Date-Hierarchy-Accelerator",
@@ -563,7 +590,8 @@
       "updatedAt": "2025-10-15T22:36:35Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "Azure-DigitalTwins-Overview",
@@ -583,7 +611,8 @@
       "updatedAt": "2025-09-11T05:25:01Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "Azure-Text-Embedding-Overview",
@@ -603,7 +632,8 @@
       "updatedAt": "2025-08-28T17:42:32Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "GenAIOpsMaturityLevels",
@@ -626,7 +656,8 @@
       "updatedAt": "2025-08-12T19:44:30Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": null
     },
     {
       "name": "DP-900StudyGuide",
@@ -650,7 +681,8 @@
       "updatedAt": "2025-08-04T12:55:06Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "Azure-Databases-Purview-Advisor",
@@ -670,7 +702,8 @@
       "updatedAt": "2025-07-17T02:52:31Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "AzureMachineLearning-Overview",
@@ -690,7 +723,8 @@
       "updatedAt": "2025-07-16T22:58:50Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 1
+      "stargazersCount": 1,
+      "imageUrl": null
     },
     {
       "name": "azSynapse-Dynamic-RemoveBlanks",
@@ -707,7 +741,8 @@
       "updatedAt": "2025-07-16T20:41:11Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     },
     {
       "name": "MySQL-autoscale-IOPS",
@@ -724,7 +759,8 @@
       "updatedAt": "2025-07-16T15:44:06Z",
       "archived": false,
       "private": false,
-      "stargazersCount": 0
+      "stargazersCount": 0,
+      "imageUrl": null
     }
   ]
 }

@@ -48,7 +48,112 @@ function toRepoModel(r) {
     archived: Boolean(r.archived),
     private: Boolean(r.private),
     stargazersCount: typeof r.stargazers_count === 'number' ? r.stargazers_count : undefined,
+    imageUrl: r.imageUrl ?? null,
   };
+}
+
+function normalizeImageRef(ref) {
+  const raw = String(ref || '').trim();
+  if (!raw) return '';
+  if (raw.startsWith('#')) return '';
+
+  // strip optional surrounding angle brackets
+  const noBrackets = raw.startsWith('<') && raw.endsWith('>') ? raw.slice(1, -1).trim() : raw;
+  // strip optional title part: url "title" or url 'title'
+  return noBrackets.split(/\s+/)[0] || '';
+}
+
+function isBadgeLikeImageRef(ref) {
+  const raw = String(ref || '');
+  const lower = raw.toLowerCase();
+
+  // Common badge providers / patterns
+  if (lower.includes('shields.io')) return true;
+  if (lower.includes('badge.fury.io')) return true;
+  if (lower.includes('badgen.net')) return true;
+  if (lower.includes('badge.svg')) return true; // includes GitHub Actions badges
+
+  // Relative paths that look like badges
+  if (/(^|\/|\\)badge\.(svg|png)$/i.test(raw)) return true;
+
+  return false;
+}
+
+function extractFirstImageRef(markdown) {
+  const text = String(markdown || '');
+
+  // Iterate in document order across Markdown and HTML image syntaxes
+  const refs = [];
+  const re = /!\[[^\]]*\]\(([^)]+)\)|<img\s+[^>]*src=["']([^"']+)["'][^>]*>/gim;
+  let match;
+  while ((match = re.exec(text))) {
+    const candidate = normalizeImageRef(match[1] || match[2]);
+    if (candidate) refs.push(candidate);
+  }
+
+  for (const ref of refs) {
+    if (!isBadgeLikeImageRef(ref)) return ref;
+  }
+
+  return '';
+}
+
+function resolveReadmeImageUrl({ org, repo, branch, readmePath, imageRef }) {
+  const ref = String(imageRef || '').trim();
+  if (!ref) return '';
+
+  // absolute
+  if (/^https?:\/\//i.test(ref) || ref.startsWith('data:')) return ref;
+
+  const cleanRef = ref.replace(/^\.\//, '');
+
+  const readmeDir = String(readmePath || '').includes('/')
+    ? String(readmePath).split('/').slice(0, -1).join('/')
+    : '';
+
+  let resolvedPath = cleanRef;
+  if (cleanRef.startsWith('/')) {
+    resolvedPath = cleanRef.slice(1);
+  } else if (readmeDir) {
+    resolvedPath = `${readmeDir}/${cleanRef}`;
+  }
+
+  const encodedPath = resolvedPath
+    .split('/')
+    .map((seg) => encodeURIComponent(seg))
+    .join('/');
+
+  return `https://raw.githubusercontent.com/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${encodedPath}`;
+}
+
+async function fetchReadme({ org, repo }) {
+  const url = `https://api.github.com/repos/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/readme`;
+  const res = await fetch(url, { headers });
+  if (!res.ok) return null;
+
+  const data = await res.json().catch(() => null);
+  if (!data?.content || typeof data.content !== 'string') return null;
+
+  const content = Buffer.from(data.content, 'base64').toString('utf8');
+  const path = typeof data.path === 'string' ? data.path : 'README.md';
+  return { content, path };
+}
+
+async function mapWithConcurrency(items, limit, fn) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (true) {
+      const i = nextIndex++;
+      if (i >= items.length) return;
+      results[i] = await fn(items[i], i);
+    }
+  }
+
+  const workers = Array.from({ length: Math.max(1, limit) }, () => worker());
+  await Promise.all(workers);
+  return results;
 }
 
 async function main() {
@@ -56,10 +161,38 @@ async function main() {
     `https://api.github.com/orgs/${encodeURIComponent(ORG_NAME)}/repos?per_page=100&type=public&sort=pushed`
   );
 
+  // Best-effort: extract first README image for each repo.
+  // (This keeps UX lightweight while providing a quick visual hint.)
+  const enriched = await mapWithConcurrency(repos, 6, async (r) => {
+    const repo = r?.name;
+    const branch = r?.default_branch || 'main';
+    if (!repo) return r;
+
+    try {
+      const readme = await fetchReadme({ org: ORG_NAME, repo });
+      if (!readme) return r;
+
+      const imageRef = extractFirstImageRef(readme.content);
+      if (!imageRef) return r;
+
+      const imageUrl = resolveReadmeImageUrl({
+        org: ORG_NAME,
+        repo,
+        branch,
+        readmePath: readme.path,
+        imageRef,
+      });
+
+      return { ...r, imageUrl };
+    } catch {
+      return r;
+    }
+  });
+
   const payload = {
     generatedAt: new Date().toISOString(),
     org: ORG_NAME,
-    repos: repos.map(toRepoModel),
+    repos: enriched.map(toRepoModel),
   };
 
   const outPath = path.join(process.cwd(), 'docs', 'catalog.json');

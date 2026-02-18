@@ -10,6 +10,14 @@
   --surface: color-mix(in oklab, var(--bg) 92%, var(--fg));
   --surface2: color-mix(in oklab, var(--bg) 86%, var(--fg));
 
+  /* Component surfaces */
+  --card: var(--surface2);
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius: 12px;
+  --radius-lg: 14px;
+
   --focus: color-mix(in oklab, var(--link) 55%, var(--bg));
 }
 
@@ -80,6 +88,14 @@ body {
   color: var(--muted);
 }
 
+.brandMeta a {
+  color: inherit;
+}
+
+.brandMeta a:hover {
+  color: var(--fg);
+}
+
 .brandOrg {
   font-weight: 600;
   color: var(--fg);
@@ -121,6 +137,47 @@ body {
   flex-wrap: wrap;
 }
 
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 160px;
+}
+
+.select:focus-visible {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
+}
+
+.search.topic {
+  min-width: 180px;
+  flex: 0 1 220px;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .authRow {
   display: flex;
   align-items: center;
@@ -132,7 +189,7 @@ body {
 .segmented {
   display: inline-flex;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg);
 }
@@ -148,6 +205,11 @@ body {
   font-size: 14px;
 }
 
+.segButton:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--surface) 45%, transparent);
+  color: var(--fg);
+}
+
 .segButton:last-child {
   border-right: 0;
 }
@@ -155,6 +217,11 @@ body {
 .segButton.active {
   background: var(--card);
   color: var(--fg);
+}
+
+.segButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
 }
 
 .segButton:disabled {
@@ -180,15 +247,19 @@ body {
   min-width: 260px;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--bg);
   color: var(--fg);
   outline: none;
 }
 
-.search:focus {
+.search:focus-visible {
   border-color: var(--focus);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
+}
+
+.search::placeholder {
+  color: color-mix(in oklab, var(--muted) 80%, var(--bg));
 }
 
 .link {
@@ -204,10 +275,20 @@ body {
 .button {
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--surface2);
   color: var(--fg);
   cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  border-color: color-mix(in oklab, var(--border) 60%, var(--link));
+  background: color-mix(in oklab, var(--surface2) 85%, var(--bg));
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
 }
 
 .button.secondary {
@@ -234,21 +315,44 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
+  gap: 14px;
   padding-bottom: 30px;
 }
 
 .card {
   display: block;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface2);
+  border-radius: var(--radius-lg);
+  background: var(--card);
   padding: 14px;
   text-decoration: none;
   color: inherit;
   transform: translateY(0);
   transition: transform 140ms ease, border-color 140ms ease, opacity 140ms ease;
   animation: fadeUp 180ms ease both;
+}
+
+.card:focus-visible {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 22%, transparent);
+}
+
+.cardMedia {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 12px;
+}
+
+.cardThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card:hover {
@@ -276,6 +380,10 @@ body {
   margin: 0;
   font-size: 16px;
   letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .cardDesc {
@@ -283,6 +391,10 @@ body {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.35;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .meta {
