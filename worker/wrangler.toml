@@ -1,0 +1,16 @@
+name = "org-catalog-auth"
+main = "src/worker.mjs"
+compatibility_date = "2025-12-01"
+
+# Configure these via `wrangler secret put ...`:
+# - GITHUB_CLIENT_ID
+# - GITHUB_CLIENT_SECRET
+# - STATE_SECRET
+#
+# Optional via `wrangler secret put` or `wrangler.toml` vars:
+# - ORG_NAME (defaults to MicrosoftCloudEssentials-LearningHub)
+# - ALLOWED_RETURN_ORIGINS (comma-separated, e.g. https://microsoftcloudessentials-learninghub.github.io,http://localhost:4173)
+
+[vars]
+ORG_NAME = "MicrosoftCloudEssentials-LearningHub"
+ALLOWED_RETURN_ORIGINS = "http://localhost:4173"
