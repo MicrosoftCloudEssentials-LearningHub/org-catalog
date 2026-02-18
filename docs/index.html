@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://api.github.com; frame-ancestors 'none'; upgrade-insecure-requests"
+    />
+    <title>Microsoft Cloud Sandbox - Unofficial</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1 class="title">Microsoft Cloud Sandbox - Unofficial</h1>
+        <p class="subtitle">
+          Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.
+        </p>
+
+        <div class="brandRow" aria-label="About">
+          <img
+            class="avatar"
+            src="https://github.com/MicrosoftCloudEssentials-LearningHub.png?size=96"
+            alt="MicrosoftCloudEssentials-LearningHub avatar"
+            width="40"
+            height="40"
+            loading="lazy"
+          />
+          <div class="brandMeta">
+            <a class="brandOrg" href="https://github.com/MicrosoftCloudEssentials-LearningHub" target="_blank" rel="noopener noreferrer">
+              MicrosoftCloudEssentials-LearningHub
+            </a>
+            <span class="brandSep">·</span>
+            <span class="brandFounder">
+              Owner / Funder:
+              <img
+                class="avatar small"
+                src="https://github.com/brown9804.png?size=64"
+                alt="brown9804 avatar"
+                width="20"
+                height="20"
+                loading="lazy"
+              />
+              <a href="https://github.com/brown9804" target="_blank" rel="noopener noreferrer">@brown9804</a>
+              <span class="brandSep">·</span>
+              <a href="https://www.linkedin.com/in/timna-b-939492161/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label class="searchLabel" for="q">Search</label>
+          <input id="q" class="search" placeholder="name, description, topics" autocomplete="off" />
+
+          <div class="segmented" role="group" aria-label="Catalog view">
+            <button id="viewPublic" class="segButton active" type="button">Public</button>
+            <button id="viewPrivate" class="segButton" type="button" disabled>Private</button>
+          </div>
+
+          <button id="signIn" class="button" type="button">Sign in</button>
+          <button id="signOut" class="button secondary" type="button" hidden>Sign out</button>
+        </div>
+
+        <div id="authRow" class="authRow" hidden>
+          <span class="hint">Redirecting to GitHub sign-in…</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div id="status" class="status" aria-live="polite"></div>
+      <div id="grid" class="grid" aria-label="Repository list"></div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span id="footerMeta" class="footerMeta"></span>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
