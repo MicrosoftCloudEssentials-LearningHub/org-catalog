@@ -29,7 +29,7 @@ In your repo settings:
 
 This catalog is intended to index only:
 
-- https://github.com/MicrosoftCloudEssentials-LearningHub
+- <https://github.com/MicrosoftCloudEssentials-LearningHub>
 
 By default the generator targets `MicrosoftCloudEssentials-LearningHub`.
 
