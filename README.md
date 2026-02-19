@@ -13,7 +13,8 @@ Last updated: 2026-02-19
 >
 > - Public catalog is generated at build time (GitHub Action) into `docs/catalog.json`.
 > - Site is static HTML/CSS/JS served from the `docs/` folder.
-> - Private repos are shown after “Sign in with GitHub” via a tiny serverless OAuth handler.
+> - By default, the **Private** button opens the org's private repo list on GitHub (no OAuth required).
+> - Optional: if you want private repos rendered *inside* this catalog UI, you need an OAuth callback handled by a tiny serverless endpoint (see below).
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/584aab63-e965-40a1-80f2-a77e25972b05" alt="Centered Image" style="border: 2px solid #4CAF50; border-radius: 5px; padding: 5px; width: 1000px;"/>
@@ -52,7 +53,8 @@ The **Translate** dropdown can translate the app UI client-side. If you also wan
 
 ## Private section (GitHub OAuth)
 
-> GitHub Pages is static hosting, so the OAuth callback must be handled by a tiny serverless endpoint. This repo includes a minimal Cloudflare Worker under `worker/` that:
+> - This section is **optional**. You only need it if you want private repos displayed *inside the catalog*.
+> - GitHub Pages is static hosting, so the OAuth callback (code → token exchange) must be handled by a tiny serverless endpoint. This repo includes a minimal Cloudflare Worker under `worker/` that:
 
 - Redirects the user to GitHub to sign in
 - Exchanges the OAuth code for an access token
