@@ -35,7 +35,7 @@ jobs:
           AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
           AZURE_TRANSLATOR_ENDPOINT: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr' }}
-        run: node scripts/fetch-catalog.mjs
+        run: node scripts/fetch-catalog.mjs --outDir docs/dev
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: docs/dev
 
   deploy:
     runs-on: ubuntu-latest
