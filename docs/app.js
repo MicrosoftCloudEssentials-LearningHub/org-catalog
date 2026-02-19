@@ -843,6 +843,7 @@ function getOrgPrivateReposUrl() {
   const org = String(publicCatalog?.org || '').trim();
   if (!org) return '';
   const url = new URL(`https://github.com/orgs/${encodeURIComponent(org)}/repositories`);
+  url.searchParams.set('type', 'private');
   url.searchParams.set('q', 'visibility:private archived:false');
   return url.toString();
 }
