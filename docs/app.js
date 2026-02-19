@@ -55,6 +55,11 @@ const BUILTIN_UI_TRANSLATIONS = {
       'No se pudo determinar el nombre de la organización. Vuelve a generar catalog.json.',
     'Opened GitHub private repositories in a new tab.':
       'Se abrieron los repositorios privados de GitHub en una nueva pestaña.',
+
+    'Microsoft Cloud Sandbox - Unofficial': 'Microsoft Cloud Sandbox - No oficial',
+
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      'Experimentación y aprendizaje lúdico, invitando a los usuarios a probar tecnología de Microsoft sin miedo a romper nada.',
   },
   pt: {
     Search: 'Pesquisar',
@@ -88,6 +93,11 @@ const BUILTIN_UI_TRANSLATIONS = {
       'Não foi possível determinar o nome da organização. Regenere o catalog.json.',
     'Opened GitHub private repositories in a new tab.':
       'Os repositórios privados do GitHub foram abertos em uma nova aba.',
+
+    'Microsoft Cloud Sandbox - Unofficial': 'Microsoft Cloud Sandbox - Não oficial',
+
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      'Experimentação e aprendizagem lúdica, convidando os usuários a experimentar tecnologia da Microsoft sem medo de quebrar nada.',
   },
   fr: {
     Search: 'Rechercher',
@@ -121,6 +131,11 @@ const BUILTIN_UI_TRANSLATIONS = {
       "Impossible de déterminer le nom de l'organisation. Régénérez catalog.json.",
     'Opened GitHub private repositories in a new tab.':
       "Ouverture des dépôts privés GitHub dans un nouvel onglet.",
+
+    'Microsoft Cloud Sandbox - Unofficial': 'Microsoft Cloud Sandbox - Non officiel',
+
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      "Expérimentation et apprentissage ludique, invitant les utilisateurs à essayer la technologie Microsoft sans crainte de tout casser.",
   },
 };
 
@@ -828,7 +843,7 @@ function getOrgPrivateReposUrl() {
   const org = String(publicCatalog?.org || '').trim();
   if (!org) return '';
   const url = new URL(`https://github.com/orgs/${encodeURIComponent(org)}/repositories`);
-  url.searchParams.set('type', 'private');
+  url.searchParams.set('q', 'visibility:private archived:false');
   return url.toString();
 }
 
