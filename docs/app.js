@@ -233,10 +233,30 @@ function applyUiTranslationsFromCache(lang) {
   const to = String(lang || '').toLowerCase();
   if (!to || to === 'en') return;
 
+  // Tab title
+  if (document?.title) {
+    const src = normalizeUiText(document.title);
+    document.title = translateText(to, src);
+  }
+
   for (const el of document.querySelectorAll('[data-i18n]')) {
     const key = ensureI18nSource(el);
     if (!key) continue;
     el.textContent = translateText(to, key);
+  }
+
+  // Back-compat: translate header title/description even if an older HTML copy
+  // doesn't have data-i18n attributes yet.
+  const titleEl = document.querySelector('.title');
+  if (titleEl) {
+    const key = ensureI18nSource(titleEl);
+    if (key) titleEl.textContent = translateText(to, key);
+  }
+
+  const subtitleEl = document.querySelector('.subtitle');
+  if (subtitleEl) {
+    const key = ensureI18nSource(subtitleEl);
+    if (key) subtitleEl.textContent = translateText(to, key);
   }
 
   for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
