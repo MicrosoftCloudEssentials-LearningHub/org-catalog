@@ -7,7 +7,7 @@ Costa Rica
 [![GitHub](https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff)](https://github.com/)
 [brown9804](https://github.com/brown9804)
 
-Last updated: 2026-02-17
+Last updated: 2026-02-19
 
 ----------
 
@@ -30,14 +30,25 @@ Last updated: 2026-02-17
       - `wrangler secret put STATE_SECRET`
       - Recommended: Update `ALLOWED_RETURN_ORIGINS` in `wrangler.toml` to include your Pages origin.
 
+## Translation (optional)
+
+If you want repo descriptions/topics to display in the selected UI language, configure Azure AI Translator and set these secrets:
+
+- `wrangler secret put TRANSLATOR_KEY`
+- Optional (often required for multi-service resources): `wrangler secret put TRANSLATOR_REGION`
+- Optional: `wrangler secret put TRANSLATOR_ENDPOINT` (defaults to `https://api.cognitive.microsofttranslator.com`)
+
+Then set either `translateBaseUrl` (or `authBaseUrl`) in `docs/config.json` to the worker base URL.
+
 ## Endpoints
 
 - `GET /login?returnTo=<url>` redirects to GitHub authorize.
 - `GET /callback` handles OAuth exchange and redirects back to `returnTo` with `#access_token=...`.
+- `POST /translate` translates an array of strings: `{ "to": "es", "texts": ["hello", "world"] }`.
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-0-limegreen" alt="Total views">
-  <p>Refresh Date: 2026-02-18</p>
+  <img src="https://img.shields.io/badge/Total%20views-1280-limegreen" alt="Total views">
+  <p>Refresh Date: 2026-02-19</p>
 </div>
 <!-- END BADGE -->
