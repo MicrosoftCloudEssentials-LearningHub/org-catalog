@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-18T21:04:34.667Z",
+  "generatedAt": "2026-02-19T00:46:47.043Z",
   "org": "MicrosoftCloudEssentials-LearningHub",
   "repos": [
     {
@@ -8,8 +8,30 @@
       "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog",
       "description": "Quick demo of a lightweight repo catalog designed to be hosted with GitHub Pages.",
       "topics": [],
+      "categories": [
+        "catalog",
+        "oauth",
+        "pages",
+        "github",
+        "org",
+        "generator"
+      ],
+      "keywords": [
+        "catalog",
+        "oauth",
+        "pages",
+        "github",
+        "org",
+        "generator",
+        "token",
+        "worker",
+        "redirects",
+        "workflow",
+        "settings",
+        "static"
+      ],
       "language": "JavaScript",
-      "updatedAt": "2026-02-18T18:30:39Z",
+      "updatedAt": "2026-02-19T00:39:23Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
@@ -25,6 +47,28 @@
         "iac-terraform",
         "insfrastructure",
         "terraform-template"
+      ],
+      "categories": [
+        "azure",
+        "terraform",
+        "templates",
+        "values",
+        "iot",
+        "resources"
+      ],
+      "keywords": [
+        "azure",
+        "terraform",
+        "templates",
+        "values",
+        "iot",
+        "resources",
+        "providers",
+        "variable",
+        "file",
+        "version",
+        "provider",
+        "variables"
       ],
       "language": "HCL",
       "updatedAt": "2026-02-18T04:36:21Z",
@@ -45,6 +89,28 @@
         "cloud",
         "dp-100-questions",
         "dp-100-study-guide"
+      ],
+      "categories": [
+        "certification",
+        "study",
+        "models",
+        "experiments",
+        "official",
+        "prepare"
+      ],
+      "keywords": [
+        "certification",
+        "study",
+        "models",
+        "experiments",
+        "official",
+        "prepare",
+        "explore",
+        "materials",
+        "azure",
+        "foundry",
+        "train",
+        "azure-machine-learning"
       ],
       "language": null,
       "updatedAt": "2026-02-18T03:35:35Z",
@@ -69,6 +135,28 @@
         "microsoft-azure",
         "natural-language-processing"
       ],
+      "categories": [
+        "certification",
+        "solutions",
+        "implement",
+        "study",
+        "questions",
+        "answers"
+      ],
+      "keywords": [
+        "certification",
+        "solutions",
+        "implement",
+        "study",
+        "questions",
+        "answers",
+        "official",
+        "materials",
+        "computer",
+        "vision",
+        "ai-102-questions",
+        "ai-102-questions-answers"
+      ],
       "language": null,
       "updatedAt": "2026-02-18T02:11:47Z",
       "archived": false,
@@ -86,6 +174,28 @@
         "github",
         "github-overview",
         "pricing"
+      ],
+      "categories": [
+        "github",
+        "issues",
+        "pull",
+        "branch",
+        "changes",
+        "scanning"
+      ],
+      "keywords": [
+        "github",
+        "issues",
+        "pull",
+        "branch",
+        "changes",
+        "scanning",
+        "yml",
+        "features",
+        "git",
+        "security",
+        "dependabot",
+        "issue"
       ],
       "language": null,
       "updatedAt": "2026-02-17T21:23:47Z",
@@ -107,6 +217,28 @@
         "microsoft-fabric",
         "monitoring",
         "observability"
+      ],
+      "categories": [
+        "data",
+        "iac",
+        "purview",
+        "fabric",
+        "practices",
+        "spending"
+      ],
+      "keywords": [
+        "data",
+        "iac",
+        "purview",
+        "fabric",
+        "practices",
+        "spending",
+        "network",
+        "platform",
+        "security",
+        "networking",
+        "lineage",
+        "alerts"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-02-03T17:07:54Z",
@@ -131,6 +263,28 @@
         "retail",
         "simulation",
         "zero-touch-provisioning"
+      ],
+      "categories": [
+        "a2a",
+        "agents",
+        "agent",
+        "chat",
+        "default",
+        "multi"
+      ],
+      "keywords": [
+        "a2a",
+        "agents",
+        "agent",
+        "chat",
+        "default",
+        "multi",
+        "product",
+        "specialist",
+        "style",
+        "server",
+        "entrypoint",
+        "loyalty"
       ],
       "language": "Python",
       "updatedAt": "2026-02-02T23:24:22Z",
@@ -161,6 +315,28 @@
         "security",
         "sharepoint"
       ],
+      "categories": [
+        "cloud",
+        "power",
+        "microsoft",
+        "azure",
+        "security",
+        "services"
+      ],
+      "keywords": [
+        "cloud",
+        "power",
+        "microsoft",
+        "azure",
+        "security",
+        "services",
+        "sharepoint",
+        "analytics",
+        "computing",
+        "iot",
+        "technologies",
+        "demonstrations"
+      ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-02-02T17:27:00Z",
       "archived": false,
@@ -190,6 +366,28 @@
         "terraform",
         "use-cases"
       ],
+      "categories": [
+        "rag",
+        "azd",
+        "trust",
+        "powershell",
+        "azure",
+        "step"
+      ],
+      "keywords": [
+        "rag",
+        "azd",
+        "trust",
+        "powershell",
+        "azure",
+        "step",
+        "architecture",
+        "gpt",
+        "sharepoint",
+        "network",
+        "developers",
+        "zero"
+      ],
       "language": "Bicep",
       "updatedAt": "2026-01-28T19:13:43Z",
       "archived": false,
@@ -212,6 +410,28 @@
         "retail",
         "zero-touch-provisioning"
       ],
+      "categories": [
+        "sweden",
+        "agents",
+        "central",
+        "east",
+        "generation",
+        "chat"
+      ],
+      "keywords": [
+        "sweden",
+        "agents",
+        "central",
+        "east",
+        "generation",
+        "chat",
+        "flux",
+        "pro",
+        "agent",
+        "router",
+        "model",
+        "models"
+      ],
       "language": "Python",
       "updatedAt": "2026-01-23T16:40:16Z",
       "archived": false,
@@ -230,6 +450,28 @@
         "free-space",
         "optimization",
         "performance"
+      ],
+      "categories": [
+        "unused",
+        "freeing",
+        "space",
+        "database",
+        "topic",
+        "sql"
+      ],
+      "keywords": [
+        "unused",
+        "freeing",
+        "space",
+        "database",
+        "topic",
+        "sql",
+        "azure",
+        "additional",
+        "relational",
+        "databases",
+        "maintenance",
+        "instance"
       ],
       "language": "TSQL",
       "updatedAt": "2026-01-13T21:55:23Z",
@@ -251,6 +493,28 @@
         "mcp",
         "mcp-server"
       ],
+      "categories": [
+        "mcp",
+        "perspective",
+        "responsibilities",
+        "expose",
+        "server",
+        "dev"
+      ],
+      "keywords": [
+        "mcp",
+        "perspective",
+        "responsibilities",
+        "expose",
+        "server",
+        "dev",
+        "http",
+        "rights",
+        "agnostic",
+        "schemas",
+        "transport",
+        "contract"
+      ],
       "language": null,
       "updatedAt": "2025-12-04T23:42:13Z",
       "archived": false,
@@ -264,6 +528,8 @@
       "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/.github",
       "description": "",
       "topics": [],
+      "categories": [],
+      "keywords": [],
       "language": null,
       "updatedAt": "2025-12-02T23:45:11Z",
       "archived": false,
@@ -283,6 +549,28 @@
         "optimized-memory",
         "temp-usage",
         "temporary-usage"
+      ],
+      "categories": [
+        "temp",
+        "disk",
+        "decay",
+        "function",
+        "accumulation",
+        "mounted"
+      ],
+      "keywords": [
+        "temp",
+        "disk",
+        "decay",
+        "function",
+        "accumulation",
+        "mounted",
+        "file",
+        "app",
+        "telemetry",
+        "writable",
+        "optimized",
+        "deployment"
       ],
       "language": "HCL",
       "updatedAt": "2025-11-17T19:19:39Z",
@@ -306,6 +594,28 @@
         "mcp-server",
         "microsoft-fabric",
         "retail"
+      ],
+      "categories": [
+        "fabric",
+        "data",
+        "decision",
+        "synapse",
+        "integration",
+        "analytics"
+      ],
+      "keywords": [
+        "fabric",
+        "data",
+        "decision",
+        "synapse",
+        "integration",
+        "analytics",
+        "science",
+        "microsoft",
+        "terraform",
+        "unified",
+        "retail",
+        "insights"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2025-11-14T05:03:49Z",
@@ -332,6 +642,28 @@
         "natual-language-processing",
         "nlp-machine-learning"
       ],
+      "categories": [
+        "describe",
+        "certification",
+        "study",
+        "answers",
+        "questions",
+        "official"
+      ],
+      "keywords": [
+        "describe",
+        "certification",
+        "study",
+        "answers",
+        "questions",
+        "official",
+        "workloads",
+        "fundamentals",
+        "exam",
+        "artificial",
+        "materials",
+        "microsoft"
+      ],
       "language": null,
       "updatedAt": "2025-11-14T05:03:06Z",
       "archived": false,
@@ -349,6 +681,28 @@
         "capacity-planning",
         "cloud-computing",
         "computing-history"
+      ],
+      "categories": [
+        "carbon",
+        "energy",
+        "computing",
+        "technical",
+        "per",
+        "later"
+      ],
+      "keywords": [
+        "carbon",
+        "energy",
+        "computing",
+        "technical",
+        "per",
+        "later",
+        "cpu",
+        "regions",
+        "program",
+        "memory",
+        "bit",
+        "scheduling"
       ],
       "language": null,
       "updatedAt": "2025-11-14T05:02:31Z",
@@ -376,6 +730,28 @@
         "retail",
         "storage-account"
       ],
+      "categories": [
+        "function",
+        "cosmos",
+        "azure",
+        "account",
+        "data",
+        "pdf"
+      ],
+      "keywords": [
+        "function",
+        "cosmos",
+        "azure",
+        "account",
+        "data",
+        "pdf",
+        "container",
+        "create",
+        "containers",
+        "blob",
+        "click",
+        "resources"
+      ],
       "language": "HCL",
       "updatedAt": "2025-11-14T05:01:13Z",
       "archived": false,
@@ -395,6 +771,28 @@
         "industry",
         "pdf-extractor",
         "retail"
+      ],
+      "categories": [
+        "document",
+        "function",
+        "azure",
+        "pdf",
+        "cosmos",
+        "blob"
+      ],
+      "keywords": [
+        "document",
+        "function",
+        "azure",
+        "pdf",
+        "cosmos",
+        "blob",
+        "data",
+        "intelligence",
+        "layout",
+        "structured",
+        "app",
+        "vision"
       ],
       "language": "HCL",
       "updatedAt": "2025-11-14T04:59:48Z",
@@ -421,6 +819,28 @@
         "pdf-cv",
         "retail",
         "storage-account"
+      ],
+      "categories": [
+        "function",
+        "document",
+        "cosmos",
+        "azure",
+        "pdf",
+        "blob"
+      ],
+      "keywords": [
+        "function",
+        "document",
+        "cosmos",
+        "azure",
+        "pdf",
+        "blob",
+        "data",
+        "layout",
+        "intelligence",
+        "app",
+        "container",
+        "scale"
       ],
       "language": "HCL",
       "updatedAt": "2025-11-14T04:59:30Z",
@@ -449,6 +869,28 @@
         "retail",
         "storage-account"
       ],
+      "categories": [
+        "function",
+        "cosmos",
+        "document",
+        "account",
+        "azure",
+        "data"
+      ],
+      "keywords": [
+        "function",
+        "cosmos",
+        "document",
+        "account",
+        "azure",
+        "data",
+        "create",
+        "pdf",
+        "blob",
+        "container",
+        "click",
+        "intelligence"
+      ],
       "language": "HCL",
       "updatedAt": "2025-11-14T04:58:23Z",
       "archived": false,
@@ -475,6 +917,28 @@
         "manufactoring",
         "retail"
       ],
+      "categories": [
+        "copilot",
+        "mcp",
+        "fabric",
+        "agent",
+        "data",
+        "studio"
+      ],
+      "keywords": [
+        "copilot",
+        "mcp",
+        "fabric",
+        "agent",
+        "data",
+        "studio",
+        "dataset",
+        "credits",
+        "generative",
+        "agents",
+        "credit",
+        "semantic"
+      ],
       "language": "Jupyter Notebook",
       "updatedAt": "2025-11-14T04:57:39Z",
       "archived": false,
@@ -494,12 +958,34 @@
         "template-project",
         "terraform-infrastructure"
       ],
+      "categories": [
+        "azure",
+        "foundry",
+        "resources",
+        "network",
+        "agent",
+        "showcases"
+      ],
+      "keywords": [
+        "azure",
+        "foundry",
+        "resources",
+        "network",
+        "agent",
+        "showcases",
+        "resource",
+        "ensure",
+        "based",
+        "permission",
+        "consider",
+        "environment"
+      ],
       "language": "HCL",
       "updatedAt": "2025-11-14T04:54:03Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/c8730a94-df95-4682-8b82-483c50194973"
     },
     {
       "name": "SAP-integration-AzLogicApps",
@@ -511,12 +997,34 @@
         "sap",
         "sap-odata"
       ],
+      "categories": [
+        "cookie",
+        "sap",
+        "logic",
+        "header",
+        "apps",
+        "apim"
+      ],
+      "keywords": [
+        "cookie",
+        "sap",
+        "logic",
+        "header",
+        "apps",
+        "apim",
+        "csrf",
+        "cookies",
+        "complex",
+        "session",
+        "string",
+        "token"
+      ],
       "language": null,
       "updatedAt": "2025-11-13T21:41:22Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/e4cb0eb8-5eff-4052-9e92-284870d08bab"
     },
     {
       "name": "Azure-App-Dev-Overview",
@@ -524,12 +1032,34 @@
       "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/Azure-App-Dev-Overview",
       "description": "Azure App Dev Services. GitHub Overview. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [],
+      "categories": [
+        "event",
+        "apps",
+        "azure",
+        "services",
+        "data",
+        "bus"
+      ],
+      "keywords": [
+        "event",
+        "apps",
+        "azure",
+        "services",
+        "data",
+        "bus",
+        "hubs",
+        "cloud",
+        "service",
+        "grid",
+        "saas",
+        "messaging"
+      ],
       "language": null,
       "updatedAt": "2025-11-13T21:34:22Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/7aa221fc-face-4860-919b-8207c99f4f00"
     },
     {
       "name": "MS-Fabric-Essentials-Workshop",
@@ -550,12 +1080,34 @@
         "microsoft-fabric",
         "terraform"
       ],
+      "categories": [
+        "fabric",
+        "terraform",
+        "infrastructure",
+        "shows",
+        "transformer",
+        "approach"
+      ],
+      "keywords": [
+        "fabric",
+        "terraform",
+        "infrastructure",
+        "shows",
+        "transformer",
+        "approach",
+        "extracting",
+        "langchain",
+        "mlflow",
+        "follow",
+        "machine",
+        "microsoft"
+      ],
       "language": "Jupyter Notebook",
       "updatedAt": "2025-11-03T23:10:10Z",
       "archived": false,
       "private": false,
       "stargazersCount": 2,
-      "imageUrl": null
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Fabric-SKU-EstimationTool",
@@ -567,12 +1119,34 @@
         "microsoft-fabric",
         "sku"
       ],
+      "categories": [
+        "sku",
+        "tool",
+        "estimation",
+        "estimator",
+        "fabric",
+        "page"
+      ],
+      "keywords": [
+        "sku",
+        "tool",
+        "estimation",
+        "estimator",
+        "fabric",
+        "page",
+        "contains",
+        "stay",
+        "file",
+        "microsoft",
+        "javascript",
+        "announcing"
+      ],
       "language": "JavaScript",
       "updatedAt": "2025-10-15T22:38:04Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Fabric-Date-Hierarchy-Accelerator",
@@ -586,12 +1160,34 @@
         "microsoft-fabric",
         "power-bi"
       ],
+      "categories": [
+        "fabric",
+        "notebook",
+        "hierarchies",
+        "power",
+        "direct",
+        "lakehouse"
+      ],
+      "keywords": [
+        "fabric",
+        "notebook",
+        "hierarchies",
+        "power",
+        "direct",
+        "lakehouse",
+        "option",
+        "lake",
+        "hierarchy",
+        "standardize",
+        "walkthrough",
+        "scripts"
+      ],
       "language": "Jupyter Notebook",
       "updatedAt": "2025-10-15T22:36:35Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Azure-DigitalTwins-Overview",
@@ -607,12 +1203,34 @@
         "manufacturing",
         "retail"
       ],
+      "categories": [
+        "digital",
+        "twins",
+        "twin",
+        "dtdl",
+        "iot",
+        "telemetry"
+      ],
+      "keywords": [
+        "digital",
+        "twins",
+        "twin",
+        "dtdl",
+        "iot",
+        "telemetry",
+        "devices",
+        "robots",
+        "sensors",
+        "shelf",
+        "relationships",
+        "azure"
+      ],
       "language": "PowerShell",
       "updatedAt": "2025-09-11T05:25:01Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/349ae79a-0d1f-4912-9e17-d2bfe3616f2d"
     },
     {
       "name": "Azure-Text-Embedding-Overview",
@@ -628,12 +1246,34 @@
         "terraform-deployment",
         "text-embedding"
       ],
+      "categories": [
+        "search",
+        "embedding",
+        "marketplace",
+        "embeddings",
+        "multilingual",
+        "semantic"
+      ],
+      "keywords": [
+        "search",
+        "embedding",
+        "marketplace",
+        "embeddings",
+        "multilingual",
+        "semantic",
+        "retrieval",
+        "vector",
+        "azure",
+        "indexing",
+        "rag",
+        "foundry"
+      ],
       "language": "HCL",
       "updatedAt": "2025-08-28T17:42:32Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/424f2d85-37e4-4e74-b303-2e8c5a23a864"
     },
     {
       "name": "GenAIOpsMaturityLevels",
@@ -651,6 +1291,28 @@
         "mlops",
         "mlops-workflow",
         "ops"
+      ],
+      "categories": [
+        "llm",
+        "maturity",
+        "genaiops",
+        "level",
+        "operations",
+        "mlops"
+      ],
+      "keywords": [
+        "llm",
+        "maturity",
+        "genaiops",
+        "level",
+        "operations",
+        "mlops",
+        "organizations",
+        "practices",
+        "generative",
+        "optimized",
+        "improvement",
+        "quick"
       ],
       "language": "Python",
       "updatedAt": "2025-08-12T19:44:30Z",
@@ -677,12 +1339,34 @@
         "synapse-analytics",
         "virtualization"
       ],
+      "categories": [
+        "certification",
+        "relational",
+        "study",
+        "describe",
+        "official",
+        "concepts"
+      ],
+      "keywords": [
+        "certification",
+        "relational",
+        "study",
+        "describe",
+        "official",
+        "concepts",
+        "data",
+        "materials",
+        "workload",
+        "azure",
+        "non",
+        "azure-cosmosdb"
+      ],
       "language": null,
       "updatedAt": "2025-08-04T12:55:06Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/5710e198-a791-4c2a-818d-1e62beb27d46"
     },
     {
       "name": "Azure-Databases-Purview-Advisor",
@@ -698,12 +1382,34 @@
         "mysql",
         "postgresql"
       ],
+      "categories": [
+        "differentiators",
+        "products",
+        "azure",
+        "mongodb",
+        "benefits",
+        "sql"
+      ],
+      "keywords": [
+        "differentiators",
+        "products",
+        "azure",
+        "mongodb",
+        "benefits",
+        "sql",
+        "paas",
+        "related",
+        "database",
+        "oracle",
+        "quick",
+        "cases"
+      ],
       "language": "JavaScript",
       "updatedAt": "2025-07-17T02:52:31Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/697f7265-647a-41e2-a2f5-ec4b66cf3321"
     },
     {
       "name": "AzureMachineLearning-Overview",
@@ -719,12 +1425,34 @@
         "fabric-ai",
         "ml"
       ],
+      "categories": [
+        "training",
+        "compute",
+        "inference",
+        "jobs",
+        "data",
+        "machine"
+      ],
+      "keywords": [
+        "training",
+        "compute",
+        "inference",
+        "jobs",
+        "data",
+        "machine",
+        "notebooks",
+        "azure",
+        "pipelines",
+        "experiments",
+        "model",
+        "datasets"
+      ],
       "language": "Jupyter Notebook",
       "updatedAt": "2025-07-16T22:58:50Z",
       "archived": false,
       "private": false,
       "stargazersCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/dcfd2631-ed20-473c-8174-eb88387f76b8"
     },
     {
       "name": "azSynapse-Dynamic-RemoveBlanks",
@@ -737,12 +1465,34 @@
         "create-view",
         "remove-spaces"
       ],
+      "categories": [
+        "synapse",
+        "pool",
+        "sql",
+        "dynamically",
+        "views",
+        "data"
+      ],
+      "keywords": [
+        "synapse",
+        "pool",
+        "sql",
+        "dynamically",
+        "views",
+        "data",
+        "remove",
+        "pools",
+        "warehousing",
+        "analytics",
+        "serverless",
+        "dedicated"
+      ],
       "language": "TSQL",
       "updatedAt": "2025-07-16T20:41:11Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/9a753e36-e229-4da7-8a87-a5c21ddd70f9"
     },
     {
       "name": "MySQL-autoscale-IOPS",
@@ -755,12 +1505,34 @@
         "iops",
         "mysql-server"
       ],
+      "categories": [
+        "iops",
+        "autoscale",
+        "mysql",
+        "server",
+        "azure",
+        "workload"
+      ],
+      "keywords": [
+        "iops",
+        "autoscale",
+        "mysql",
+        "server",
+        "azure",
+        "workload",
+        "metric",
+        "database",
+        "select",
+        "enable",
+        "monitor",
+        "flexible"
+      ],
       "language": "Python",
       "updatedAt": "2025-07-16T15:44:06Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/f08afb04-e271-4ac3-8594-e3e98a9bfd2e"
     }
   ]
 }

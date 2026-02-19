@@ -12,6 +12,7 @@ const authRowEl = document.getElementById('authRow');
 const uiLangEl = document.getElementById('lang');
 
 const languageFilterEl = document.getElementById('languageFilter');
+const categoryFilterEl = document.getElementById('categoryFilter');
 const updatedWithinEl = document.getElementById('updatedWithin');
 const minStarsEl = document.getElementById('minStars');
 const hasImageEl = document.getElementById('hasImage');
@@ -26,133 +27,158 @@ const translationInFlightByLang = new Map();
 
 const UI_META_LABELS = ['Language', 'Updated', 'Archived'];
 
-const UI_LANG_KEY = 'orgCatalogUiLang';
+async function ensureTranslationsForTexts({ lang, texts }) {
+  const to = String(lang || '').toLowerCase();
+  if (!to || to === 'en') return false;
+  if (!Array.isArray(texts) || !texts.length) return false;
 
-const I18N = {
-  en: {
-    'label.search': 'Search',
-    'label.languageUi': 'UI',
-    'placeholder.search': 'name, description, topics, language',
-    'button.public': 'Public',
-    'button.private': 'Private',
-    'button.signIn': 'Sign in',
-    'button.signOut': 'Sign out',
-    'label.language': 'Language',
-    'label.updated': 'Updated',
-    'label.minStars': 'Min stars',
-    'placeholder.minStars': '0',
-    'label.hasThumbnail': 'Has thumbnail',
-    'label.includeArchived': 'Include archived',
-    'hint.redirecting': 'Redirecting to GitHub sign-in…',
+  const baseUrl = getTranslationBaseUrl();
+  if (!baseUrl) return false;
 
-    'updated.any': 'Any time',
-    'updated.7': 'Last 7 days',
-    'updated.30': 'Last 30 days',
-    'updated.90': 'Last 90 days',
-    'updated.365': 'Last 365 days',
+  const cache = getLangTranslationCache(to);
+  const needed = new Set();
 
-    'status.loadingPublic': 'Loading public catalog…',
-    'status.catalogMissing': 'Could not load catalog.json. Run the GitHub Action to generate it.',
-    'status.signInNotConfigured': 'Sign-in is not configured yet. Set docs/config.json authBaseUrl to your OAuth worker URL.',
-    'status.popupBlocked': 'Popup blocked. Allow popups and try again.',
-    'status.signInCancelled': 'Sign-in was cancelled or blocked. Try again (and allow popups).',
-    'status.publicRepoCount': '{count} public repositories',
-    'status.viewCount': '{filtered} of {total} {label} repositories',
-    'status.checkingAccess': 'Checking access…',
-    'status.loadingPrivate': 'Loading private repositories for @{org}…',
-    'status.signedInNotAuthorized': 'Signed in, but not authorized for @{org} private repos.',
-    'status.signInFailed': 'Sign-in failed or you are not authorized.',
-    'status.signInNoToken': 'Sign-in did not return an access token.',
-    'status.publicCatalogMissingOrg': 'Public catalog missing org name. Regenerate catalog.json.',
-    'status.tokenRejected': 'Token not accepted by GitHub. Sign in again.',
-  },
-  es: {
-    'label.search': 'Buscar',
-    'label.languageUi': 'UI',
-    'placeholder.search': 'nombre, descripción, temas, lenguaje',
-    'button.public': 'Público',
-    'button.private': 'Privado',
-    'button.signIn': 'Iniciar sesión',
-    'button.signOut': 'Cerrar sesión',
-    'label.language': 'Lenguaje',
-    'label.updated': 'Actualizado',
-    'label.minStars': 'Mín estrellas',
-    'placeholder.minStars': '0',
-    'label.hasThumbnail': 'Con miniatura',
-    'label.includeArchived': 'Incluir archivados',
-    'hint.redirecting': 'Redirigiendo al inicio de sesión de GitHub…',
+  for (const s of texts) {
+    const t = String(s || '').trim();
+    if (t && !cache.has(t)) needed.add(t);
+  }
 
-    'updated.any': 'Cualquier fecha',
-    'updated.7': 'Últimos 7 días',
-    'updated.30': 'Últimos 30 días',
-    'updated.90': 'Últimos 90 días',
-    'updated.365': 'Últimos 365 días',
+  if (!needed.size) return false;
+  if (translationInFlightByLang.get(to)) return false;
 
-    'status.loadingPublic': 'Cargando catálogo público…',
-    'status.catalogMissing': 'No se pudo cargar catalog.json. Ejecuta la acción de GitHub para generarlo.',
-    'status.signInNotConfigured': 'El inicio de sesión no está configurado. Define authBaseUrl en docs/config.json con la URL de tu OAuth worker.',
-    'status.popupBlocked': 'Popup bloqueado. Permite popups e inténtalo de nuevo.',
-    'status.signInCancelled': 'El inicio de sesión fue cancelado o bloqueado. Inténtalo de nuevo (y permite popups).',
-    'status.publicRepoCount': '{count} repositorios públicos',
-    'status.viewCount': '{filtered} de {total} repositorios {label}',
-    'status.checkingAccess': 'Verificando acceso…',
-    'status.loadingPrivate': 'Cargando repositorios privados para @{org}…',
-    'status.signedInNotAuthorized': 'Sesión iniciada, pero sin autorización para ver repos privados de @{org}.',
-    'status.signInFailed': 'Falló el inicio de sesión o no estás autorizado.',
-    'status.signInNoToken': 'El inicio de sesión no devolvió un token de acceso.',
-    'status.publicCatalogMissingOrg': 'El catálogo público no incluye el nombre de la organización. Regenera catalog.json.',
-    'status.tokenRejected': 'GitHub rechazó el token. Inicia sesión nuevamente.',
-  },
-  pt: {
-    'label.search': 'Pesquisar',
-    'label.languageUi': 'UI',
-    'placeholder.search': 'nome, descrição, tópicos, linguagem',
-    'button.public': 'Público',
-    'button.private': 'Privado',
-    'button.signIn': 'Entrar',
-    'button.signOut': 'Sair',
-    'label.language': 'Linguagem',
-    'label.updated': 'Atualizado',
-    'label.minStars': 'Mín estrelas',
-    'placeholder.minStars': '0',
-    'label.hasThumbnail': 'Com miniatura',
-    'label.includeArchived': 'Incluir arquivados',
-    'hint.redirecting': 'Redirecionando para o login do GitHub…',
-
-    'updated.any': 'Qualquer data',
-    'updated.7': 'Últimos 7 dias',
-    'updated.30': 'Últimos 30 dias',
-    'updated.90': 'Últimos 90 dias',
-    'updated.365': 'Últimos 365 dias',
-  },
-  fr: {
-    'label.search': 'Rechercher',
-    'label.languageUi': 'UI',
-    'placeholder.search': 'nom, description, sujets, langage',
-    'button.public': 'Public',
-    'button.private': 'Privé',
-    'button.signIn': 'Se connecter',
-    'button.signOut': 'Se déconnecter',
-    'label.language': 'Langage',
-    'label.updated': 'Mis à jour',
-    'label.minStars': 'Min étoiles',
-    'placeholder.minStars': '0',
-    'label.hasThumbnail': 'Avec miniature',
-    'label.includeArchived': 'Inclure archivés',
-    'hint.redirecting': 'Redirection vers la connexion GitHub…',
-
-    'updated.any': 'N’importe quand',
-    'updated.7': '7 derniers jours',
-    'updated.30': '30 derniers jours',
-    'updated.90': '90 derniers jours',
-    'updated.365': '365 derniers jours',
-  },
-};
-
-function formatI18n(template, vars) {
-  if (!vars) return template;
-  return String(template).replace(/\{(\w+)\}/g, (_, key) => (key in vars ? String(vars[key]) : `{${key}}`));
+  translationInFlightByLang.set(to, true);
+  try {
+    const all = Array.from(needed);
+    for (let i = 0; i < all.length; i += TRANSLATION_BATCH_SIZE) {
+      const batch = all.slice(i, i + TRANSLATION_BATCH_SIZE);
+      const translated = await requestTranslations({ baseUrl, to, texts: batch });
+      for (let j = 0; j < batch.length; j++) {
+        const src = batch[j];
+        const dst = typeof translated[j] === 'string' && translated[j] ? translated[j] : src;
+        cache.set(src, dst);
+      }
+    }
+    return true;
+  } finally {
+    translationInFlightByLang.set(to, false);
+  }
 }
+
+function restoreUiToSource() {
+  document.documentElement.lang = activeUiLang;
+
+  for (const el of document.querySelectorAll('[data-i18n]')) {
+    if (typeof el.dataset.srcText === 'string') el.textContent = el.dataset.srcText;
+  }
+
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
+    if (typeof el.dataset.srcPlaceholder === 'string') el.setAttribute('placeholder', el.dataset.srcPlaceholder);
+  }
+
+  if (updatedWithinEl) {
+    for (const opt of updatedWithinEl.querySelectorAll('option')) {
+      if (typeof opt.dataset.srcText === 'string') opt.textContent = opt.dataset.srcText;
+    }
+  }
+
+  if (categoryFilterEl) {
+    for (const opt of categoryFilterEl.querySelectorAll('option')) {
+      if (typeof opt.dataset.srcText === 'string') opt.textContent = opt.dataset.srcText;
+    }
+  }
+}
+
+function applyUiTranslationsFromCache(lang) {
+  const to = String(lang || '').toLowerCase();
+  if (!to || to === 'en') return;
+
+  for (const el of document.querySelectorAll('[data-i18n]')) {
+    const src = el.dataset.srcText;
+    if (!src) continue;
+    el.textContent = translateText(to, src);
+  }
+
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
+    const src = el.dataset.srcPlaceholder;
+    if (!src) continue;
+    el.setAttribute('placeholder', translateText(to, src));
+  }
+
+  if (updatedWithinEl) {
+    for (const opt of updatedWithinEl.querySelectorAll('option')) {
+      const src = opt.dataset.srcText;
+      if (!src) continue;
+      opt.textContent = translateText(to, src);
+    }
+  }
+
+  if (categoryFilterEl) {
+    for (const opt of categoryFilterEl.querySelectorAll('option')) {
+      const src = opt.dataset.srcText;
+      if (!src) continue;
+      opt.textContent = translateText(to, src);
+    }
+  }
+
+  if (lastStatusSource) {
+    statusEl.textContent = translateText(to, lastStatusSource);
+  }
+}
+
+function collectUiSourceTexts() {
+  const texts = [];
+
+  for (const el of document.querySelectorAll('[data-i18n]')) {
+    const src = el.dataset.srcText;
+    if (src) texts.push(src);
+  }
+
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
+    const src = el.dataset.srcPlaceholder;
+    if (src) texts.push(src);
+  }
+
+  if (updatedWithinEl) {
+    for (const opt of updatedWithinEl.querySelectorAll('option')) {
+      const src = opt.dataset.srcText;
+      if (src) texts.push(src);
+    }
+  }
+
+  if (categoryFilterEl) {
+    for (const opt of categoryFilterEl.querySelectorAll('option')) {
+      const src = opt.dataset.srcText;
+      if (src) texts.push(src);
+    }
+  }
+
+  if (lastStatusSource) texts.push(lastStatusSource);
+  for (const s of UI_META_LABELS) texts.push(s);
+
+  return texts;
+}
+
+function applyTranslations() {
+  captureUiStrings();
+  restoreUiToSource();
+
+  if (activeUiLang === 'en') return;
+
+  applyUiTranslationsFromCache(activeUiLang);
+  const langAtStart = activeUiLang;
+  const texts = collectUiSourceTexts();
+
+  ensureTranslationsForTexts({ lang: langAtStart, texts })
+    .then((didTranslate) => {
+      if (!didTranslate) return;
+      if (activeUiLang !== langAtStart) return;
+      applyUiTranslationsFromCache(langAtStart);
+      update();
+    })
+    .catch(() => {});
+}
+
+const UI_LANG_KEY = 'orgCatalogUiLang';
 
 function getUiLangPreference() {
   try {
@@ -172,7 +198,7 @@ function setUiLangPreference(value) {
 
 function resolveLang(value) {
   const v = String(value || '').trim().toLowerCase();
-  const supported = Object.keys(I18N);
+  const supported = ['en', 'es', 'pt', 'fr'];
 
   if (!v || v === 'auto') {
     const nav = String(navigator.language || '').toLowerCase();
@@ -185,37 +211,30 @@ function resolveLang(value) {
 
 let activeUiLang = resolveLang(getUiLangPreference());
 
-function t(key, vars) {
-  const dict = I18N[activeUiLang] || I18N.en;
-  const fallback = I18N.en;
-  const template = dict[key] ?? fallback[key] ?? key;
-  return formatI18n(template, vars);
-}
+let uiCaptured = false;
+let lastStatusSource = '';
 
-function applyTranslations() {
-  document.documentElement.lang = activeUiLang;
+function captureUiStrings() {
+  if (uiCaptured) return;
+  uiCaptured = true;
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
-    const key = el.getAttribute('data-i18n');
-    if (!key) continue;
-    el.textContent = t(key);
+    if (!el.dataset.srcText) el.dataset.srcText = el.textContent || '';
   }
 
   for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (!key) continue;
-    el.setAttribute('placeholder', t(key));
+    if (!el.dataset.srcPlaceholder) el.dataset.srcPlaceholder = el.getAttribute('placeholder') || '';
   }
 
-  // Updated filter option labels
   if (updatedWithinEl) {
     for (const opt of updatedWithinEl.querySelectorAll('option')) {
-      const value = String(opt.value || '').trim();
-      if (value === 'any') opt.textContent = t('updated.any');
-      if (value === '7') opt.textContent = t('updated.7');
-      if (value === '30') opt.textContent = t('updated.30');
-      if (value === '90') opt.textContent = t('updated.90');
-      if (value === '365') opt.textContent = t('updated.365');
+      if (!opt.dataset.srcText) opt.dataset.srcText = opt.textContent || '';
+    }
+  }
+
+  if (categoryFilterEl) {
+    for (const opt of categoryFilterEl.querySelectorAll('option')) {
+      if (!opt.dataset.srcText) opt.dataset.srcText = opt.textContent || '';
     }
   }
 }
@@ -343,11 +362,19 @@ function applyRepoContentTranslations(lang, repos) {
 }
 
 function setStatus(message) {
-  statusEl.textContent = message;
-}
+  lastStatusSource = String(message || '');
+  statusEl.textContent = lastStatusSource;
 
-function setStatusKey(key, vars) {
-  setStatus(t(key, vars));
+  if (activeUiLang === 'en' || !lastStatusSource) return;
+
+  const langAtStart = activeUiLang;
+  ensureTranslationsForTexts({ lang: langAtStart, texts: [lastStatusSource] })
+    .then((didTranslate) => {
+      if (!didTranslate) return;
+      if (activeUiLang !== langAtStart) return;
+      statusEl.textContent = translateText(langAtStart, lastStatusSource);
+    })
+    .catch(() => {});
 }
 
 function formatDate(iso) {
@@ -407,6 +434,7 @@ function toTimeMs(iso) {
 
 function getFilters() {
   const language = (languageFilterEl?.value || '').trim();
+  const category = (categoryFilterEl?.value || '').trim();
   const updatedWithinDaysRaw = (updatedWithinEl?.value || '').trim();
   const updatedWithinDays = updatedWithinDaysRaw && updatedWithinDaysRaw !== 'any' ? Number(updatedWithinDaysRaw) : 0;
   const minStars = Math.max(0, Number((minStarsEl?.value || '').trim() || 0) || 0);
@@ -414,6 +442,7 @@ function getFilters() {
   const includeArchived = Boolean(includeArchivedEl?.checked);
   return {
     language: language && language !== 'all' ? language : '',
+    category: category && category !== 'all' ? category : '',
     updatedWithinDays,
     minStars,
     hasImage,
@@ -426,6 +455,14 @@ function repoPassesFilters(repo, filters) {
   if (filters.language && String(repo.language || '') !== filters.language) return false;
   if (filters.hasImage && !repo.imageUrl) return false;
 
+  if (filters.category) {
+    const topics = Array.isArray(repo.topics) ? repo.topics : [];
+    const categories = Array.isArray(repo.categories) ? repo.categories : [];
+    const want = String(filters.category || '').toLowerCase();
+    const hay = [...categories, ...topics];
+    if (!hay.some((t) => String(t || '').toLowerCase() === want)) return false;
+  }
+
   const stars = typeof repo.stargazersCount === 'number' ? repo.stargazersCount : 0;
   if (filters.minStars && stars < filters.minStars) return false;
 
@@ -437,6 +474,47 @@ function repoPassesFilters(repo, filters) {
   }
 
   return true;
+}
+
+function setCategoryOptionsFrom(list) {
+  if (!categoryFilterEl) return;
+
+  const current = String(categoryFilterEl.value || 'all');
+  const counts = new Map();
+
+  for (const repo of list || []) {
+    const categories = Array.isArray(repo?.categories) ? repo.categories : [];
+    const topics = Array.isArray(repo?.topics) ? repo.topics : [];
+    const values = categories.length ? categories : topics;
+
+    for (const v of values) {
+      const t = String(v || '').trim();
+      if (!t) continue;
+      counts.set(t, (counts.get(t) || 0) + 1);
+    }
+  }
+
+  const sorted = Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 40)
+    .map(([topic]) => topic);
+
+  const allOpt = document.createElement('option');
+  allOpt.value = 'all';
+  allOpt.textContent = 'All';
+  allOpt.dataset.srcText = 'All';
+
+  const options = [allOpt, ...sorted.map((topic) => {
+    const opt = document.createElement('option');
+    opt.value = topic;
+    opt.textContent = topic;
+    opt.dataset.srcText = topic;
+    return opt;
+  })];
+
+  categoryFilterEl.replaceChildren(...options);
+  const stillExists = options.some((o) => o.value === current);
+  categoryFilterEl.value = stillExists ? current : 'all';
 }
 
 function render(list) {
@@ -535,6 +613,7 @@ function setActiveView(view) {
   viewPublicEl.classList.toggle('active', view === 'public');
   viewPrivateEl.classList.toggle('active', view === 'private');
   setLanguageOptionsFrom(activeView === 'public' ? publicRepos : privateRepos);
+  setCategoryOptionsFrom(activeView === 'public' ? publicRepos : privateRepos);
   update();
 }
 
@@ -560,7 +639,7 @@ function setSignedIn(signedIn) {
 function openAuthPopup() {
   const authBaseUrl = String(config.authBaseUrl || '').trim();
   if (!authBaseUrl) {
-    setStatusKey('status.signInNotConfigured');
+    setStatus('Sign-in is not configured yet. Set docs/config.json authBaseUrl (or translateBaseUrl) to your worker URL.');
     return;
   }
 
@@ -578,7 +657,7 @@ function openAuthPopup() {
   authRowEl.hidden = false;
   const win = window.open(loginUrl.toString(), 'orgCatalogAuth', features);
   if (!win) {
-    setStatusKey('status.popupBlocked');
+    setStatus('Popup blocked. Allow popups and try again.');
     authRowEl.hidden = true;
     return;
   }
@@ -591,7 +670,7 @@ function openAuthPopup() {
 
       // If we didn't receive a token within a reasonable window, tell the user.
       if (!getToken() && Date.now() - startedAt > 1000) {
-        setStatusKey('status.signInCancelled');
+        setStatus('Sign-in was cancelled or blocked. Try again (and allow popups).');
       }
     }
   }, 400);
@@ -622,7 +701,7 @@ function update() {
   }
 
   const label = activeView === 'public' ? 'public' : 'private';
-  setStatusKey('status.viewCount', { filtered: filtered.length, total: list.length, label });
+  setStatus(`${filtered.length} of ${list.length} ${label} repositories`);
   render(filtered);
 
   // Kick off translation in the background; re-render once it completes.
@@ -646,12 +725,12 @@ async function fetchJson(url, headers) {
 }
 
 async function loadPublicCatalog() {
-  setStatusKey('status.loadingPublic');
+  setStatus('Loading public catalog…');
 
   try {
     publicCatalog = await fetchJson('./catalog.json', undefined);
   } catch {
-    setStatusKey('status.catalogMissing');
+    setStatus('Could not load catalog.json. Run the GitHub Action to generate it.');
     return;
   }
 
@@ -714,7 +793,7 @@ async function fetchPrivateRepos({ org, headers }) {
 async function signInWithToken(token) {
   const org = publicCatalog.org;
   if (!org) {
-    setStatusKey('status.publicCatalogMissingOrg');
+    setStatus('Public catalog missing org name. Regenerate catalog.json.');
     return;
   }
 
@@ -724,22 +803,22 @@ async function signInWithToken(token) {
     'X-GitHub-Api-Version': '2022-11-28',
   };
 
-  setStatusKey('status.checkingAccess');
+  setStatus('Checking access…');
 
   // 1) Validate token is usable
   try {
     await fetchJson('https://api.github.com/user', headers);
   } catch {
-    setStatusKey('status.tokenRejected');
+    setStatus('Token not accepted by GitHub. Sign in again.');
     return;
   }
 
   // 2) Load private repos; this doubles as the authorization gate.
-  setStatusKey('status.loadingPrivate', { org });
+  setStatus(`Loading private repositories for @${org}…`);
   try {
     privateRepos = await fetchPrivateRepos({ org, headers });
   } catch (err) {
-    setStatusKey('status.signedInNotAuthorized', { org });
+    setStatus(`Signed in, but not authorized for @${org} private repos.`);
     privateRepos = [];
     setSignedIn(true);
     setActiveView('public');
@@ -755,6 +834,7 @@ async function signInWithToken(token) {
 qEl.addEventListener('input', update);
 
 languageFilterEl?.addEventListener('change', update);
+categoryFilterEl?.addEventListener('change', update);
 updatedWithinEl?.addEventListener('change', update);
 minStarsEl?.addEventListener('input', update);
 hasImageEl?.addEventListener('change', update);
@@ -779,7 +859,7 @@ signOutEl.addEventListener('click', () => {
   privateRepos = [];
   setSignedIn(false);
   setActiveView('public');
-  setStatusKey('status.publicRepoCount', { count: publicRepos.length });
+  setStatus(`${publicRepos.length} public repositories`);
 });
 
 window.addEventListener('message', async (event) => {
@@ -790,7 +870,7 @@ window.addEventListener('message', async (event) => {
   authRowEl.hidden = true;
 
   if (data.error) {
-    setStatusKey('status.signInFailed');
+    setStatus('Sign-in failed or you are not authorized.');
     return;
   }
 
@@ -800,7 +880,7 @@ window.addEventListener('message', async (event) => {
     return;
   }
 
-  setStatusKey('status.signInNoToken');
+  setStatus('Sign-in did not return an access token.');
 });
 
 // Boot

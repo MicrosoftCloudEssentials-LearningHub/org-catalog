@@ -43,6 +43,8 @@ function toRepoModel(r) {
     url: r.html_url,
     description: r.description ?? '',
     topics: Array.isArray(r.topics) ? r.topics : [],
+    categories: Array.isArray(r.categories) ? r.categories : [],
+    keywords: Array.isArray(r.keywords) ? r.keywords : [],
     language: r.language,
     updatedAt: r.pushed_at ?? r.updated_at,
     archived: Boolean(r.archived),
@@ -50,6 +52,64 @@ function toRepoModel(r) {
     stargazersCount: typeof r.stargazers_count === 'number' ? r.stargazers_count : undefined,
     imageUrl: r.imageUrl ?? null,
   };
+}
+
+function stripMarkdownToText(markdown) {
+  let s = String(markdown || '');
+  // Remove code blocks
+  s = s.replace(/```[\s\S]*?```/g, ' ');
+  // Remove inline code
+  s = s.replace(/`[^`]*`/g, ' ');
+  // Remove images
+  s = s.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ');
+  // Convert links to link text
+  s = s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+  // Strip HTML tags
+  s = s.replace(/<[^>]+>/g, ' ');
+  // Strip headings/formatting tokens
+  s = s.replace(/[#>*_~]/g, ' ');
+  return s;
+}
+
+const STOPWORDS = new Set([
+  'a','an','and','are','as','at','be','by','can','for','from','has','have','how','i','if','in','into','is','it','its','of','on','or','our','out','see','so','that','the','their','then','there','these','this','to','use','using','was','we','were','what','when','where','which','who','why','will','with','you','your',
+  'not','no','yes','all','any','more','most','some','such','than','too','very',
+  'project','projects','repo','repository','repositories','example','examples','sample','samples','demo','demos','docs','documentation','guide','guides','tutorial','tutorials','learn','learning','course','courses','lab','labs','workshop','workshops','exercise','exercises',
+  'license','licenses','contributing','contribute','contributors','contributor','code','coded','coding','build','builds','run','running','install','installation','setup','configure','configuration','config','usage','getting','started','readme'
+]);
+
+function tokenizeText(text) {
+  const s = String(text || '').toLowerCase();
+  const raw = s.split(/[^a-z0-9]+/g).filter(Boolean);
+  const tokens = [];
+  for (const t of raw) {
+    if (t.length < 3 || t.length > 24) continue;
+    if (/^\d+$/.test(t)) continue;
+    if (STOPWORDS.has(t)) continue;
+    tokens.push(t);
+  }
+  return tokens;
+}
+
+function buildTf(tokens) {
+  const tf = new Map();
+  for (const t of tokens) tf.set(t, (tf.get(t) || 0) + 1);
+  return tf;
+}
+
+function mergeUniquePreserveOrder(arr, limit) {
+  const out = [];
+  const seen = new Set();
+  for (const v of arr) {
+    const s = String(v || '').trim();
+    if (!s) continue;
+    const key = s.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(s);
+    if (out.length >= limit) break;
+  }
+  return out;
 }
 
 function normalizeImageRef(ref) {
@@ -163,6 +223,9 @@ async function main() {
 
   // Best-effort: extract first README image for each repo.
   // (This keeps UX lightweight while providing a quick visual hint.)
+  /** @type {{repo:string, tokens:string[]}[]} */
+  const tokenDocs = [];
+
   const enriched = await mapWithConcurrency(repos, 6, async (r) => {
     const repo = r?.name;
     const branch = r?.default_branch || 'main';
@@ -170,29 +233,70 @@ async function main() {
 
     try {
       const readme = await fetchReadme({ org: ORG_NAME, repo });
-      if (!readme) return r;
+      if (readme?.content) {
+        const text = stripMarkdownToText(readme.content);
+        const tokens = tokenizeText(text);
+        tokenDocs.push({ repo, tokens });
 
-      const imageRef = extractFirstImageRef(readme.content);
-      if (!imageRef) return r;
+        const imageRef = extractFirstImageRef(readme.content);
+        if (imageRef) {
+          const imageUrl = resolveReadmeImageUrl({
+            org: ORG_NAME,
+            repo,
+            branch,
+            readmePath: readme.path,
+            imageRef,
+          });
+          return { ...r, imageUrl };
+        }
+      }
 
-      const imageUrl = resolveReadmeImageUrl({
-        org: ORG_NAME,
-        repo,
-        branch,
-        readmePath: readme.path,
-        imageRef,
-      });
-
-      return { ...r, imageUrl };
+      return r;
     } catch {
       return r;
     }
   });
 
+  // Build document frequency for TF-IDF across all repos that had a README.
+  const df = new Map();
+  const docCount = tokenDocs.length || 1;
+  for (const doc of tokenDocs) {
+    const unique = new Set(doc.tokens);
+    for (const t of unique) df.set(t, (df.get(t) || 0) + 1);
+  }
+
+  const tokensByRepo = new Map(tokenDocs.map((d) => [d.repo, d.tokens]));
+  const enrichedWithKeywords = enriched.map((r) => {
+    const repo = r?.name;
+    if (!repo) return r;
+
+    const readmeTokens = tokensByRepo.get(repo) || [];
+    const descTokens = tokenizeText(r?.description || '');
+    const topicTokens = Array.isArray(r?.topics) ? r.topics.map((t) => String(t || '').toLowerCase()) : [];
+    const allTokens = [...readmeTokens, ...descTokens, ...topicTokens];
+
+    if (!allTokens.length) return r;
+
+    const tf = buildTf(allTokens);
+    const scored = [];
+    for (const [term, count] of tf.entries()) {
+      const d = df.get(term) || 1;
+      const idf = Math.log((docCount + 1) / (d + 1));
+      const score = count * (0.5 + idf);
+      scored.push([term, score]);
+    }
+
+    scored.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    const keywords = mergeUniquePreserveOrder(scored.map(([t]) => t), 12);
+    const categories = mergeUniquePreserveOrder(keywords, 6);
+
+    return { ...r, keywords, categories };
+  });
+
   const payload = {
     generatedAt: new Date().toISOString(),
     org: ORG_NAME,
-    repos: enriched.map(toRepoModel),
+    repos: enrichedWithKeywords.map(toRepoModel),
   };
 
   const outPath = path.join(process.cwd(), 'docs', 'catalog.json');
