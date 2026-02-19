@@ -10,6 +10,7 @@ Last updated: 2026-02-19
 ----------
 
 > A lightweight repo catalog designed to be hosted with **GitHub Pages**:
+>
 > - Public catalog is generated at build time (GitHub Action) into `docs/catalog.json`.
 > - Site is static HTML/CSS/JS served from the `docs/` folder.
 > - Private repos are shown after “Sign in with GitHub” via a tiny serverless OAuth handler.
@@ -17,7 +18,6 @@ Last updated: 2026-02-19
 <div align="center">
   <img src="https://github.com/user-attachments/assets/584aab63-e965-40a1-80f2-a77e25972b05" alt="Centered Image" style="border: 2px solid #4CAF50; border-radius: 5px; padding: 5px; width: 1000px;"/>
 </div>
-
 
 ## Quick start
 
@@ -65,6 +65,7 @@ The **Translate** dropdown can translate the app UI client-side. If you also wan
 2) Set `docs/config.json` → `authBaseUrl` to your worker URL (example: `https://org-catalog-auth.<account>.workers.dev`)
 
 > [!NOTE]
+>
 > - The OAuth token is stored in `sessionStorage` and never committed to the repo.
 > - Anyone with the token can act with its permissions until it expires.
 
