@@ -1,9 +1,30 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+const argv = process.argv.slice(2);
+if (argv.includes('--help') || argv.includes('-h')) {
+  console.log(`\nOrg catalog generator\n\nEnv vars:\n  ORG_NAME                       GitHub org to index\n  GITHUB_TOKEN                   Optional GitHub token (higher rate limits)\n\nOptional: build-time translations (no runtime backend)\n  AZURE_TRANSLATOR_KEY           Azure AI Translator key\n  AZURE_TRANSLATOR_REGION        Azure region (e.g. eastus)\n  AZURE_TRANSLATOR_ENDPOINT      Optional (default: https://api.cognitive.microsofttranslator.com)\n  TRANSLATE_TO                   Optional comma list (default: es,pt,fr)\n\nUsage:\n  node scripts/fetch-catalog.mjs\n`);
+  process.exit(0);
+}
+
 const DEFAULT_ORG = 'MicrosoftCloudEssentials-LearningHub';
 const ORG_NAME = (process.env.ORG_NAME || DEFAULT_ORG).trim();
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+const AZURE_TRANSLATOR_KEY = String(process.env.AZURE_TRANSLATOR_KEY || '').trim();
+const AZURE_TRANSLATOR_REGION = String(process.env.AZURE_TRANSLATOR_REGION || '').trim();
+const AZURE_TRANSLATOR_ENDPOINT = String(
+  process.env.AZURE_TRANSLATOR_ENDPOINT || 'https://api.cognitive.microsofttranslator.com'
+).trim().replace(/\/$/, '');
+
+const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr')
+  .split(',')
+  .map((s) => s.trim().toLowerCase())
+  .filter(Boolean)
+  .filter((s, i, a) => a.indexOf(s) === i)
+  .filter((s) => s !== 'en');
+
+const TRANSLATE_BATCH_SIZE = 50;
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -216,6 +237,102 @@ async function mapWithConcurrency(items, limit, fn) {
   return results;
 }
 
+function chunkArray(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+function hasTranslatorConfigured() {
+  return Boolean(AZURE_TRANSLATOR_KEY && AZURE_TRANSLATOR_REGION);
+}
+
+async function azureTranslateMany({ texts, to }) {
+  if (!hasTranslatorConfigured()) throw new Error('translator_not_configured');
+  if (!Array.isArray(texts) || !texts.length) return new Map();
+  if (!Array.isArray(to) || !to.length) return new Map();
+
+  const out = new Map();
+  const baseUrl = `${AZURE_TRANSLATOR_ENDPOINT}/translate?api-version=3.0`;
+  const url = `${baseUrl}${to.map((l) => `&to=${encodeURIComponent(l)}`).join('')}`;
+
+  for (const batch of chunkArray(texts, TRANSLATE_BATCH_SIZE)) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
+        'Ocp-Apim-Subscription-Key': AZURE_TRANSLATOR_KEY,
+        'Ocp-Apim-Subscription-Region': AZURE_TRANSLATOR_REGION,
+      },
+      body: JSON.stringify(batch.map((t) => ({ Text: String(t || '') }))),
+    });
+
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !Array.isArray(data)) {
+      const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
+      throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
+    }
+
+    for (let i = 0; i < batch.length; i++) {
+      const src = String(batch[i] || '');
+      const item = data[i];
+      const translations = Array.isArray(item?.translations) ? item.translations : [];
+      const perLang = {};
+      for (const tr of translations) {
+        const lang = String(tr?.to || '').toLowerCase();
+        const text = String(tr?.text || '');
+        if (lang && text) perLang[lang] = text;
+      }
+      out.set(src, perLang);
+    }
+  }
+
+  return out;
+}
+
+async function embedBuildTimeTranslations(repos) {
+  if (!hasTranslatorConfigured()) return repos;
+  if (!TRANSLATE_TO.length) return repos;
+
+  const unique = new Set();
+  for (const r of repos) {
+    const desc = String(r?.description || '').trim();
+    if (desc) unique.add(desc);
+
+    const topics = Array.isArray(r?.topics) ? r.topics : [];
+    for (const t of topics) {
+      const s = String(t || '').trim();
+      if (s) unique.add(s);
+    }
+  }
+
+  const texts = Array.from(unique);
+  if (!texts.length) return repos;
+
+  console.log(`Translating ${texts.length} unique texts to: ${TRANSLATE_TO.join(', ')}`);
+  const map = await azureTranslateMany({ texts, to: TRANSLATE_TO });
+
+  return repos.map((r) => {
+    const desc = String(r?.description || '').trim();
+    const topics = Array.isArray(r?.topics) ? r.topics : [];
+
+    const i18n = {};
+    for (const lang of TRANSLATE_TO) {
+      const translatedDesc = desc ? map.get(desc)?.[lang] || '' : '';
+      const translatedTopics = topics.map((t) => {
+        const s = String(t || '').trim();
+        return s ? map.get(s)?.[lang] || s : s;
+      });
+      i18n[lang] = {
+        description: translatedDesc || desc,
+        topics: translatedTopics,
+      };
+    }
+
+    return { ...r, i18n };
+  });
+}
+
 async function main() {
   const repos = await fetchPaged(
     `https://api.github.com/orgs/${encodeURIComponent(ORG_NAME)}/repos?per_page=100&type=public&sort=pushed`
@@ -296,7 +413,7 @@ async function main() {
   const payload = {
     generatedAt: new Date().toISOString(),
     org: ORG_NAME,
-    repos: enrichedWithKeywords.map(toRepoModel),
+    repos: await embedBuildTimeTranslations(enrichedWithKeywords.map(toRepoModel)),
   };
 
   const outPath = path.join(process.cwd(), 'docs', 'catalog.json');

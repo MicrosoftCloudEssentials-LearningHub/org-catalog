@@ -5,20 +5,13 @@ const footerMetaEl = document.getElementById('footerMeta');
 
 const viewPublicEl = document.getElementById('viewPublic');
 const viewPrivateEl = document.getElementById('viewPrivate');
-const signInEl = document.getElementById('signIn');
-const signOutEl = document.getElementById('signOut');
-const authRowEl = document.getElementById('authRow');
 
 const uiLangEl = document.getElementById('lang');
 
 const languageFilterEl = document.getElementById('languageFilter');
 const categoryFilterEl = document.getElementById('categoryFilter');
 const updatedWithinEl = document.getElementById('updatedWithin');
-const minStarsEl = document.getElementById('minStars');
-const hasImageEl = document.getElementById('hasImage');
-const includeArchivedEl = document.getElementById('includeArchived');
 
-const TOKEN_KEY = 'orgCatalogOAuthToken';
 const CONFIG_URL = './config.json';
 
 const TRANSLATION_BATCH_SIZE = 50;
@@ -26,6 +19,120 @@ const translationCacheByLang = new Map();
 const translationInFlightByLang = new Map();
 
 const UI_META_LABELS = ['Language', 'Updated', 'Archived'];
+
+// Lightweight, client-side UI translations for GitHub Pages / no-backend mode.
+// This intentionally covers only the app chrome (labels, buttons, status messages).
+const BUILTIN_UI_TRANSLATIONS = {
+  es: {
+    Search: 'Buscar',
+    Translate: 'Traducir',
+    Auto: 'Automático',
+    English: 'Inglés',
+    Español: 'Español',
+    Português: 'Portugués',
+    Français: 'Francés',
+    Public: 'Público',
+    Private: 'Privado',
+    Filters: 'Filtros',
+    Language: 'Idioma',
+    Category: 'Categoría',
+    Updated: 'Actualizado',
+    Archived: 'Archivado',
+    All: 'Todos',
+    'Any time': 'Cualquier momento',
+    'Last 7 days': 'Últimos 7 días',
+    'Last 30 days': 'Últimos 30 días',
+    'Last 90 days': 'Últimos 90 días',
+    'Last 365 days': 'Últimos 365 días',
+    of: 'de',
+    repositories: 'repositorios',
+    public: 'públicos',
+    private: 'privados',
+    'Loading public catalog…': 'Cargando catálogo público…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      'No se pudo cargar catalog.json. Ejecuta la acción de GitHub para generarlo.',
+    'Could not determine org name. Regenerate catalog.json.':
+      'No se pudo determinar el nombre de la organización. Vuelve a generar catalog.json.',
+    'Opened GitHub private repositories in a new tab.':
+      'Se abrieron los repositorios privados de GitHub en una nueva pestaña.',
+  },
+  pt: {
+    Search: 'Pesquisar',
+    Translate: 'Traduzir',
+    Auto: 'Automático',
+    English: 'Inglês',
+    Español: 'Espanhol',
+    Português: 'Português',
+    Français: 'Francês',
+    Public: 'Público',
+    Private: 'Privado',
+    Filters: 'Filtros',
+    Language: 'Idioma',
+    Category: 'Categoria',
+    Updated: 'Atualizado',
+    Archived: 'Arquivado',
+    All: 'Todos',
+    'Any time': 'Qualquer momento',
+    'Last 7 days': 'Últimos 7 dias',
+    'Last 30 days': 'Últimos 30 dias',
+    'Last 90 days': 'Últimos 90 dias',
+    'Last 365 days': 'Últimos 365 dias',
+    of: 'de',
+    repositories: 'repositórios',
+    public: 'públicos',
+    private: 'privados',
+    'Loading public catalog…': 'Carregando catálogo público…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      'Não foi possível carregar catalog.json. Execute a GitHub Action para gerá-lo.',
+    'Could not determine org name. Regenerate catalog.json.':
+      'Não foi possível determinar o nome da organização. Regenere o catalog.json.',
+    'Opened GitHub private repositories in a new tab.':
+      'Os repositórios privados do GitHub foram abertos em uma nova aba.',
+  },
+  fr: {
+    Search: 'Rechercher',
+    Translate: 'Traduire',
+    Auto: 'Auto',
+    English: 'Anglais',
+    Español: 'Espagnol',
+    Português: 'Portugais',
+    Français: 'Français',
+    Public: 'Public',
+    Private: 'Privé',
+    Filters: 'Filtres',
+    Language: 'Langue',
+    Category: 'Catégorie',
+    Updated: 'Mis à jour',
+    Archived: 'Archivé',
+    All: 'Tous',
+    'Any time': "N'importe quand",
+    'Last 7 days': '7 derniers jours',
+    'Last 30 days': '30 derniers jours',
+    'Last 90 days': '90 derniers jours',
+    'Last 365 days': '365 derniers jours',
+    of: 'sur',
+    repositories: 'dépôts',
+    public: 'publics',
+    private: 'privés',
+    'Loading public catalog…': 'Chargement du catalogue public…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      "Impossible de charger catalog.json. Exécutez l'action GitHub pour le générer.",
+    'Could not determine org name. Regenerate catalog.json.':
+      "Impossible de déterminer le nom de l'organisation. Régénérez catalog.json.",
+    'Opened GitHub private repositories in a new tab.':
+      "Ouverture des dépôts privés GitHub dans un nouvel onglet.",
+  },
+};
+
+function seedBuiltinTranslations(lang) {
+  const to = String(lang || '').toLowerCase();
+  const builtin = BUILTIN_UI_TRANSLATIONS[to];
+  if (!builtin) return;
+  const cache = getLangTranslationCache(to);
+  for (const [src, dst] of Object.entries(builtin)) {
+    if (!cache.has(src)) cache.set(src, dst);
+  }
+}
 
 async function ensureTranslationsForTexts({ lang, texts }) {
   const to = String(lang || '').toLowerCase();
@@ -162,9 +269,22 @@ function applyTranslations() {
   captureUiStrings();
   restoreUiToSource();
 
+  seedBuiltinTranslations(activeUiLang);
+
+  const baseUrl = getTranslationBaseUrl();
+  if (uiLangEl) {
+    uiLangEl.disabled = false;
+    uiLangEl.title = '';
+  }
+
   if (activeUiLang === 'en') return;
 
   applyUiTranslationsFromCache(activeUiLang);
+
+  // If there's no backend translator configured, we still translate UI chrome
+  // using the built-in dictionary.
+  if (!baseUrl) return;
+
   const langAtStart = activeUiLang;
   const texts = collectUiSourceTexts();
 
@@ -214,6 +334,8 @@ let activeUiLang = resolveLang(getUiLangPreference());
 let uiCaptured = false;
 let lastStatusSource = '';
 
+let warnedMissingWorkerForTranslation = false;
+
 function captureUiStrings() {
   if (uiCaptured) return;
   uiCaptured = true;
@@ -252,8 +374,6 @@ let privateRepos = [];
 
 /** @type {'public'|'private'} */
 let activeView = 'public';
-
-let isSignedIn = false;
 
 /** @type {{authBaseUrl?: string}} */
 let config = {};
@@ -353,17 +473,24 @@ function applyRepoContentTranslations(lang, repos) {
 
   return repos.map((repo) => {
     const topics = Array.isArray(repo?.topics) ? repo.topics : [];
+
+    // Build-time translations (preferred): scripts/fetch-catalog.mjs can embed
+    // per-language content into catalog.json (no runtime backend required).
+    const embedded = repo?.i18n && repo.i18n[to] ? repo.i18n[to] : null;
+    const embeddedDesc = typeof embedded?.description === 'string' ? embedded.description : '';
+    const embeddedTopics = Array.isArray(embedded?.topics) ? embedded.topics : null;
+
     return {
       ...repo,
-      description: translateText(to, repo?.description),
-      topics: topics.map((t) => translateText(to, t)),
+      description: embeddedDesc || translateText(to, repo?.description),
+      topics: embeddedTopics || topics.map((t) => translateText(to, t)),
     };
   });
 }
 
 function setStatus(message) {
   lastStatusSource = String(message || '');
-  statusEl.textContent = lastStatusSource;
+  statusEl.textContent = activeUiLang === 'en' ? lastStatusSource : translateText(activeUiLang, lastStatusSource);
 
   if (activeUiLang === 'en' || !lastStatusSource) return;
 
@@ -375,6 +502,19 @@ function setStatus(message) {
       statusEl.textContent = translateText(langAtStart, lastStatusSource);
     })
     .catch(() => {});
+}
+
+function formatCountStatus({ filteredCount, totalCount, view }) {
+  const to = String(activeUiLang || '').toLowerCase();
+  const viewWord = view === 'private' ? 'private' : 'public';
+  const parts = [
+    String(filteredCount),
+    translateText(to, 'of'),
+    String(totalCount),
+    translateText(to, viewWord),
+    translateText(to, 'repositories'),
+  ];
+  return parts.filter(Boolean).join(' ');
 }
 
 function formatDate(iso) {
@@ -437,15 +577,11 @@ function getFilters() {
   const category = (categoryFilterEl?.value || '').trim();
   const updatedWithinDaysRaw = (updatedWithinEl?.value || '').trim();
   const updatedWithinDays = updatedWithinDaysRaw && updatedWithinDaysRaw !== 'any' ? Number(updatedWithinDaysRaw) : 0;
-  const minStars = Math.max(0, Number((minStarsEl?.value || '').trim() || 0) || 0);
-  const hasImage = Boolean(hasImageEl?.checked);
-  const includeArchived = Boolean(includeArchivedEl?.checked);
+  const includeArchived = false;
   return {
     language: language && language !== 'all' ? language : '',
     category: category && category !== 'all' ? category : '',
     updatedWithinDays,
-    minStars,
-    hasImage,
     includeArchived,
   };
 }
@@ -453,7 +589,6 @@ function getFilters() {
 function repoPassesFilters(repo, filters) {
   if (!filters.includeArchived && repo.archived) return false;
   if (filters.language && String(repo.language || '') !== filters.language) return false;
-  if (filters.hasImage && !repo.imageUrl) return false;
 
   if (filters.category) {
     const topics = Array.isArray(repo.topics) ? repo.topics : [];
@@ -462,9 +597,6 @@ function repoPassesFilters(repo, filters) {
     const hay = [...categories, ...topics];
     if (!hay.some((t) => String(t || '').toLowerCase() === want)) return false;
   }
-
-  const stars = typeof repo.stargazersCount === 'number' ? repo.stargazersCount : 0;
-  if (filters.minStars && stars < filters.minStars) return false;
 
   if (filters.updatedWithinDays) {
     const updatedAtMs = toTimeMs(repo.updatedAt);
@@ -617,65 +749,6 @@ function setActiveView(view) {
   update();
 }
 
-function getToken() {
-  return sessionStorage.getItem(TOKEN_KEY) || '';
-}
-
-function setToken(token) {
-  sessionStorage.setItem(TOKEN_KEY, token);
-}
-
-function clearToken() {
-  sessionStorage.removeItem(TOKEN_KEY);
-}
-
-function setSignedIn(signedIn) {
-  isSignedIn = signedIn;
-  signInEl.hidden = signedIn;
-  signOutEl.hidden = !signedIn;
-}
-
-
-function openAuthPopup() {
-  const authBaseUrl = String(config.authBaseUrl || '').trim();
-  if (!authBaseUrl) {
-    setStatus('Sign-in is not configured yet. Set docs/config.json authBaseUrl (or translateBaseUrl) to your worker URL.');
-    return;
-  }
-
-  const returnTo = new URL('./oauth-popup.html', window.location.href);
-
-  const loginUrl = new URL('/login', authBaseUrl);
-  loginUrl.searchParams.set('returnTo', returnTo.toString());
-
-  const width = 520;
-  const height = 680;
-  const left = Math.max(0, Math.floor(window.screenX + (window.outerWidth - width) / 2));
-  const top = Math.max(0, Math.floor(window.screenY + (window.outerHeight - height) / 2));
-  const features = `popup=yes,width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
-
-  authRowEl.hidden = false;
-  const win = window.open(loginUrl.toString(), 'orgCatalogAuth', features);
-  if (!win) {
-    setStatus('Popup blocked. Allow popups and try again.');
-    authRowEl.hidden = true;
-    return;
-  }
-
-  const startedAt = Date.now();
-  const timer = window.setInterval(() => {
-    if (!win || win.closed) {
-      window.clearInterval(timer);
-      authRowEl.hidden = true;
-
-      // If we didn't receive a token within a reasonable window, tell the user.
-      if (!getToken() && Date.now() - startedAt > 1000) {
-        setStatus('Sign-in was cancelled or blocked. Try again (and allow popups).');
-      }
-    }
-  }, 400);
-}
-
 function update() {
   const q = qEl.value;
   const list = activeView === 'public' ? publicRepos : privateRepos;
@@ -701,7 +774,7 @@ function update() {
   }
 
   const label = activeView === 'public' ? 'public' : 'private';
-  setStatus(`${filtered.length} of ${list.length} ${label} repositories`);
+  setStatus(formatCountStatus({ filteredCount: filtered.length, totalCount: list.length, view: label }));
   render(filtered);
 
   // Kick off translation in the background; re-render once it completes.
@@ -749,85 +822,14 @@ async function loadConfig() {
   } catch {
     config = {};
   }
-
-  const configured = Boolean(String(config.authBaseUrl || '').trim());
-  signInEl.disabled = !configured;
-  signInEl.title = configured ? '' : 'Set docs/config.json authBaseUrl to enable GitHub sign-in.';
 }
 
-async function fetchPrivateRepos({ org, headers }) {
-  const repos = [];
-  let url = `https://api.github.com/orgs/${encodeURIComponent(org)}/repos?per_page=100&type=private&sort=pushed`;
-
-  while (url) {
-    const res = await fetch(url, { headers });
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(`GitHub API error (repos): HTTP ${res.status}. ${text}`);
-    }
-
-    const page = await res.json();
-    for (const r of page) {
-      repos.push({
-        name: r.name,
-        fullName: r.full_name,
-        url: r.html_url,
-        description: r.description ?? '',
-        topics: Array.isArray(r.topics) ? r.topics : [],
-        language: r.language,
-        updatedAt: r.pushed_at ?? r.updated_at,
-        archived: Boolean(r.archived),
-        private: Boolean(r.private),
-        stargazersCount: typeof r.stargazers_count === 'number' ? r.stargazers_count : undefined,
-      });
-    }
-
-    const link = res.headers.get('link');
-    const next = link?.match(/<([^>]+)>;\s*rel="next"/i)?.[1] ?? null;
-    url = next;
-  }
-
-  return repos;
-}
-
-async function signInWithToken(token) {
-  const org = publicCatalog.org;
-  if (!org) {
-    setStatus('Public catalog missing org name. Regenerate catalog.json.');
-    return;
-  }
-
-  const headers = {
-    Accept: 'application/vnd.github+json',
-    Authorization: `Bearer ${token}`,
-    'X-GitHub-Api-Version': '2022-11-28',
-  };
-
-  setStatus('Checking access…');
-
-  // 1) Validate token is usable
-  try {
-    await fetchJson('https://api.github.com/user', headers);
-  } catch {
-    setStatus('Token not accepted by GitHub. Sign in again.');
-    return;
-  }
-
-  // 2) Load private repos; this doubles as the authorization gate.
-  setStatus(`Loading private repositories for @${org}…`);
-  try {
-    privateRepos = await fetchPrivateRepos({ org, headers });
-  } catch (err) {
-    setStatus(`Signed in, but not authorized for @${org} private repos.`);
-    privateRepos = [];
-    setSignedIn(true);
-    setActiveView('public');
-    return;
-  }
-
-  setSignedIn(true);
-  viewPrivateEl.disabled = privateRepos.length === 0;
-  setActiveView('private');
+function getOrgPrivateReposUrl() {
+  const org = String(publicCatalog?.org || '').trim();
+  if (!org) return '';
+  const url = new URL(`https://github.com/orgs/${encodeURIComponent(org)}/repositories`);
+  url.searchParams.set('type', 'private');
+  return url.toString();
 }
 
 // Events
@@ -836,55 +838,20 @@ qEl.addEventListener('input', update);
 languageFilterEl?.addEventListener('change', update);
 categoryFilterEl?.addEventListener('change', update);
 updatedWithinEl?.addEventListener('change', update);
-minStarsEl?.addEventListener('input', update);
-hasImageEl?.addEventListener('change', update);
-includeArchivedEl?.addEventListener('change', update);
 
 viewPublicEl.addEventListener('click', () => setActiveView('public'));
 viewPrivateEl.addEventListener('click', () => {
-  if (!isSignedIn) {
-    openAuthPopup();
+  const url = getOrgPrivateReposUrl();
+  if (!url) {
+    setStatus('Could not determine org name. Regenerate catalog.json.');
     return;
   }
 
-  setActiveView('private');
-});
-
-signInEl.addEventListener('click', () => {
-  openAuthPopup();
-});
-
-signOutEl.addEventListener('click', () => {
-  clearToken();
-  privateRepos = [];
-  setSignedIn(false);
-  setActiveView('public');
-  setStatus(`${publicRepos.length} public repositories`);
-});
-
-window.addEventListener('message', async (event) => {
-  if (event.origin !== window.location.origin) return;
-  const data = event.data;
-  if (!data || data.type !== 'org-catalog-oauth') return;
-
-  authRowEl.hidden = true;
-
-  if (data.error) {
-    setStatus('Sign-in failed or you are not authorized.');
-    return;
-  }
-
-  if (typeof data.accessToken === 'string' && data.accessToken) {
-    setToken(data.accessToken);
-    await signInWithToken(data.accessToken);
-    return;
-  }
-
-  setStatus('Sign-in did not return an access token.');
+  window.open(url, '_blank', 'noopener,noreferrer');
+  setStatus('Opened GitHub private repositories in a new tab.');
 });
 
 // Boot
-setSignedIn(false);
 
 if (uiLangEl) {
   const pref = getUiLangPreference();
@@ -904,9 +871,5 @@ if (uiLangEl) {
 }
 
 await loadConfig();
+applyTranslations();
 await loadPublicCatalog();
-
-const existingToken = getToken();
-if (existingToken) {
-  await signInWithToken(existingToken);
-}

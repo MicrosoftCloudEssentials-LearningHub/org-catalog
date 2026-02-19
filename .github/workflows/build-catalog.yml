@@ -29,6 +29,10 @@ jobs:
         env:
           ORG_NAME: ${{ vars.ORG_NAME || 'MicrosoftCloudEssentials-LearningHub' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
+          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
+          AZURE_TRANSLATOR_ENDPOINT: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
+          TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr' }}
         run: node scripts/fetch-catalog.mjs
 
       - name: Commit changes (if any)

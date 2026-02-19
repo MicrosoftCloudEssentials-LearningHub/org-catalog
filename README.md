@@ -39,6 +39,17 @@ Last updated: 2026-02-19
       
       - `/` for the catalog
 
+## Build-time translation (no runtime backend)
+
+The **Translate** dropdown can translate the app UI client-side. If you also want **repo card content** (descriptions + topics) translated on GitHub Pages without a runtime service, enable build-time translation in GitHub Actions.
+
+1) Create GitHub secrets:
+      - `AZURE_TRANSLATOR_KEY`
+      - `AZURE_TRANSLATOR_REGION`
+      - (Optional) `AZURE_TRANSLATOR_ENDPOINT` (defaults to `https://api.cognitive.microsofttranslator.com`)
+2) (Optional) Create a GitHub Actions variable `TRANSLATE_TO` (default: `es,pt,fr`)
+3) Run **Actions → Build catalog** (or wait for nightly). The generator will embed translations into `docs/catalog.json`.
+
 ## Private section (GitHub OAuth)
 
 > GitHub Pages is static hosting, so the OAuth callback must be handled by a tiny serverless endpoint. This repo includes a minimal Cloudflare Worker under `worker/` that:
