@@ -48,7 +48,7 @@ Then set either `translateBaseUrl` (or `authBaseUrl`) in `docs/config.json` to t
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1280-limegreen" alt="Total views">
+  <img src="https://img.shields.io/badge/Total%20views-1346-limegreen" alt="Total views">
   <p>Refresh Date: 2026-02-19</p>
 </div>
 <!-- END BADGE -->
