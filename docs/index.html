@@ -6,7 +6,7 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://api.github.com; frame-ancestors 'none'; upgrade-insecure-requests"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://api.github.com https:; frame-ancestors 'none'; upgrade-insecure-requests"
     />
     <title>Microsoft Cloud Sandbox - Unofficial</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -99,6 +99,11 @@
         <div class="filters" aria-label="Filters">
           <label class="filterLabel" for="languageFilter" data-i18n="label.language">Language</label>
           <select id="languageFilter" class="select">
+            <option value="all">All</option>
+          </select>
+
+          <label class="filterLabel" for="categoryFilter" data-i18n="label.category">Category</label>
+          <select id="categoryFilter" class="select">
             <option value="all">All</option>
           </select>
 
