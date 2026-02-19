@@ -139,6 +139,23 @@ const BUILTIN_UI_TRANSLATIONS = {
   },
 };
 
+function normalizeUiText(s) {
+  return String(s || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function ensureI18nSource(el) {
+  if (!el) return '';
+  if (typeof el.dataset.srcText !== 'string' || !el.dataset.srcText) {
+    el.dataset.srcText = el.textContent || '';
+  }
+  if (typeof el.dataset.srcKey !== 'string' || !el.dataset.srcKey) {
+    el.dataset.srcKey = normalizeUiText(el.dataset.srcText);
+  }
+  return el.dataset.srcKey;
+}
+
 function seedBuiltinTranslations(lang) {
   const to = String(lang || '').toLowerCase();
   const builtin = BUILTIN_UI_TRANSLATIONS[to];
@@ -146,6 +163,8 @@ function seedBuiltinTranslations(lang) {
   const cache = getLangTranslationCache(to);
   for (const [src, dst] of Object.entries(builtin)) {
     if (!cache.has(src)) cache.set(src, dst);
+    const key = normalizeUiText(src);
+    if (key && !cache.has(key)) cache.set(key, dst);
   }
 }
 
@@ -215,9 +234,9 @@ function applyUiTranslationsFromCache(lang) {
   if (!to || to === 'en') return;
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
-    const src = el.dataset.srcText;
-    if (!src) continue;
-    el.textContent = translateText(to, src);
+    const key = ensureI18nSource(el);
+    if (!key) continue;
+    el.textContent = translateText(to, key);
   }
 
   for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
@@ -243,7 +262,7 @@ function applyUiTranslationsFromCache(lang) {
   }
 
   if (lastStatusSource) {
-    statusEl.textContent = translateText(to, lastStatusSource);
+    statusEl.textContent = translateText(to, normalizeUiText(lastStatusSource));
   }
 }
 
@@ -251,8 +270,8 @@ function collectUiSourceTexts() {
   const texts = [];
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
-    const src = el.dataset.srcText;
-    if (src) texts.push(src);
+    const key = ensureI18nSource(el);
+    if (key) texts.push(key);
   }
 
   for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
@@ -357,6 +376,7 @@ function captureUiStrings() {
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
     if (!el.dataset.srcText) el.dataset.srcText = el.textContent || '';
+    if (!el.dataset.srcKey) el.dataset.srcKey = normalizeUiText(el.dataset.srcText);
   }
 
   for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
@@ -505,7 +525,8 @@ function applyRepoContentTranslations(lang, repos) {
 
 function setStatus(message) {
   lastStatusSource = String(message || '');
-  statusEl.textContent = activeUiLang === 'en' ? lastStatusSource : translateText(activeUiLang, lastStatusSource);
+  statusEl.textContent =
+    activeUiLang === 'en' ? lastStatusSource : translateText(activeUiLang, normalizeUiText(lastStatusSource));
 
   if (activeUiLang === 'en' || !lastStatusSource) return;
 
