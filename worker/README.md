@@ -30,10 +30,21 @@ Last updated: 2026-02-17
       - `wrangler secret put STATE_SECRET`
       - Recommended: Update `ALLOWED_RETURN_ORIGINS` in `wrangler.toml` to include your Pages origin.
 
+## Translation (optional)
+
+If you want repo descriptions/topics to display in the selected UI language, configure Azure AI Translator and set these secrets:
+
+- `wrangler secret put TRANSLATOR_KEY`
+- Optional (often required for multi-service resources): `wrangler secret put TRANSLATOR_REGION`
+- Optional: `wrangler secret put TRANSLATOR_ENDPOINT` (defaults to `https://api.cognitive.microsofttranslator.com`)
+
+Then set either `translateBaseUrl` (or `authBaseUrl`) in `docs/config.json` to the worker base URL.
+
 ## Endpoints
 
 - `GET /login?returnTo=<url>` redirects to GitHub authorize.
 - `GET /callback` handles OAuth exchange and redirects back to `returnTo` with `#access_token=...`.
+- `POST /translate` translates an array of strings: `{ "to": "es", "texts": ["hello", "world"] }`.
 
 <!-- START BADGE -->
 <div align="center">

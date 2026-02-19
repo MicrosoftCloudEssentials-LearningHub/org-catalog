@@ -159,15 +159,23 @@ body {
   min-width: 160px;
 }
 
+.select.selectSmall {
+  min-width: 170px;
+}
+
+.controls .select.selectSmall {
+  min-width: 140px;
+}
+
 .select:focus-visible {
   outline: none;
   border-color: var(--focus);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
 }
 
-.search.topic {
-  min-width: 180px;
-  flex: 0 1 220px;
+.search.number {
+  min-width: 120px;
+  flex: 0 0 120px;
 }
 
 .checkbox {

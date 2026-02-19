@@ -1,5 +1,27 @@
 const DEFAULT_ORG = 'MicrosoftCloudEssentials-LearningHub';
 
+const DEFAULT_TRANSLATOR_ENDPOINT = 'https://api.cognitive.microsofttranslator.com';
+
+function parseAllowedOrigins(env) {
+  return String(env.ALLOWED_RETURN_ORIGINS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function corsHeaders({ request, allowedOrigins }) {
+  const origin = request.headers.get('Origin') || '';
+  if (!origin) return {};
+
+  // If allowlist is empty, be permissive (no credentials used).
+  if (!allowedOrigins?.length) {
+    return { 'access-control-allow-origin': origin, Vary: 'Origin' };
+  }
+
+  if (!allowedOrigins.includes(origin)) return {};
+  return { 'access-control-allow-origin': origin, Vary: 'Origin' };
+}
+
 function json(body, init = {}) {
   return new Response(JSON.stringify(body, null, 2), {
     headers: {
@@ -9,6 +31,96 @@ function json(body, init = {}) {
     },
     ...init,
   });
+}
+
+async function readJson(request, maxBytes = 50_000) {
+  const len = Number(request.headers.get('content-length') || 0);
+  if (len && len > maxBytes) throw new Error('payload_too_large');
+  const text = await request.text();
+  if (text.length > maxBytes) throw new Error('payload_too_large');
+  try {
+    return JSON.parse(text || '{}');
+  } catch {
+    throw new Error('invalid_json');
+  }
+}
+
+function normalizeLangCode(value) {
+  const v = String(value || '').trim().toLowerCase();
+  // Basic sanity; do not try to validate every possible locale.
+  if (!/^[a-z]{2}(-[a-z0-9]{2,8})?$/i.test(v)) return '';
+  return v;
+}
+
+async function translateTextsAzure({ endpoint, key, region, to, texts }) {
+  const base = String(endpoint || DEFAULT_TRANSLATOR_ENDPOINT).replace(/\/$/, '');
+  const url = new URL(`${base}/translate`);
+  url.searchParams.set('api-version', '3.0');
+  url.searchParams.set('to', to);
+
+  const headers = {
+    'content-type': 'application/json; charset=utf-8',
+    'Ocp-Apim-Subscription-Key': key,
+  };
+  if (region) headers['Ocp-Apim-Subscription-Region'] = region;
+
+  const res = await fetch(url.toString(), {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(texts.map((Text) => ({ Text }))),
+  });
+
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const err = data?.error?.message || `translator_http_${res.status}`;
+    throw new Error(err);
+  }
+
+  if (!Array.isArray(data)) throw new Error('translator_invalid_response');
+
+  return data.map((item) => {
+    const text = item?.translations?.[0]?.text;
+    return typeof text === 'string' ? text : '';
+  });
+}
+
+async function handleTranslate(request, env) {
+  const allowedOrigins = parseAllowedOrigins(env);
+  const cors = corsHeaders({ request, allowedOrigins });
+  if (!Object.keys(cors).length && request.headers.get('Origin')) {
+    return json({ error: 'origin_not_allowed' }, { status: 403 });
+  }
+
+  let body;
+  try {
+    body = await readJson(request);
+  } catch (err) {
+    return json({ error: String(err?.message || 'invalid_request') }, { status: 400, headers: cors });
+  }
+
+  const to = normalizeLangCode(body?.to);
+  const texts = Array.isArray(body?.texts) ? body.texts : [];
+
+  if (!to) return json({ error: 'missing_to' }, { status: 400, headers: cors });
+  if (!texts.length) return json({ error: 'missing_texts' }, { status: 400, headers: cors });
+  if (texts.length > 100) return json({ error: 'too_many_texts' }, { status: 400, headers: cors });
+
+  const cleaned = texts.map((t) => String(t || '').slice(0, 2000));
+
+  const key = env.TRANSLATOR_KEY;
+  const region = env.TRANSLATOR_REGION;
+  const endpoint = env.TRANSLATOR_ENDPOINT;
+
+  if (!key) {
+    return json({ error: 'translator_not_configured' }, { status: 501, headers: cors });
+  }
+
+  try {
+    const translations = await translateTextsAzure({ endpoint, key, region, to, texts: cleaned });
+    return json({ ok: true, to, translations }, { headers: cors });
+  } catch (err) {
+    return json({ error: 'translate_failed', detail: String(err?.message || err) }, { status: 502, headers: cors });
+  }
 }
 
 function base64urlEncode(bytes) {
@@ -239,6 +351,33 @@ export default {
 
     if (request.method === 'GET' && url.pathname === '/callback') {
       return handleCallback(request, env);
+    }
+
+    if (url.pathname === '/translate') {
+      // CORS preflight
+      if (request.method === 'OPTIONS') {
+        const allowedOrigins = parseAllowedOrigins(env);
+        const cors = corsHeaders({ request, allowedOrigins });
+        if (!Object.keys(cors).length && request.headers.get('Origin')) {
+          return new Response(null, { status: 403 });
+        }
+
+        return new Response(null, {
+          status: 204,
+          headers: {
+            ...cors,
+            'access-control-allow-methods': 'POST, OPTIONS',
+            'access-control-allow-headers': 'content-type',
+            'access-control-max-age': '600',
+          },
+        });
+      }
+
+      if (request.method === 'POST') {
+        return handleTranslate(request, env);
+      }
+
+      return json({ error: 'method_not_allowed' }, { status: 405 });
     }
 
     return json({ error: 'not_found' }, { status: 404 });

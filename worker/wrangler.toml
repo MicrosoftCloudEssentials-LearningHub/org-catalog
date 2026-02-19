@@ -10,6 +10,11 @@ compatibility_date = "2025-12-01"
 # Optional via `wrangler secret put` or `wrangler.toml` vars:
 # - ORG_NAME (defaults to MicrosoftCloudEssentials-LearningHub)
 # - ALLOWED_RETURN_ORIGINS (comma-separated, e.g. https://microsoftcloudessentials-learninghub.github.io,http://localhost:4173)
+#
+# Optional (translation):
+# - TRANSLATOR_KEY
+# - TRANSLATOR_REGION
+# - TRANSLATOR_ENDPOINT
 
 [vars]
 ORG_NAME = "MicrosoftCloudEssentials-LearningHub"
