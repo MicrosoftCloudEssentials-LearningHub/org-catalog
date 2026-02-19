@@ -40,6 +40,12 @@ body {
   padding: 16px;
 }
 
+.header .container {
+  max-width: none;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
 .header {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -54,6 +60,156 @@ body {
 .subtitle {
   margin: 8px 0 0;
   color: var(--muted);
+}
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: 140px 1fr 300px;
+  gap: 16px;
+  align-items: start;
+}
+
+.headerRail {
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.orgRailLink {
+  text-align: center;
+  max-width: 140px;
+  overflow-wrap: anywhere;
+}
+
+.headerMain {
+  min-width: 0;
+  max-width: 760px;
+  justify-self: center;
+  width: 100%;
+}
+
+.headerSide {
+  padding-top: 6px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sideCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 12px;
+}
+
+.sideLabel {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.sidePerson {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar.founderAvatar {
+  width: 52px;
+  height: 52px;
+}
+
+.sideLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.sideLinks a {
+  color: var(--fg);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sideLinks a:hover {
+  text-decoration: underline;
+}
+
+.sideFilters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.filtersSection {
+  margin-top: 14px;
+}
+
+.filtersCard {
+  padding: 12px 14px;
+}
+
+.filtersRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filtersRow .filterGroup {
+  flex: 1 1 220px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.filterGroup .filterLabel {
+  white-space: nowrap;
+}
+
+.filterGroup .select {
+  flex: 1 1 0;
+  min-width: 90px;
+}
+
+@media (max-width: 900px) {
+  .sideFilters {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtersSection {
+    margin-top: 10px;
+  }
+
+  .headerRail {
+    padding-top: 0;
+  }
+
+  .headerSide {
+    padding-top: 0;
+  }
+
+  .header .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .brandRow {
@@ -71,6 +227,11 @@ body {
   border: 1px solid var(--border);
   background: var(--bg);
   flex: 0 0 auto;
+}
+
+.avatar.orgAvatar {
+  width: 120px;
+  height: 120px;
 }
 
 .avatar.small {
@@ -137,12 +298,43 @@ body {
   flex-wrap: wrap;
 }
 
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
 .filters {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-top: 10px;
   flex-wrap: wrap;
+}
+
+.filtersLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 520px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.filtersRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
 }
 
 .filterLabel {
@@ -173,10 +365,6 @@ body {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 30%, transparent);
 }
 
-.search.number {
-  min-width: 120px;
-  flex: 0 0 120px;
-}
 
 .checkbox {
   display: inline-flex;

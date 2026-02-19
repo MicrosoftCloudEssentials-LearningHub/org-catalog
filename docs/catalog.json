@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-19T00:46:47.043Z",
+  "generatedAt": "2026-02-19T02:34:10.924Z",
   "org": "MicrosoftCloudEssentials-LearningHub",
   "repos": [
     {
@@ -31,11 +31,57 @@
         "static"
       ],
       "language": "JavaScript",
-      "updatedAt": "2026-02-19T00:39:23Z",
+      "updatedAt": "2026-02-19T02:29:11Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://github.com/user-attachments/assets/584aab63-e965-40a1-80f2-a77e25972b05"
+    },
+    {
+      "name": "GenAIOpsMaturityLevels",
+      "fullName": "MicrosoftCloudEssentials-LearningHub/GenAIOpsMaturityLevels",
+      "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/GenAIOpsMaturityLevels",
+      "description": "This demonstrates how to manage LLMs using Microsoft Azure GenAIOps. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
+      "topics": [
+        "ai",
+        "ai-use-cases-strategy",
+        "azure-ai",
+        "genaiops",
+        "llm",
+        "maturity-development",
+        "maturity-model",
+        "mlops",
+        "mlops-workflow",
+        "ops"
+      ],
+      "categories": [
+        "llm",
+        "maturity",
+        "genaiops",
+        "level",
+        "operations",
+        "mlops"
+      ],
+      "keywords": [
+        "llm",
+        "maturity",
+        "genaiops",
+        "level",
+        "operations",
+        "mlops",
+        "organizations",
+        "practices",
+        "generative",
+        "optimized",
+        "improvement",
+        "quick"
+      ],
+      "language": "Python",
+      "updatedAt": "2026-02-19T01:11:26Z",
+      "archived": false,
+      "private": false,
+      "stargazersCount": 1,
+      "imageUrl": "https://github.com/user-attachments/assets/f7246a17-9f56-4fd0-b554-8ebacf3f308e"
     },
     {
       "name": "AzureTerraformTemplates-v0.0.0",
@@ -1274,52 +1320,6 @@
       "private": false,
       "stargazersCount": 0,
       "imageUrl": "https://github.com/user-attachments/assets/424f2d85-37e4-4e74-b303-2e8c5a23a864"
-    },
-    {
-      "name": "GenAIOpsMaturityLevels",
-      "fullName": "MicrosoftCloudEssentials-LearningHub/GenAIOpsMaturityLevels",
-      "url": "https://github.com/MicrosoftCloudEssentials-LearningHub/GenAIOpsMaturityLevels",
-      "description": "This demonstrates how to manage LLMs using Microsoft Azure GenAIOps. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
-      "topics": [
-        "ai",
-        "ai-use-cases-strategy",
-        "azure-ai",
-        "genaiops",
-        "llm",
-        "maturity-development",
-        "maturity-model",
-        "mlops",
-        "mlops-workflow",
-        "ops"
-      ],
-      "categories": [
-        "llm",
-        "maturity",
-        "genaiops",
-        "level",
-        "operations",
-        "mlops"
-      ],
-      "keywords": [
-        "llm",
-        "maturity",
-        "genaiops",
-        "level",
-        "operations",
-        "mlops",
-        "organizations",
-        "practices",
-        "generative",
-        "optimized",
-        "improvement",
-        "quick"
-      ],
-      "language": "Python",
-      "updatedAt": "2025-08-12T19:44:30Z",
-      "archived": false,
-      "private": false,
-      "stargazersCount": 1,
-      "imageUrl": null
     },
     {
       "name": "DP-900StudyGuide",

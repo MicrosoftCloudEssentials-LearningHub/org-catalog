@@ -14,129 +14,141 @@
   <body>
     <header class="header">
       <div class="container">
-        <h1 class="title">Microsoft Cloud Sandbox - Unofficial</h1>
-        <p class="subtitle">
-          Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.
-        </p>
-
-        <div class="brandRow" aria-label="About">
-          <img
-            class="avatar"
-            src="https://github.com/MicrosoftCloudEssentials-LearningHub.png?size=96"
-            alt="MicrosoftCloudEssentials-LearningHub avatar"
-            width="40"
-            height="40"
-            loading="lazy"
-          />
-          <div class="brandMeta">
-            <a class="brandOrg" href="https://github.com/MicrosoftCloudEssentials-LearningHub" target="_blank" rel="noopener noreferrer">
+        <div class="headerGrid" aria-label="Header layout">
+          <div class="headerRail" aria-label="Organization icon">
+            <img
+              class="avatar orgAvatar"
+              src="https://github.com/MicrosoftCloudEssentials-LearningHub.png?size=256"
+              alt="MicrosoftCloudEssentials-LearningHub avatar"
+              width="120"
+              height="120"
+              loading="lazy"
+            />
+            <a
+              class="brandOrg orgRailLink"
+              href="https://github.com/MicrosoftCloudEssentials-LearningHub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               MicrosoftCloudEssentials-LearningHub
             </a>
-            <span class="brandSep">·</span>
-            <span class="pipelineBadges" aria-label="Pipeline status">
-              Pipeline:
-              <a
-                class="badgeLink"
-                href="https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog/actions/workflows/pages-prod.yml"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub Pages deploy (prod) workflow"
-              >
+          </div>
+
+          <div class="headerMain">
+            <h1 class="title">Microsoft Cloud Sandbox - Unofficial</h1>
+            <p class="subtitle">
+              Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.
+            </p>
+
+            <div class="brandRow" aria-label="About">
+              <div class="brandMeta">
+                <span class="pipelineBadges" aria-label="Pipeline status">
+                  Pipeline:
+                  <a
+                    class="badgeLink"
+                    href="https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog/actions/workflows/pages-prod.yml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="GitHub Pages deploy (prod) workflow"
+                  >
+                    <img
+                      class="badgeImg"
+                      src="https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog/actions/workflows/pages-prod.yml/badge.svg?branch=main"
+                      alt="Deploy GitHub Pages (prod) status"
+                      loading="lazy"
+                    />
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="controlsLeft">
+                <label class="searchLabel" for="q" data-i18n="label.search">Search</label>
+                <input
+                  id="q"
+                  class="search"
+                  placeholder="name, description, topics, language"
+                  data-i18n-placeholder="placeholder.search"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="controlsRight" aria-label="View controls">
+                <label class="searchLabel" for="lang" data-i18n="label.languageUi">Translate</label>
+                <select id="lang" class="select selectSmall" aria-label="Language">
+                  <option value="auto" selected data-i18n="lang.auto">Auto</option>
+                  <option value="en" data-i18n="lang.en">English</option>
+                  <option value="es" data-i18n="lang.es">Español</option>
+                  <option value="pt" data-i18n="lang.pt">Português</option>
+                  <option value="fr" data-i18n="lang.fr">Français</option>
+                </select>
+
+                <div class="segmented" role="group" aria-label="Catalog view">
+                  <button id="viewPublic" class="segButton active" type="button" data-i18n="button.public">Public</button>
+                  <button id="viewPrivate" class="segButton" type="button" data-i18n="button.private">Private</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="headerSide" aria-label="Owner/Founder">
+            <div class="sideCard">
+              <div class="sideLabel">Owner/Founder</div>
+              <div class="sidePerson">
                 <img
-                  class="badgeImg"
-                  src="https://github.com/MicrosoftCloudEssentials-LearningHub/org-catalog/actions/workflows/pages-prod.yml/badge.svg?branch=main"
-                  alt="Deploy GitHub Pages (prod) status"
+                  class="avatar founderAvatar"
+                  src="https://github.com/brown9804.png?size=128"
+                  alt="brown9804 avatar"
+                  width="52"
+                  height="52"
                   loading="lazy"
                 />
-              </a>
-            </span>
-            <span class="brandSep">·</span>
-            <span class="brandFounder">
-              Owner / Funder:
-              <img
-                class="avatar small"
-                src="https://github.com/brown9804.png?size=64"
-                alt="brown9804 avatar"
-                width="20"
-                height="20"
-                loading="lazy"
-              />
-              <a href="https://github.com/brown9804" target="_blank" rel="noopener noreferrer">@brown9804</a>
-              <span class="brandSep">·</span>
-              <a href="https://www.linkedin.com/in/timna-b-939492161/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </span>
-          </div>
+                <div class="sideLinks">
+                  <a href="https://github.com/brown9804" target="_blank" rel="noopener noreferrer">@brown9804</a>
+                  <a href="https://www.linkedin.com/in/timna-b-939492161/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
 
-        <div class="controls">
-          <label class="searchLabel" for="q" data-i18n="label.search">Search</label>
-          <input
-            id="q"
-            class="search"
-            placeholder="name, description, topics, language"
-            data-i18n-placeholder="placeholder.search"
-            autocomplete="off"
-          />
-
-          <label class="searchLabel" for="lang" data-i18n="label.languageUi">UI</label>
-          <select id="lang" class="select selectSmall" aria-label="Language">
-            <option value="auto" selected>Auto</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="pt">Português</option>
-            <option value="fr">Français</option>
-          </select>
-
-          <div class="segmented" role="group" aria-label="Catalog view">
-            <button id="viewPublic" class="segButton active" type="button" data-i18n="button.public">Public</button>
-            <button id="viewPrivate" class="segButton" type="button" data-i18n="button.private">Private</button>
-          </div>
-
-          <button id="signIn" class="button" type="button" data-i18n="button.signIn">Sign in</button>
-          <button id="signOut" class="button secondary" type="button" hidden data-i18n="button.signOut">Sign out</button>
-        </div>
-
-        <div class="filters" aria-label="Filters">
-          <label class="filterLabel" for="languageFilter" data-i18n="label.language">Language</label>
-          <select id="languageFilter" class="select">
-            <option value="all">All</option>
-          </select>
-
-          <label class="filterLabel" for="categoryFilter" data-i18n="label.category">Category</label>
-          <select id="categoryFilter" class="select">
-            <option value="all">All</option>
-          </select>
-
-          <label class="filterLabel" for="updatedWithin" data-i18n="label.updated">Updated</label>
-          <select id="updatedWithin" class="select selectSmall">
-            <option value="any">Any time</option>
-            <option value="7">Last 7 days</option>
-            <option value="30">Last 30 days</option>
-            <option value="90">Last 90 days</option>
-            <option value="365">Last 365 days</option>
-          </select>
-
-          <label class="filterLabel" for="minStars" data-i18n="label.minStars">Min stars</label>
-          <input id="minStars" class="search number" type="number" min="0" step="1" placeholder="0" data-i18n-placeholder="placeholder.minStars" inputmode="numeric" />
-
-          <label class="checkbox">
-            <input id="hasImage" type="checkbox" />
-            <span data-i18n="label.hasThumbnail">Has thumbnail</span>
-          </label>
-
-          <label class="checkbox">
-            <input id="includeArchived" type="checkbox" />
-            <span data-i18n="label.includeArchived">Include archived</span>
-          </label>
-        </div>
-
-        <div id="authRow" class="authRow" hidden>
-          <span class="hint" data-i18n="hint.redirecting">Redirecting to GitHub sign-in…</span>
-        </div>
       </div>
     </header>
 
     <main class="container">
+      <section class="filtersSection" aria-label="Filters">
+        <div class="sideCard filtersCard">
+          <div class="sideLabel">Filters</div>
+          <div class="filtersRow">
+            <div class="filterGroup">
+              <label class="filterLabel" for="languageFilter" data-i18n="label.language">Language</label>
+              <select id="languageFilter" class="select">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div class="filterGroup">
+              <label class="filterLabel" for="categoryFilter" data-i18n="label.category">Category</label>
+              <select id="categoryFilter" class="select">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div class="filterGroup">
+              <label class="filterLabel" for="updatedWithin" data-i18n="label.updated">Updated</label>
+              <select id="updatedWithin" class="select selectSmall">
+                <option value="any">Any time</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+                <option value="365">Last 365 days</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div id="status" class="status" aria-live="polite"></div>
       <div id="grid" class="grid" aria-label="Repository list"></div>
     </main>
