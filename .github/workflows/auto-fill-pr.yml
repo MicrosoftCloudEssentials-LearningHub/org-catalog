@@ -1,0 +1,295 @@
+name: Auto-fill PR Description
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  models: read
+
+jobs:
+  fill-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gather context
+        id: ctx
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          # ── Commits ──
+          COMMITS=$(git log --pretty=format:"- %s" "${BASE_SHA}..${HEAD_SHA}" 2>/dev/null || echo "- (unable to read commits)")
+          echo "commits<<EOF_COMMITS" >> "$GITHUB_OUTPUT"
+          echo "$COMMITS" >> "$GITHUB_OUTPUT"
+          echo "EOF_COMMITS" >> "$GITHUB_OUTPUT"
+
+          # ── Diff stat ──
+          DIFFSTAT=$(git diff --stat "${BASE_SHA}..${HEAD_SHA}" 2>/dev/null | tail -1 || echo "")
+          echo "diffstat=${DIFFSTAT}" >> "$GITHUB_OUTPUT"
+
+          # ── Changed files grouped by directory ──
+          FILES=$(git diff --name-only "${BASE_SHA}..${HEAD_SHA}" 2>/dev/null || echo "")
+          FILE_SUMMARY=""
+          if [ -n "$FILES" ]; then
+            # Separate root files and directory files
+            ROOT_FILES=$(echo "$FILES" | grep -v '/' || true)
+            DIR_FILES=$(echo "$FILES" | grep '/' || true)
+
+            # Group by top-level directory
+            if [ -n "$DIR_FILES" ]; then
+              DIRS=$(echo "$DIR_FILES" | sed 's|/.*||' | sort -u)
+              while IFS= read -r dir; do
+                [ -z "$dir" ] && continue
+                COUNT=$(echo "$DIR_FILES" | grep "^${dir}/" | wc -l | tr -d ' ')
+                NAMES=$(echo "$DIR_FILES" | grep "^${dir}/" | sed "s|^${dir}/||" | head -8 | tr '\n' ', ' | sed 's/,$//' | sed 's/,/, /g')
+                FILE_SUMMARY="${FILE_SUMMARY}- \`${dir}/\`: ${COUNT} file(s) — ${NAMES}"$'\n'
+              done <<< "$DIRS"
+            fi
+
+            # Root-level files
+            if [ -n "$ROOT_FILES" ]; then
+              ROOT_COUNT=$(echo "$ROOT_FILES" | wc -l | tr -d ' ')
+              ROOT_NAMES=$(echo "$ROOT_FILES" | head -8 | tr '\n' ', ' | sed 's/,$//' | sed 's/,/, /g')
+              FILE_SUMMARY="${FILE_SUMMARY}- \`./\` (root): ${ROOT_COUNT} file(s) — ${ROOT_NAMES}"$'\n'
+            fi
+
+            TOTAL=$(echo "$FILES" | wc -l | tr -d ' ')
+            FILE_SUMMARY="${FILE_SUMMARY}- **Total:** ${TOTAL} file(s)"
+          fi
+          echo "files<<EOF_FILES" >> "$GITHUB_OUTPUT"
+          echo "$FILE_SUMMARY" >> "$GITHUB_OUTPUT"
+          echo "EOF_FILES" >> "$GITHUB_OUTPUT"
+
+          # ── Linked issues ──
+          ISSUES=$(git log --pretty=format:"%s %b" "${BASE_SHA}..${HEAD_SHA}" 2>/dev/null \
+            | grep -oE '(close[sd]?|fix(es|ed)?|resolve[sd]?) #[0-9]+' \
+            | grep -oE '#[0-9]+' | sort -u | tr '\n' ' ' || true)
+          echo "issues=${ISSUES:-none}" >> "$GITHUB_OUTPUT"
+
+          # ── Compact diff for AI (truncated to 12000 chars to fit context) ──
+          DIFF=$(git diff "${BASE_SHA}..${HEAD_SHA}" -- . ':!package-lock.json' ':!*.svg' 2>/dev/null | head -c 12000 || echo "")
+          echo "diff<<EOF_DIFF" >> "$GITHUB_OUTPUT"
+          echo "$DIFF" >> "$GITHUB_OUTPUT"
+          echo "EOF_DIFF" >> "$GITHUB_OUTPUT"
+
+      - name: Generate AI summary
+        id: ai
+        uses: actions/github-script@v7
+        env:
+          COMMITS: ${{ steps.ctx.outputs.commits }}
+          FILES: ${{ steps.ctx.outputs.files }}
+          DIFFSTAT: ${{ steps.ctx.outputs.diffstat }}
+          ISSUES: ${{ steps.ctx.outputs.issues }}
+          DIFF: ${{ steps.ctx.outputs.diff }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          COMMIT_COUNT: ${{ github.event.pull_request.commits }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          script: |
+            const commitsRaw = process.env.COMMITS || '';
+            const filesRaw = process.env.FILES || '';
+            const diffRaw = process.env.DIFF || '';
+            const diffStatRaw = process.env.DIFFSTAT || '';
+
+            const allText = [commitsRaw, filesRaw, diffRaw, diffStatRaw].join('\n').toLowerCase();
+            const hasAny = (patterns) => patterns.some((p) => allText.includes(p));
+
+            const isDoc = hasAny(['docs/', '.md', 'readme', 'documentation']);
+            const isCi = hasAny(['.github/workflows', 'workflow', 'actions/', 'ci', 'pipeline']);
+            const isFeature = hasAny(['feat', 'feature', 'add ', 'implement', 'new ']);
+            const isBugFix = hasAny(['fix', 'bug', 'issue', 'resolve', 'repair']);
+            const isRefactor = hasAny(['refactor', 'cleanup', 'restructure', 'rename']);
+            const isBreaking = hasAny(['breaking', '!:']);
+            const hasUi = hasAny(['frontend/', 'ui', 'index.html', 'styles.css', 'app.js', 'tauri']);
+            const hasTestsHint = hasAny(['test', 'spec', 'ci.yml', 'cargo test', 'npm test']);
+
+            const inferTypeLines = [
+              `- [${isBugFix ? 'x' : ' '}] Bug fix (non-breaking change that fixes an issue)`,
+              `- [${isFeature ? 'x' : ' '}] New feature (non-breaking change that adds functionality)`,
+              `- [${isBreaking ? 'x' : ' '}] Breaking change (fix or feature that would cause existing functionality to change)`,
+              `- [${isDoc ? 'x' : ' '}] Documentation update`,
+              `- [${isCi ? 'x' : ' '}] CI/CD or infrastructure change`,
+              `- [${isRefactor ? 'x' : ' '}] Refactor (no functional change)`,
+            ].join('\n');
+
+            const inferValidationLines = [
+              '- [ ] I tested my change locally',
+              `- [${hasTestsHint ? 'x' : ' '}] All existing tests still pass`,
+              '- [ ] I added or updated tests for new functionality',
+              `- [${isDoc ? 'x' : ' '}] I updated documentation/templates if needed`,
+              '- [x] I confirmed no secrets or sensitive data are included',
+              '- [ ] I checked for security vulnerabilities (OWASP Top 10)',
+            ].join('\n');
+
+            const inferHowToTest = [
+              '1. Check out this branch and review commit history for scope confirmation.',
+              isCi ? '2. Run/inspect the changed GitHub Actions workflows in a PR branch to confirm successful execution.' : '2. Run the main project workflow for this change set.',
+              hasUi ? '3. Launch the application/UI path affected by this PR and verify behavior matches the summary.' : '3. Validate affected commands or scripts from the updated files.',
+              '4. Confirm no regressions in related areas and that generated artifacts/output are correct.',
+            ].join('\n');
+
+            const prompt = `You are a PR description agent for the DevOpster project (Rust CLI + Tauri desktop app + GitHub Pages docs).
+            Analyze the git diff and commit messages below. Produce a COMPLETE PR description filling EVERY section of the template.
+            Be specific, detailed, and professional. Infer type of change, validation, and test steps from the diff.
+            IMPORTANT: Do not leave placeholders. Output complete markdown only.
+
+            Branch: ${process.env.HEAD_REF} → ${process.env.BASE_REF} (${process.env.COMMIT_COUNT} commits)
+            Linked issues from commits: ${process.env.ISSUES}
+
+            Commits:
+            ${process.env.COMMITS}
+
+            Diff stat: ${process.env.DIFFSTAT}
+
+            Files touched:
+            ${process.env.FILES}
+
+            Diff (truncated):
+            \`\`\`
+            ${process.env.DIFF}
+            \`\`\`
+
+            Fill EVERY section below. Replace ALL placeholder text. Check the applicable boxes. Output ONLY the markdown:
+
+            ## Summary
+
+            <One paragraph: what this PR does, why, and the impact. Be specific about the feature/fix.>
+
+            ## Type of change
+
+            <Check ONLY the applicable boxes based on the diff. Use [x] for checked, [ ] for unchecked.>
+
+            - [ ] Bug fix (non-breaking change that fixes an issue)
+            - [ ] New feature (non-breaking change that adds functionality)
+            - [ ] Breaking change (fix or feature that would cause existing functionality to change)
+            - [ ] Documentation update
+            - [ ] CI/CD or infrastructure change
+            - [ ] Refactor (no functional change)
+
+            ## Changes
+
+            <Detailed bulleted list of EVERY specific change, grouped by area (e.g. "### Editor", "### CI/CD", "### Config"). Include file names where relevant.>
+
+            ## Files changed
+
+            <Fill this table from the file list above. Group by top-level directory.>
+
+            | Directory | Files | Description |
+            |-----------|-------|-------------|
+            | ... | ... | ... |
+
+            ## Linked issues
+
+            <List any issues referenced in commits (Closes #X, Fixes #Y). If none, write "No linked issues.">
+
+            ## How to test
+
+            <Write specific step-by-step instructions a reviewer can follow to validate these changes. Infer from the diff what commands to run, what to look for, etc.>
+
+            1. ...
+
+            ## Validation
+
+            <Check the boxes that apply based on what you see in the diff.>
+
+            - [ ] I tested my change locally
+            - [ ] All existing tests still pass
+            - [ ] I added or updated tests for new functionality
+            - [ ] I updated documentation/templates if needed
+            - [ ] I confirmed no secrets or sensitive data are included
+            - [ ] I checked for security vulnerabilities (OWASP Top 10)
+
+            ## Screenshots / Logs
+
+            <If the diff includes UI changes, describe what the reviewer should see. Otherwise write "N/A — no visual changes.">
+
+            ## Notes
+
+            <Any context: limitations, follow-up work needed, trade-offs, migration notes. If none, write "No additional notes.">`;
+
+            let body = '';
+            try {
+              const response = await fetch('https://models.github.ai/inference/chat/completions', {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  model: 'openai/gpt-4o-mini',
+                  messages: [{ role: 'user', content: prompt }],
+                  max_tokens: 2500,
+                  temperature: 0.3,
+                }),
+              });
+
+              if (response.ok) {
+                const data = await response.json();
+                body = data.choices?.[0]?.message?.content || '';
+              }
+
+              if (!body) throw new Error('Empty AI response');
+              core.info('AI summary generated successfully');
+            } catch (err) {
+              core.warning(`AI summary failed (${err.message}), using structured fallback`);
+              const issues = process.env.ISSUES === 'none' ? 'No linked issues.' : process.env.ISSUES;
+              body = [
+                '## Summary',
+                '',
+                `Automated summary for \`${process.env.HEAD_REF}\` -> \`${process.env.BASE_REF}\` (${process.env.COMMIT_COUNT} commits), generated from commit metadata and changed files.`,
+                '',
+                '## Type of change',
+                '',
+                inferTypeLines,
+                '',
+                '## Changes',
+                '',
+                process.env.COMMITS,
+                '',
+                '## Files changed',
+                '',
+                process.env.FILES,
+                '',
+                '## Linked issues',
+                '',
+                issues,
+                '',
+                '## How to test',
+                '',
+                inferHowToTest,
+                '',
+                '## Validation',
+                '',
+                inferValidationLines,
+                '',
+                '## Screenshots / Logs',
+                '',
+                hasUi ? 'UI-related changes detected. Include screenshots or a short recording from the updated screens before merge.' : 'N/A - no visual changes.',
+                '',
+                '## Notes',
+                '',
+                'Generated by fallback mode because AI completion was unavailable for this run. Review and refine where needed.',
+              ].join('\n');
+            }
+
+            core.setOutput('body', body);
+
+      - name: Update PR description
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BODY: ${{ steps.ai.outputs.body }}
+        run: |
+          printf '%s' "$PR_BODY" > pr-body.md
+          gh pr edit "${{ github.event.pull_request.number }}" \
+            --repo "${{ github.repository }}" \
+            --body-file pr-body.md
