@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const argv = process.argv.slice(2);
 if (argv.includes('--help') || argv.includes('-h')) {
-  console.log(`\nOrg catalog generator\n\nEnv vars:\n  ORG_NAME                       GitHub org to index\n  GITHUB_TOKEN                   Optional GitHub token (higher rate limits)\n\nOptional: build-time translations (no runtime backend)\n  AZURE_TRANSLATOR_KEY           Azure AI Translator key\n  AZURE_TRANSLATOR_REGION        Azure region (e.g. eastus)\n  AZURE_TRANSLATOR_ENDPOINT      Optional (default: https://api.cognitive.microsofttranslator.com)\n  TRANSLATE_TO                   Optional comma list (default: es,pt,fr)\n\nUsage:\n  node scripts/fetch-catalog.mjs\n`);
+  console.log(`\nOrg catalog generator\n\nEnv vars:\n  ORG_NAME                       GitHub org to index\n  GITHUB_TOKEN                   Optional GitHub token (higher rate limits)\n\nOptional: build-time translations (no runtime backend)\n  MODELS_TOKEN                   GitHub Models token (fallbacks to GITHUB_TOKEN)\n  TRANSLATE_MODEL                Optional (default: openai/gpt-4.1-mini)\n  TRANSLATE_TO                   Optional comma list (default: es,pt,fr,zh,ja,ko)\n  REQUIRE_TRANSLATIONS           Optional (true to fail if translation unavailable)\n\nUsage:\n  node scripts/fetch-catalog.mjs\n`);
   process.exit(0);
 }
 
@@ -11,20 +11,20 @@ const DEFAULT_ORG = 'Cloud2BR-MSFTLearningHub';
 const ORG_NAME = (process.env.ORG_NAME || DEFAULT_ORG).trim();
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-const AZURE_TRANSLATOR_KEY = String(process.env.AZURE_TRANSLATOR_KEY || '').trim();
-const AZURE_TRANSLATOR_REGION = String(process.env.AZURE_TRANSLATOR_REGION || '').trim();
-const AZURE_TRANSLATOR_ENDPOINT = String(
-  process.env.AZURE_TRANSLATOR_ENDPOINT || 'https://api.cognitive.microsofttranslator.com'
-).trim().replace(/\/$/, '');
+const MODELS_TOKEN = String(process.env.MODELS_TOKEN || process.env.GITHUB_TOKEN || '').trim();
+const TRANSLATE_MODEL = String(process.env.TRANSLATE_MODEL || 'openai/gpt-4.1-mini').trim();
+const REQUIRE_TRANSLATIONS = String(process.env.REQUIRE_TRANSLATIONS || '').trim().toLowerCase() === 'true';
 
-const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr')
+const GITHUB_MODELS_ENDPOINT = 'https://models.github.ai/inference/chat/completions';
+
+const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
   .split(',')
   .map((s) => s.trim().toLowerCase())
   .filter(Boolean)
   .filter((s, i, a) => a.indexOf(s) === i)
   .filter((s) => s !== 'en');
 
-const TRANSLATE_BATCH_SIZE = 50;
+const TRANSLATE_BATCH_SIZE = 30;
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -245,46 +245,95 @@ function chunkArray(arr, size) {
 }
 
 function hasTranslatorConfigured() {
-  return Boolean(AZURE_TRANSLATOR_KEY && AZURE_TRANSLATOR_REGION);
+  return Boolean(MODELS_TOKEN);
 }
 
-async function azureTranslateMany({ texts, to }) {
+const LANGUAGE_LABELS = {
+  es: 'Spanish',
+  pt: 'Portuguese',
+  fr: 'French',
+  zh: 'Chinese (Simplified)',
+  ja: 'Japanese',
+  ko: 'Korean',
+};
+
+function parseJsonArray(text) {
+  if (!text) return null;
+  let raw = String(text || '').trim();
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced?.[1]) raw = fenced[1].trim();
+
+  const start = raw.indexOf('[');
+  const end = raw.lastIndexOf(']');
+  if (start !== -1 && end !== -1 && end > start) {
+    raw = raw.slice(start, end + 1);
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+async function githubModelsTranslateBatch({ texts, lang }) {
+  const languageLabel = LANGUAGE_LABELS[lang] || lang;
+  const payload = {
+    model: TRANSLATE_MODEL,
+    messages: [
+      {
+        role: 'system',
+        content: 'You are a translation engine. Return only valid JSON. Do not include commentary or Markdown.',
+      },
+      {
+        role: 'user',
+        content: `Translate the following strings into ${languageLabel}. Return a JSON array of strings in the same order.\n\n${JSON.stringify(texts)}`,
+      },
+    ],
+    temperature: 0.2,
+    max_tokens: 2000,
+  };
+
+  const res = await fetch(GITHUB_MODELS_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${MODELS_TOKEN}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
+    throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
+  }
+
+  const content = data?.choices?.[0]?.message?.content;
+  const parsed = parseJsonArray(content);
+  if (!parsed || parsed.length !== texts.length) throw new Error('translate_invalid_response');
+
+  return parsed.map((item, i) => String(item ?? texts[i] ?? ''));
+}
+
+async function githubModelsTranslateMany({ texts, to }) {
   if (!hasTranslatorConfigured()) throw new Error('translator_not_configured');
   if (!Array.isArray(texts) || !texts.length) return new Map();
   if (!Array.isArray(to) || !to.length) return new Map();
 
   const out = new Map();
-  const baseUrl = `${AZURE_TRANSLATOR_ENDPOINT}/translate?api-version=3.0`;
-  const url = `${baseUrl}${to.map((l) => `&to=${encodeURIComponent(l)}`).join('')}`;
 
-  for (const batch of chunkArray(texts, TRANSLATE_BATCH_SIZE)) {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json; charset=utf-8',
-        'Ocp-Apim-Subscription-Key': AZURE_TRANSLATOR_KEY,
-        'Ocp-Apim-Subscription-Region': AZURE_TRANSLATOR_REGION,
-      },
-      body: JSON.stringify(batch.map((t) => ({ Text: String(t || '') }))),
-    });
-
-    const data = await res.json().catch(() => null);
-    if (!res.ok || !Array.isArray(data)) {
-      const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
-      throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
-    }
-
-    for (let i = 0; i < batch.length; i++) {
-      const src = String(batch[i] || '');
-      const item = data[i];
-      const translations = Array.isArray(item?.translations) ? item.translations : [];
-      const perLang = {};
-      for (const tr of translations) {
-        const lang = String(tr?.to || '').toLowerCase();
-        const text = String(tr?.text || '');
-        if (lang && text) perLang[lang] = text;
+  for (const lang of to) {
+    for (const batch of chunkArray(texts, TRANSLATE_BATCH_SIZE)) {
+      const translations = await githubModelsTranslateBatch({ texts: batch, lang });
+      for (let i = 0; i < batch.length; i++) {
+        const src = String(batch[i] || '');
+        if (!out.has(src)) out.set(src, {});
+        const perLang = out.get(src);
+        perLang[lang] = String(translations[i] || src);
       }
-      out.set(src, perLang);
     }
   }
 
@@ -292,8 +341,14 @@ async function azureTranslateMany({ texts, to }) {
 }
 
 async function embedBuildTimeTranslations(repos) {
-  if (!hasTranslatorConfigured()) return repos;
-  if (!TRANSLATE_TO.length) return repos;
+  if (!TRANSLATE_TO.length) {
+    if (REQUIRE_TRANSLATIONS) throw new Error('translate_to_empty');
+    return repos;
+  }
+  if (!hasTranslatorConfigured()) {
+    if (REQUIRE_TRANSLATIONS) throw new Error('translator_not_configured');
+    return repos;
+  }
 
   const unique = new Set();
   for (const r of repos) {
@@ -311,7 +366,7 @@ async function embedBuildTimeTranslations(repos) {
   if (!texts.length) return repos;
 
   console.log(`Translating ${texts.length} unique texts to: ${TRANSLATE_TO.join(', ')}`);
-  const map = await azureTranslateMany({ texts, to: TRANSLATE_TO });
+  const map = await githubModelsTranslateMany({ texts, to: TRANSLATE_TO });
 
   return repos.map((r) => {
     const desc = String(r?.description || '').trim();
