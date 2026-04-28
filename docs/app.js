@@ -32,18 +32,25 @@ const UI_META_LABELS = ['Language', 'Updated', 'Archived', 'Stars', 'Forks'];
 const BUILTIN_UI_TRANSLATIONS = {
   es: {
     Search: 'Buscar',
+    'name, description, topics, language': 'nombre, descripción, temas, idioma',
     Translate: 'Traducir',
     Auto: 'Automático',
     English: 'Inglés',
     Español: 'Español',
     Português: 'Portugués',
     Français: 'Francés',
+    中文: 'Chino',
+    日本語: 'Japonés',
+    한국어: 'Coreano',
+    Pipeline: 'Canalización',
+    'Owner/Founder': 'Propietario/Fundador',
     Public: 'Público',
     Private: 'Privado',
     Filters: 'Filtros',
     Language: 'Idioma',
     Category: 'Categoría',
     Updated: 'Actualizado',
+    Generated: 'Generado',
     Archived: 'Archivado',
     Stars: 'Estrellas',
     Forks: 'Bifurcaciones',
@@ -72,18 +79,25 @@ const BUILTIN_UI_TRANSLATIONS = {
   },
   pt: {
     Search: 'Pesquisar',
+    'name, description, topics, language': 'nome, descrição, tópicos, idioma',
     Translate: 'Traduzir',
     Auto: 'Automático',
     English: 'Inglês',
     Español: 'Espanhol',
     Português: 'Português',
     Français: 'Francês',
+    中文: 'Chinês',
+    日本語: 'Japonês',
+    한국어: 'Coreano',
+    Pipeline: 'Pipeline',
+    'Owner/Founder': 'Proprietário/Fundador',
     Public: 'Público',
     Private: 'Privado',
     Filters: 'Filtros',
     Language: 'Idioma',
     Category: 'Categoria',
     Updated: 'Atualizado',
+    Generated: 'Gerado',
     Archived: 'Arquivado',
     Stars: 'Estrelas',
     Forks: 'Forks',
@@ -112,18 +126,25 @@ const BUILTIN_UI_TRANSLATIONS = {
   },
   fr: {
     Search: 'Rechercher',
+    'name, description, topics, language': 'nom, description, sujets, langue',
     Translate: 'Traduire',
     Auto: 'Auto',
     English: 'Anglais',
     Español: 'Espagnol',
     Português: 'Portugais',
     Français: 'Français',
+    中文: 'Chinois',
+    日本語: 'Japonais',
+    한국어: 'Coréen',
+    Pipeline: 'Pipeline',
+    'Owner/Founder': 'Propriétaire/Fondateur',
     Public: 'Public',
     Private: 'Privé',
     Filters: 'Filtres',
     Language: 'Langue',
     Category: 'Catégorie',
     Updated: 'Mis à jour',
+    Generated: 'Généré',
     Archived: 'Archivé',
     Stars: 'Etoiles',
     Forks: 'Forks',
@@ -149,6 +170,138 @@ const BUILTIN_UI_TRANSLATIONS = {
 
     'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
       "Expérimentation et apprentissage ludique, invitant les utilisateurs à essayer la technologie Microsoft sans crainte de tout casser.",
+  },
+  zh: {
+    Search: '搜索',
+    'name, description, topics, language': '名称、描述、主题、语言',
+    Translate: '翻译',
+    Auto: '自动',
+    English: '英语',
+    Español: '西班牙语',
+    Português: '葡萄牙语',
+    Français: '法语',
+    中文: '中文',
+    日本語: '日语',
+    한국어: '韩语',
+    Pipeline: '流水线',
+    'Owner/Founder': '所有者/创始人',
+    Public: '公开',
+    Private: '私有',
+    Filters: '筛选',
+    Language: '语言',
+    Category: '类别',
+    Updated: '更新',
+    Generated: '生成',
+    Archived: '已归档',
+    Stars: '星标',
+    Forks: '分叉',
+    All: '全部',
+    'Any time': '任何时间',
+    'Last 7 days': '最近7天',
+    'Last 30 days': '最近30天',
+    'Last 90 days': '最近90天',
+    'Last 365 days': '最近365天',
+    of: '/',
+    repositories: '仓库',
+    public: '公开',
+    private: '私有',
+    'Loading public catalog…': '正在加载公共目录…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      '无法加载 catalog.json。请运行 GitHub Action 生成它。',
+    'Could not determine org name. Regenerate catalog.json.':
+      '无法确定组织名称。请重新生成 catalog.json。',
+    'Opened GitHub private repositories in a new tab.':
+      '已在新标签页中打开 GitHub 私有仓库。',
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      '鼓励实验和趣味学习，邀请用户在不担心出错的情况下试用 Microsoft 技术。',
+  },
+  ja: {
+    Search: '検索',
+    'name, description, topics, language': '名前、説明、トピック、言語',
+    Translate: '翻訳',
+    Auto: '自動',
+    English: '英語',
+    Español: 'スペイン語',
+    Português: 'ポルトガル語',
+    Français: 'フランス語',
+    中文: '中国語',
+    日本語: '日本語',
+    한국어: '韓国語',
+    Pipeline: 'パイプライン',
+    'Owner/Founder': 'オーナー/創設者',
+    Public: '公開',
+    Private: '非公開',
+    Filters: 'フィルター',
+    Language: '言語',
+    Category: 'カテゴリ',
+    Updated: '更新',
+    Generated: '生成',
+    Archived: 'アーカイブ済み',
+    Stars: 'スター',
+    Forks: 'フォーク',
+    All: 'すべて',
+    'Any time': 'いつでも',
+    'Last 7 days': '過去7日',
+    'Last 30 days': '過去30日',
+    'Last 90 days': '過去90日',
+    'Last 365 days': '過去365日',
+    of: '/',
+    repositories: 'リポジトリ',
+    public: '公開',
+    private: '非公開',
+    'Loading public catalog…': '公開カタログを読み込んでいます…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      'catalog.json を読み込めませんでした。GitHub Action を実行して生成してください。',
+    'Could not determine org name. Regenerate catalog.json.':
+      '組織名を特定できませんでした。catalog.json を再生成してください。',
+    'Opened GitHub private repositories in a new tab.':
+      'GitHub の非公開リポジトリを新しいタブで開きました。',
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      'Microsoft 技術を壊す心配なく試せるよう、実験と遊び心のある学びを促します。',
+  },
+  ko: {
+    Search: '검색',
+    'name, description, topics, language': '이름, 설명, 주제, 언어',
+    Translate: '번역',
+    Auto: '자동',
+    English: '영어',
+    Español: '스페인어',
+    Português: '포르투갈어',
+    Français: '프랑스어',
+    中文: '중국어',
+    日本語: '일본어',
+    한국어: '한국어',
+    Pipeline: '파이프라인',
+    'Owner/Founder': '소유자/설립자',
+    Public: '공개',
+    Private: '비공개',
+    Filters: '필터',
+    Language: '언어',
+    Category: '카테고리',
+    Updated: '업데이트',
+    Generated: '생성',
+    Archived: '보관됨',
+    Stars: '스타',
+    Forks: '포크',
+    All: '전체',
+    'Any time': '전체 기간',
+    'Last 7 days': '지난 7일',
+    'Last 30 days': '지난 30일',
+    'Last 90 days': '지난 90일',
+    'Last 365 days': '지난 365일',
+    of: '/',
+    repositories: '리포지토리',
+    public: '공개',
+    private: '비공개',
+    'Loading public catalog…': '공개 카탈로그를 불러오는 중…',
+    'Could not load catalog.json. Run the GitHub Action to generate it.':
+      'catalog.json을 불러올 수 없습니다. GitHub Action을 실행해 생성하세요.',
+    'Could not determine org name. Regenerate catalog.json.':
+      '조직 이름을 확인할 수 없습니다. catalog.json을 다시 생성하세요.',
+    'Opened GitHub private repositories in a new tab.':
+      'GitHub 비공개 리포지토리를 새 탭에서 열었습니다.',
+    'Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.':
+      'Microsoft 기술을 망가뜨릴 걱정 없이 시험해 볼 수 있도록 실험과 놀이형 학습을 장려합니다.',
   },
 };
 
@@ -290,6 +443,8 @@ function applyUiTranslationsFromCache(lang) {
   if (lastStatusSource) {
     statusEl.textContent = translateText(to, normalizeUiText(lastStatusSource));
   }
+
+  updateFooterMeta();
 }
 
 function collectUiSourceTexts() {
@@ -321,6 +476,7 @@ function collectUiSourceTexts() {
 
   if (lastStatusSource) texts.push(lastStatusSource);
   for (const s of UI_META_LABELS) texts.push(s);
+  texts.push('Generated');
 
   return texts;
 }
@@ -336,6 +492,8 @@ function applyTranslations() {
     uiLangEl.disabled = false;
     uiLangEl.title = '';
   }
+
+  updateFooterMeta();
 
   if (activeUiLang === 'en') return;
 
@@ -378,7 +536,7 @@ function setUiLangPreference(value) {
 
 function resolveLang(value) {
   const v = String(value || '').trim().toLowerCase();
-  const supported = ['en', 'es', 'pt', 'fr'];
+  const supported = ['en', 'es', 'pt', 'fr', 'zh', 'ja', 'ko'];
 
   if (!v || v === 'auto') {
     const nav = String(navigator.language || '').toLowerCase();
@@ -907,6 +1065,18 @@ async function fetchJson(url, headers) {
   return res.json();
 }
 
+function updateFooterMeta() {
+  if (!footerMetaEl) return;
+
+  const org = publicCatalog.org ? `@${publicCatalog.org}` : '';
+  const generatedAt = publicCatalog.generatedAt ? new Date(publicCatalog.generatedAt).toLocaleString() : '';
+  const generatedLabel = translateText(activeUiLang, 'Generated');
+
+  footerMetaEl.textContent = [org, generatedAt ? `${generatedLabel}: ${generatedAt}` : '']
+    .filter(Boolean)
+    .join(' • ');
+}
+
 async function loadPublicCatalog() {
   setStatus('Loading public catalog…');
 
@@ -919,9 +1089,7 @@ async function loadPublicCatalog() {
 
   publicRepos = (publicCatalog.repos ?? []).filter((r) => !r.private);
 
-  const org = publicCatalog.org ? `@${publicCatalog.org}` : '';
-  const generatedAt = publicCatalog.generatedAt ? new Date(publicCatalog.generatedAt).toLocaleString() : '';
-  footerMetaEl.textContent = [org, generatedAt ? `Generated: ${generatedAt}` : ''].filter(Boolean).join(' • ');
+  updateFooterMeta();
 
   setActiveView('public');
 }

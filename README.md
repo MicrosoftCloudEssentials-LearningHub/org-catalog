@@ -4,7 +4,7 @@ Costa Rica
 
 [![GitHub](https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff)](https://github.com/) [Cloud2BR OSS - Learning Hub](https://github.com/Cloud2BR-MSFTLearningHub)
 
-Last updated: 2026-04-08
+Last updated: 2026-04-28
 
 ----------
 
@@ -43,12 +43,14 @@ Last updated: 2026-04-08
 
 The **Translate** dropdown can translate the app UI client-side. If you also want **repo card content** (descriptions + topics) translated on GitHub Pages without a runtime service, enable build-time translation in GitHub Actions.
 
-1) Create GitHub secrets:
-      - `AZURE_TRANSLATOR_KEY`
-      - `AZURE_TRANSLATOR_REGION`
-      - (Optional) `AZURE_TRANSLATOR_ENDPOINT` (defaults to `https://api.cognitive.microsofttranslator.com`)
-2) (Optional) Create a GitHub Actions variable `TRANSLATE_TO` (default: `es,pt,fr`)
-3) Run **Actions → Build catalog** (or wait for nightly). The generator will embed translations into `docs/catalog.json`.
+1) Ensure GitHub Models access for this repo/org, then use the existing org secret `MODELS_TOKEN`
+   (if Models access is enabled for `GITHUB_TOKEN`, no additional secret is required).
+2) (Optional) Create a GitHub Actions variable `TRANSLATE_MODEL` (default: `openai/gpt-4.1-mini`).
+3) (Optional) Create a GitHub Actions variable `TRANSLATE_TO` (default: `es,pt,fr,zh,ja,ko`).
+4) Run **Actions → Build catalog** (or wait for nightly). The generator will embed translations into `docs/catalog.json`.
+
+> [!IMPORTANT]
+> The Pages workflow blocks deployment if translations cannot be generated (missing Models access or failed translation).
 
 ## Private section (GitHub OAuth)
 
@@ -78,7 +80,7 @@ The **Translate** dropdown can translate the app UI client-side. If you also wan
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1373-limegreen" alt="Total views">
-  <p>Refresh Date: 2026-04-11</p>
+  <img src="https://img.shields.io/badge/Total%20views-1281-limegreen" alt="Total views">
+  <p>Refresh Date: 2026-04-28</p>
 </div>
 <!-- END BADGE -->

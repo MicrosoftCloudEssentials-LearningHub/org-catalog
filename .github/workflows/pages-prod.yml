@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages (with translations)
 
 on:
   push:
@@ -12,17 +12,16 @@ permissions:
   deployments: write
   pages: write
   id-token: write
+  models: read
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  translate:
+    name: Translate catalog (required)
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,23 +31,81 @@ jobs:
         with:
           node-version: 20
 
+      - name: Preflight GitHub Models access
+        env:
+          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
+          TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.request
+
+          endpoint = "https://models.github.ai/inference/chat/completions"
+          token = os.environ.get("MODELS_TOKEN", "")
+          model = os.environ.get("TRANSLATE_MODEL", "openai/gpt-4.1-mini")
+
+          payload = {
+              "model": model,
+              "messages": [
+                  {"role": "system", "content": "Reply with OK."},
+                  {"role": "user", "content": "OK"},
+              ],
+              "max_tokens": 5,
+              "temperature": 0,
+          }
+
+          req = urllib.request.Request(
+              endpoint,
+              data=json.dumps(payload).encode("utf-8"),
+              headers={
+                  "Authorization": f"Bearer {token}",
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+              },
+              method="POST",
+          )
+
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  status = resp.getcode()
+          except urllib.error.HTTPError as e:
+              status = e.code
+          except Exception:
+              status = 599
+
+          if status != 200:
+              raise SystemExit(f"GitHub Models preflight failed (HTTP {status}).")
+
+          print("OK")
+          PY
+
       - name: Generate docs/catalog.json
         env:
           ORG_NAME: Cloud2BR-MSFTLearningHub
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AZURE_TRANSLATOR_KEY: ${{ secrets.AZURE_TRANSLATOR_KEY }}
-          AZURE_TRANSLATOR_REGION: ${{ secrets.AZURE_TRANSLATOR_REGION }}
-          AZURE_TRANSLATOR_ENDPOINT: ${{ secrets.AZURE_TRANSLATOR_ENDPOINT }}
-          TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr' }}
+          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
+          TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
+          TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
+          REQUIRE_TRANSLATIONS: 'true'
         run: node scripts/fetch-catalog.mjs
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
+
+  deploy:
+    name: Deploy GitHub Pages
+    needs: translate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Deploy to GitHub Pages
         id: deployment
