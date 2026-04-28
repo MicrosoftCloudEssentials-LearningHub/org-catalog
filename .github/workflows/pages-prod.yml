@@ -32,8 +32,10 @@ jobs:
           node-version: 20
 
       - name: Preflight GitHub Models access
+        id: preflight
         env:
-          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
+          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
         run: |
           python3 - <<'PY'
@@ -43,40 +45,61 @@ jobs:
           import urllib.request
 
           endpoint = "https://models.github.ai/inference/chat/completions"
-          token = os.environ.get("MODELS_TOKEN", "")
           model = os.environ.get("TRANSLATE_MODEL", "openai/gpt-4.1-mini")
+          models_token = os.environ.get("MODELS_TOKEN", "")
+          github_token = os.environ.get("GITHUB_TOKEN", "")
+          output_path = os.environ.get("GITHUB_OUTPUT", "")
 
           payload = {
-              "model": model,
-              "messages": [
-                  {"role": "system", "content": "Reply with OK."},
-                  {"role": "user", "content": "OK"},
-              ],
-              "max_tokens": 5,
-              "temperature": 0,
+            "model": model,
+            "messages": [
+              {"role": "system", "content": "Reply with OK."},
+              {"role": "user", "content": "OK"},
+            ],
+            "max_tokens": 5,
+            "temperature": 0,
           }
 
-          req = urllib.request.Request(
+          def check(token):
+            if not token:
+              return None
+            req = urllib.request.Request(
               endpoint,
               data=json.dumps(payload).encode("utf-8"),
               headers={
-                  "Authorization": f"Bearer {token}",
-                  "Content-Type": "application/json",
-                  "Accept": "application/json",
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
               },
               method="POST",
-          )
-
-          try:
+            )
+            try:
               with urllib.request.urlopen(req, timeout=30) as resp:
-                  status = resp.getcode()
-          except urllib.error.HTTPError as e:
-              status = e.code
-          except Exception:
-              status = 599
+                return resp.getcode()
+            except urllib.error.HTTPError as e:
+              return e.code
+            except Exception:
+              return 599
 
-          if status != 200:
-              raise SystemExit(f"GitHub Models preflight failed (HTTP {status}).")
+          models_status = check(models_token)
+          github_status = check(github_token)
+
+          token_source = None
+          if models_status == 200:
+            token_source = "models"
+          elif github_status == 200:
+            token_source = "github"
+
+          if not token_source:
+            ms = models_status if models_status is not None else "missing"
+            gs = github_status if github_status is not None else "missing"
+            raise SystemExit(f"GitHub Models preflight failed (MODELS_TOKEN={ms}, GITHUB_TOKEN={gs}).")
+
+          if output_path:
+            with open(output_path, "a", encoding="utf-8") as f:
+              f.write(f"token_source={token_source}\n")
+              f.write(f"models_status={models_status if models_status is not None else 'missing'}\n")
+              f.write(f"github_status={github_status if github_status is not None else 'missing'}\n")
 
           print("OK")
           PY
@@ -85,7 +108,7 @@ jobs:
         env:
           ORG_NAME: Cloud2BR-MSFTLearningHub
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
+          MODELS_TOKEN: ${{ steps.preflight.outputs.token_source == 'models' && secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
           REQUIRE_TRANSLATIONS: 'true'
@@ -99,6 +122,7 @@ jobs:
   deploy:
     name: Deploy GitHub Pages
     needs: translate
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
