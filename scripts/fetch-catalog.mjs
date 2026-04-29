@@ -30,6 +30,8 @@ const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
 const TRANSLATE_BATCH_SIZE = 30;
 const TRANSLATE_MAX_RETRIES = 5;
 const REQUEST_TIMEOUT_MS = 45000;
+const MAX_RETRY_DELAY_MS = 20000;
+const MIN_RETRY_DELAY_MS = 800;
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -318,15 +320,29 @@ function withTimeout(promise, timeoutMs, label) {
 
 function getRetryDelayMs(res, attempt) {
   const retryAfterRaw = res?.headers?.get?.('retry-after');
-  const retryAfter = Number.parseFloat(String(retryAfterRaw || ''));
-  if (Number.isFinite(retryAfter) && retryAfter > 0) {
-    return Math.round(retryAfter * 1000);
+  const retryAfterNumeric = Number.parseFloat(String(retryAfterRaw || ''));
+  if (Number.isFinite(retryAfterNumeric) && retryAfterNumeric > 0) {
+    // Some providers return milliseconds-like values in retry-after.
+    // Normalize and hard-cap delays so CI cannot appear frozen.
+    const interpretedMs = retryAfterNumeric > 1000
+      ? Math.round(retryAfterNumeric)
+      : Math.round(retryAfterNumeric * 1000);
+    return Math.max(MIN_RETRY_DELAY_MS, Math.min(interpretedMs, MAX_RETRY_DELAY_MS));
   }
 
-  const base = 800;
+  const retryAfterDate = Date.parse(String(retryAfterRaw || ''));
+  if (Number.isFinite(retryAfterDate)) {
+    const fromDateMs = retryAfterDate - Date.now();
+    if (fromDateMs > 0) {
+      return Math.max(MIN_RETRY_DELAY_MS, Math.min(fromDateMs, MAX_RETRY_DELAY_MS));
+    }
+  }
+
+  const base = MIN_RETRY_DELAY_MS;
   const backoff = base * (2 ** attempt);
   const jitter = Math.floor(Math.random() * 400);
-  return backoff + jitter;
+  const fallbackMs = backoff + jitter;
+  return Math.max(MIN_RETRY_DELAY_MS, Math.min(fallbackMs, MAX_RETRY_DELAY_MS));
 }
 
 function hasTranslatorConfigured() {
@@ -467,9 +483,9 @@ async function githubModelsTranslateBatch({ texts, lang }) {
       continue;
     }
 
-    let data = null;
+    let bodyText = '';
     try {
-      data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'models_json');
+      bodyText = await withTimeout(res.text(), REQUEST_TIMEOUT_MS, 'models_body_text');
     } catch (err) {
       const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
       if (isLastAttempt) {
@@ -478,22 +494,46 @@ async function githubModelsTranslateBatch({ texts, lang }) {
 
       const delayMs = getRetryDelayMs(res, attempt);
       console.log(
-        `GitHub Models response error (${err?.message || err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+        `GitHub Models response read error (${err?.message || err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
       );
       await sleep(delayMs);
       continue;
     }
+
+    let data = null;
+    if (bodyText) {
+      try {
+        data = JSON.parse(bodyText);
+      } catch {
+        data = null;
+      }
+    }
+
     if (res.ok) {
-      const content = data?.choices?.[0]?.message?.content;
+      const content = data?.choices?.[0]?.message?.content || bodyText;
       const parsed = parseJsonArray(content);
-      if (!parsed || parsed.length !== texts.length) throw new Error('translate_invalid_response');
+      if (!parsed || parsed.length !== texts.length) {
+        const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
+        if (isLastAttempt) {
+          throw new Error('translate_invalid_response');
+        }
+
+        const delayMs = getRetryDelayMs(res, attempt);
+        console.log(
+          `GitHub Models returned invalid translation payload. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+        );
+        await sleep(delayMs);
+        continue;
+      }
       return parsed.map((item, i) => String(item ?? texts[i] ?? ''));
     }
 
     const isRetriable = res.status === 429 || (res.status >= 500 && res.status < 600);
     const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
     if (!isRetriable || isLastAttempt) {
-      const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
+      const details = typeof data === 'object' && data
+        ? JSON.stringify(data).slice(0, 500)
+        : String(bodyText || '').slice(0, 500);
       throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
     }
 
