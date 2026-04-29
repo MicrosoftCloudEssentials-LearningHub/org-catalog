@@ -27,11 +27,12 @@ const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
   .filter((s, i, a) => a.indexOf(s) === i)
   .filter((s) => s !== 'en');
 
-const TRANSLATE_BATCH_SIZE = 30;
+const TRANSLATE_BATCH_SIZE = Math.max(1, Number.parseInt(String(process.env.TRANSLATE_BATCH_SIZE || '10'), 10) || 10);
 const TRANSLATE_MAX_RETRIES = 5;
 const REQUEST_TIMEOUT_MS = 45000;
-const MAX_RETRY_DELAY_MS = 20000;
+const MAX_RETRY_DELAY_MS = 120000;
 const MIN_RETRY_DELAY_MS = 800;
+const TRANSLATE_REQUEST_SPACING_MS = Math.max(0, Number.parseInt(String(process.env.TRANSLATE_REQUEST_SPACING_MS || '1500'), 10) || 0);
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -547,6 +548,28 @@ async function githubModelsTranslateBatch({ texts, lang }) {
   throw new Error('translate_unexpected_retry_exit');
 }
 
+async function githubModelsTranslateBatchAdaptive({ texts, lang }) {
+  try {
+    return await githubModelsTranslateBatch({ texts, lang });
+  } catch (err) {
+    const message = String(err?.message || '');
+    const isRateLimited = message.includes('translate_http_429');
+    if (!isRateLimited || texts.length <= 1) {
+      throw err;
+    }
+
+    const mid = Math.floor(texts.length / 2);
+    const left = texts.slice(0, mid);
+    const right = texts.slice(mid);
+    console.log(`Splitting ${texts.length}-item batch after repeated 429 for ${lang}.`);
+
+    const leftOut = await githubModelsTranslateBatchAdaptive({ texts: left, lang });
+    if (TRANSLATE_REQUEST_SPACING_MS > 0) await sleep(TRANSLATE_REQUEST_SPACING_MS);
+    const rightOut = await githubModelsTranslateBatchAdaptive({ texts: right, lang });
+    return [...leftOut, ...rightOut];
+  }
+}
+
 async function githubModelsTranslateMany({ texts, to }) {
   if (!hasTranslatorConfigured()) throw new Error('translator_not_configured');
   if (!Array.isArray(texts) || !texts.length) return new Map();
@@ -556,13 +579,14 @@ async function githubModelsTranslateMany({ texts, to }) {
 
   for (const lang of to) {
     for (const batch of chunkArray(texts, TRANSLATE_BATCH_SIZE)) {
-      const translations = await githubModelsTranslateBatch({ texts: batch, lang });
+      const translations = await githubModelsTranslateBatchAdaptive({ texts: batch, lang });
       for (let i = 0; i < batch.length; i++) {
         const src = String(batch[i] || '');
         if (!out.has(src)) out.set(src, {});
         const perLang = out.get(src);
         perLang[lang] = String(translations[i] || src);
       }
+      if (TRANSLATE_REQUEST_SPACING_MS > 0) await sleep(TRANSLATE_REQUEST_SPACING_MS);
     }
   }
 
