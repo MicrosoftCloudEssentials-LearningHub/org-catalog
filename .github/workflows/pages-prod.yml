@@ -34,9 +34,44 @@ jobs:
         with:
           node-version: 20
 
+      - name: Resolve Models token
+        env:
+          TRAFFIC_TOKEN_ADMIN: ${{ secrets.TRAFFIC_TOKEN_ADMIN }}
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          MODELS_TOKEN_SECRET: ${{ secrets.MODELS_TOKEN }}
+          GITHUB_TOKEN_FALLBACK: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          token=""
+          source=""
+
+          if [ -n "${TRAFFIC_TOKEN_ADMIN:-}" ]; then
+            token="$TRAFFIC_TOKEN_ADMIN"
+            source="TRAFFIC_TOKEN_ADMIN"
+          elif [ -n "${TRAFFIC_TOKEN:-}" ]; then
+            token="$TRAFFIC_TOKEN"
+            source="TRAFFIC_TOKEN"
+          elif [ -n "${MODELS_TOKEN_SECRET:-}" ]; then
+            token="$MODELS_TOKEN_SECRET"
+            source="MODELS_TOKEN"
+          elif [ -n "${GITHUB_TOKEN_FALLBACK:-}" ]; then
+            token="$GITHUB_TOKEN_FALLBACK"
+            source="github.token"
+          fi
+
+          if [ -z "$token" ]; then
+            echo "No token available. Expected one of: TRAFFIC_TOKEN_ADMIN, TRAFFIC_TOKEN, MODELS_TOKEN, or github.token." >&2
+            exit 1
+          fi
+
+          echo "Using Models token source: $source"
+          echo "::add-mask::$token"
+          echo "MODELS_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "MODELS_TOKEN_SOURCE=$source" >> "$GITHUB_ENV"
+
       - name: Preflight GitHub Models access
         env:
-          MODELS_TOKEN: ${{ secrets.TRAFFIC_TOKEN_ADMIN || secrets.TRAFFIC_TOKEN || secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
         run: |
           python3 - <<'PY'
@@ -116,8 +151,7 @@ jobs:
       - name: Generate docs/catalog.json
         env:
           ORG_NAME: Cloud2BR-MSFTLearningHub
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODELS_TOKEN: ${{ secrets.TRAFFIC_TOKEN_ADMIN || secrets.TRAFFIC_TOKEN || secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
           REQUIRE_TRANSLATIONS: 'true'
