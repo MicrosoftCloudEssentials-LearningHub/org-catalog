@@ -51,7 +51,7 @@ async function fetchPaged(url) {
       throw new Error(`GitHub API error: HTTP ${res.status}. ${text}`);
     }
 
-    const page = await res.json();
+    const page = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'github_api_json');
     results.push(...page);
 
     const link = res.headers.get('link');
@@ -252,7 +252,7 @@ async function fetchReadme({ org, repo }) {
   const res = await fetchWithTimeout(url, { headers }, REQUEST_TIMEOUT_MS);
   if (!res.ok) return null;
 
-  const data = await res.json().catch(() => null);
+  const data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'readme_json').catch(() => null);
   if (!data?.content || typeof data.content !== 'string') return null;
 
   const content = Buffer.from(data.content, 'base64').toString('utf8');
@@ -298,6 +298,24 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = REQUEST_TIMEOUT_M
   }
 }
 
+function withTimeout(promise, timeoutMs, label) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error(`${label || 'operation'}_timeout`));
+    }, timeoutMs);
+
+    Promise.resolve(promise)
+      .then((value) => {
+        clearTimeout(timeoutId);
+        resolve(value);
+      })
+      .catch((err) => {
+        clearTimeout(timeoutId);
+        reject(err);
+      });
+  });
+}
+
 function getRetryDelayMs(res, attempt) {
   const retryAfterRaw = res?.headers?.get?.('retry-after');
   const retryAfter = Number.parseFloat(String(retryAfterRaw || ''));
@@ -341,7 +359,7 @@ async function loadPublishedTranslationCache() {
     const res = await fetchWithTimeout(url, { headers: { Accept: 'application/json' } }, REQUEST_TIMEOUT_MS);
     if (!res.ok) return new Map();
 
-    const data = await res.json().catch(() => null);
+    const data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'published_cache_json').catch(() => null);
     const repos = Array.isArray(data?.repos) ? data.repos : [];
     const cache = new Map();
 
@@ -449,7 +467,22 @@ async function githubModelsTranslateBatch({ texts, lang }) {
       continue;
     }
 
-    const data = await res.json().catch(() => null);
+    let data = null;
+    try {
+      data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'models_json');
+    } catch (err) {
+      const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
+      if (isLastAttempt) {
+        throw new Error(`translate_response_error: ${err?.message || err?.name || 'unknown_error'}`);
+      }
+
+      const delayMs = getRetryDelayMs(res, attempt);
+      console.log(
+        `GitHub Models response error (${err?.message || err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+      );
+      await sleep(delayMs);
+      continue;
+    }
     if (res.ok) {
       const content = data?.choices?.[0]?.message?.content;
       const parsed = parseJsonArray(content);
