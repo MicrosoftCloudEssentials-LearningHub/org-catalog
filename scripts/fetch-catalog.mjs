@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const argv = process.argv.slice(2);
 if (argv.includes('--help') || argv.includes('-h')) {
-  console.log(`\nOrg catalog generator\n\nEnv vars:\n  ORG_NAME                       GitHub org to index\n  GITHUB_TOKEN                   Optional GitHub token (higher rate limits)\n\nOptional: build-time translations (no runtime backend)\n  MODELS_TOKEN                   GitHub Models token (fallbacks to GITHUB_TOKEN)\n  TRANSLATE_MODEL                Optional (default: openai/gpt-4.1-mini)\n  TRANSLATE_TO                   Optional comma list (default: es,pt,fr,zh,ja,ko)\n  REQUIRE_TRANSLATIONS           Optional (true to fail if translation unavailable)\n\nUsage:\n  node scripts/fetch-catalog.mjs\n`);
+  console.log(`\nOrg catalog generator\n\nEnv vars:\n  ORG_NAME                       GitHub org to index\n  GITHUB_TOKEN                   Optional GitHub token (higher rate limits)\n\nOptional: build-time translations (no runtime backend)\n  MODELS_TOKEN                   GitHub Models token (fallbacks to GITHUB_TOKEN)\n  TRANSLATE_MODEL                Optional (default: openai/gpt-4.1-mini)\n  TRANSLATE_MODEL_FALLBACKS      Optional comma list of fallback models\n  TRANSLATE_TO                   Optional comma list (default: es,pt,fr,zh,ja,ko)\n  REQUIRE_TRANSLATIONS           Optional (true to fail if translation unavailable)\n\nUsage:\n  node scripts/fetch-catalog.mjs\n`);
   process.exit(0);
 }
 
@@ -13,7 +13,13 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 const MODELS_TOKEN = String(process.env.MODELS_TOKEN || process.env.GITHUB_TOKEN || '').trim();
 const TRANSLATE_MODEL = String(process.env.TRANSLATE_MODEL || 'openai/gpt-4.1-mini').trim();
+const TRANSLATE_MODEL_FALLBACKS = String(process.env.TRANSLATE_MODEL_FALLBACKS || 'openai/gpt-4o-mini').trim();
 const REQUIRE_TRANSLATIONS = String(process.env.REQUIRE_TRANSLATIONS || '').trim().toLowerCase() === 'true';
+
+const TRANSLATE_MODELS = [
+  TRANSLATE_MODEL,
+  ...TRANSLATE_MODEL_FALLBACKS.split(',').map((s) => s.trim()).filter(Boolean),
+].filter((s, i, a) => a.indexOf(s) === i);
 
 const GITHUB_MODELS_ENDPOINT = 'https://models.github.ai/inference/chat/completions';
 const PUBLISHED_CATALOG_URL = String(
@@ -440,23 +446,25 @@ function parseJsonArray(text) {
 
 async function githubModelsTranslateBatch({ texts, lang }) {
   const languageLabel = LANGUAGE_LABELS[lang] || lang;
-  const payload = {
-    model: TRANSLATE_MODEL,
-    messages: [
-      {
-        role: 'system',
-        content: 'You are a translation engine. Return only valid JSON. Do not include commentary or Markdown.',
-      },
-      {
-        role: 'user',
-        content: `Translate the following strings into ${languageLabel}. Return a JSON array of strings in the same order.\n\n${JSON.stringify(texts)}`,
-      },
-    ],
-    temperature: 0.2,
-    max_tokens: 2000,
-  };
 
   for (let attempt = 0; attempt <= TRANSLATE_MAX_RETRIES; attempt++) {
+    const model = TRANSLATE_MODELS[Math.min(attempt, TRANSLATE_MODELS.length - 1)] || TRANSLATE_MODEL;
+    const payload = {
+      model,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a translation engine. Return only valid JSON. Do not include commentary or Markdown.',
+        },
+        {
+          role: 'user',
+          content: `Translate the following strings into ${languageLabel}. Return a JSON array of strings in the same order.\n\n${JSON.stringify(texts)}`,
+        },
+      ],
+      temperature: 0.2,
+      max_tokens: 2000,
+    };
+
     let res;
     try {
       res = await fetchWithTimeout(
@@ -479,7 +487,7 @@ async function githubModelsTranslateBatch({ texts, lang }) {
       }
 
       const delayMs = getRetryDelayMs(null, attempt);
-      console.log(`GitHub Models request error (${err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`);
+      console.log(`GitHub Models request error (${err?.name || 'unknown'}) on ${model}. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`);
       await sleep(delayMs);
       continue;
     }
@@ -495,7 +503,7 @@ async function githubModelsTranslateBatch({ texts, lang }) {
 
       const delayMs = getRetryDelayMs(res, attempt);
       console.log(
-        `GitHub Models response read error (${err?.message || err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+        `GitHub Models response read error (${err?.message || err?.name || 'unknown'}) on ${model}. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
       );
       await sleep(delayMs);
       continue;
@@ -521,7 +529,7 @@ async function githubModelsTranslateBatch({ texts, lang }) {
 
         const delayMs = getRetryDelayMs(res, attempt);
         console.log(
-          `GitHub Models returned invalid translation payload. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+          `GitHub Models returned invalid translation payload on ${model}. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
         );
         await sleep(delayMs);
         continue;
@@ -540,7 +548,7 @@ async function githubModelsTranslateBatch({ texts, lang }) {
 
     const delayMs = getRetryDelayMs(res, attempt);
     console.log(
-      `GitHub Models throttled (HTTP ${res.status}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+      `GitHub Models throttled (HTTP ${res.status}) on ${model}. Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
     );
     await sleep(delayMs);
   }
