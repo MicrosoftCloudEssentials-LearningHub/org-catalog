@@ -153,7 +153,10 @@ jobs:
           ORG_NAME: Cloud2BR-MSFTLearningHub
           GITHUB_TOKEN: ${{ github.token }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
-          TRANSLATE_MODEL_FALLBACKS: ${{ vars.TRANSLATE_MODEL_FALLBACKS || 'openai/gpt-4o-mini' }}
+          TRANSLATE_MODEL_FALLBACKS: ${{ vars.TRANSLATE_MODEL_FALLBACKS || 'openai/gpt-4.1-nano,openai/gpt-4o-mini,openai/gpt-4o' }}
+          TRANSLATE_MAX_RETRIES: ${{ vars.TRANSLATE_MAX_RETRIES || '0' }}
+          TRANSLATE_BATCH_SIZE: ${{ vars.TRANSLATE_BATCH_SIZE || '8' }}
+          TRANSLATE_REQUEST_SPACING_MS: ${{ vars.TRANSLATE_REQUEST_SPACING_MS || '1800' }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
           REQUIRE_TRANSLATIONS: 'true'
         run: node scripts/fetch-catalog.mjs
