@@ -159,7 +159,18 @@ jobs:
           TRANSLATE_REQUEST_SPACING_MS: ${{ vars.TRANSLATE_REQUEST_SPACING_MS || '1800' }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
           REQUIRE_TRANSLATIONS: 'true'
-        run: node scripts/fetch-catalog.mjs
+        run: |
+          set +e
+          node scripts/fetch-catalog.mjs
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            echo "::warning::Translation generation failed (status=$status). Falling back to committed docs/catalog.json."
+            git restore --source=HEAD -- docs/catalog.json || true
+          fi
+          if [ ! -f docs/catalog.json ]; then
+            echo "docs/catalog.json is missing and generation failed." >&2
+            exit "$status"
+          fi
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
