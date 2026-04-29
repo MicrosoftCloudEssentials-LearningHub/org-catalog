@@ -25,6 +25,7 @@ const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
   .filter((s) => s !== 'en');
 
 const TRANSLATE_BATCH_SIZE = 30;
+const TRANSLATE_MAX_RETRIES = 5;
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -278,6 +279,23 @@ function chunkArray(arr, size) {
   return out;
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getRetryDelayMs(res, attempt) {
+  const retryAfterRaw = res?.headers?.get?.('retry-after');
+  const retryAfter = Number.parseFloat(String(retryAfterRaw || ''));
+  if (Number.isFinite(retryAfter) && retryAfter > 0) {
+    return Math.round(retryAfter * 1000);
+  }
+
+  const base = 800;
+  const backoff = base * (2 ** attempt);
+  const jitter = Math.floor(Math.random() * 400);
+  return backoff + jitter;
+}
+
 function hasTranslatorConfigured() {
   return Boolean(MODELS_TOKEN);
 }
@@ -329,27 +347,40 @@ async function githubModelsTranslateBatch({ texts, lang }) {
     max_tokens: 2000,
   };
 
-  const res = await fetch(GITHUB_MODELS_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${MODELS_TOKEN}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
+  for (let attempt = 0; attempt <= TRANSLATE_MAX_RETRIES; attempt++) {
+    const res = await fetch(GITHUB_MODELS_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${MODELS_TOKEN}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await res.json().catch(() => null);
-  if (!res.ok) {
-    const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
-    throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
+    const data = await res.json().catch(() => null);
+    if (res.ok) {
+      const content = data?.choices?.[0]?.message?.content;
+      const parsed = parseJsonArray(content);
+      if (!parsed || parsed.length !== texts.length) throw new Error('translate_invalid_response');
+      return parsed.map((item, i) => String(item ?? texts[i] ?? ''));
+    }
+
+    const isRetriable = res.status === 429 || (res.status >= 500 && res.status < 600);
+    const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
+    if (!isRetriable || isLastAttempt) {
+      const details = typeof data === 'object' && data ? JSON.stringify(data).slice(0, 500) : '';
+      throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
+    }
+
+    const delayMs = getRetryDelayMs(res, attempt);
+    console.log(
+      `GitHub Models throttled (HTTP ${res.status}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`
+    );
+    await sleep(delayMs);
   }
 
-  const content = data?.choices?.[0]?.message?.content;
-  const parsed = parseJsonArray(content);
-  if (!parsed || parsed.length !== texts.length) throw new Error('translate_invalid_response');
-
-  return parsed.map((item, i) => String(item ?? texts[i] ?? ''));
+  throw new Error('translate_unexpected_retry_exit');
 }
 
 async function githubModelsTranslateMany({ texts, to }) {
