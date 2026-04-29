@@ -920,7 +920,7 @@ function render(list) {
 
       const title = document.createElement('h2');
       title.className = 'cardTitle';
-      title.textContent = repo.name;
+      title.textContent = String(repo.title || repo.name || '');
 
       const desc = document.createElement('p');
       desc.className = 'cardDesc';

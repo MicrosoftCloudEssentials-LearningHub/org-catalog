@@ -60,6 +60,7 @@ async function fetchPaged(url) {
 function toRepoModel(r) {
   return {
     name: r.name,
+    title: String(r.title || r.name || ''),
     fullName: r.full_name,
     url: r.html_url,
     description: r.description ?? '',
@@ -74,6 +75,39 @@ function toRepoModel(r) {
     forksCount: typeof r.forks_count === 'number' ? r.forks_count : undefined,
     imageUrl: r.imageUrl ?? null,
   };
+}
+
+function cleanMarkdownInlineText(text) {
+  let s = String(text || '').trim();
+  if (!s) return '';
+  s = s.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ');
+  s = s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+  s = s.replace(/<[^>]+>/g, ' ');
+  s = s.replace(/[`*_~]/g, '');
+  return s.replace(/\s+/g, ' ').trim();
+}
+
+function extractReadmeTitle(markdown) {
+  const lines = String(markdown || '').split(/\r?\n/);
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = String(lines[i] || '').trim();
+    if (!line) continue;
+
+    const atx = line.match(/^#{1,2}\s+(.+)$/);
+    if (atx?.[1]) {
+      const title = cleanMarkdownInlineText(atx[1]);
+      if (title) return title;
+    }
+
+    const next = String(lines[i + 1] || '').trim();
+    if (/^=+$/.test(next)) {
+      const title = cleanMarkdownInlineText(line);
+      if (title) return title;
+    }
+  }
+
+  return '';
 }
 
 function stripMarkdownToText(markdown) {
@@ -407,6 +441,7 @@ async function main() {
     try {
       const readme = await fetchReadme({ org: ORG_NAME, repo });
       if (readme?.content) {
+        const readmeTitle = extractReadmeTitle(readme.content);
         const text = stripMarkdownToText(readme.content);
         const tokens = tokenizeText(text);
         tokenDocs.push({ repo, tokens });
@@ -420,8 +455,10 @@ async function main() {
             readmePath: readme.path,
             imageRef,
           });
-          return { ...r, imageUrl };
+          return { ...r, imageUrl, title: readmeTitle || r?.name || '' };
         }
+
+        if (readmeTitle) return { ...r, title: readmeTitle };
       }
 
       return r;
