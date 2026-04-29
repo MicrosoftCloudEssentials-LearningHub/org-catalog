@@ -16,6 +16,9 @@ const TRANSLATE_MODEL = String(process.env.TRANSLATE_MODEL || 'openai/gpt-4.1-mi
 const REQUIRE_TRANSLATIONS = String(process.env.REQUIRE_TRANSLATIONS || '').trim().toLowerCase() === 'true';
 
 const GITHUB_MODELS_ENDPOINT = 'https://models.github.ai/inference/chat/completions';
+const PUBLISHED_CATALOG_URL = String(
+  process.env.PUBLISHED_CATALOG_URL || `https://${ORG_NAME.toLowerCase()}.github.io/${path.basename(process.cwd())}/catalog.json`
+).trim();
 
 const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
   .split(',')
@@ -312,6 +315,65 @@ function hasTranslatorConfigured() {
   return Boolean(MODELS_TOKEN);
 }
 
+function mergeTranslationEntry(map, srcText, lang, translatedText) {
+  const src = String(srcText || '').trim();
+  const translated = String(translatedText || '').trim();
+  if (!src || !lang || !translated) return;
+
+  if (!map.has(src)) map.set(src, {});
+  const current = map.get(src);
+  current[lang] = translated;
+}
+
+function hasAllLangTranslations(perLang, languages) {
+  if (!perLang || typeof perLang !== 'object') return false;
+  return languages.every((lang) => {
+    const v = String(perLang[lang] || '').trim();
+    return Boolean(v);
+  });
+}
+
+async function loadPublishedTranslationCache() {
+  if (!PUBLISHED_CATALOG_URL) return new Map();
+
+  try {
+    const url = `${PUBLISHED_CATALOG_URL}${PUBLISHED_CATALOG_URL.includes('?') ? '&' : '?'}ts=${Date.now()}`;
+    const res = await fetchWithTimeout(url, { headers: { Accept: 'application/json' } }, REQUEST_TIMEOUT_MS);
+    if (!res.ok) return new Map();
+
+    const data = await res.json().catch(() => null);
+    const repos = Array.isArray(data?.repos) ? data.repos : [];
+    const cache = new Map();
+
+    for (const repo of repos) {
+      const i18n = repo?.i18n && typeof repo.i18n === 'object' ? repo.i18n : null;
+      if (!i18n) continue;
+
+      const sourceTitle = String(repo?.title || repo?.name || '').trim();
+      const sourceDesc = String(repo?.description || '').trim();
+      const sourceTopics = Array.isArray(repo?.topics) ? repo.topics.map((t) => String(t || '').trim()) : [];
+
+      for (const [lang, translated] of Object.entries(i18n)) {
+        const tObj = translated && typeof translated === 'object' ? translated : null;
+        if (!tObj) continue;
+
+        mergeTranslationEntry(cache, sourceTitle, lang, tObj.title);
+        mergeTranslationEntry(cache, sourceDesc, lang, tObj.description);
+
+        const translatedTopics = Array.isArray(tObj.topics) ? tObj.topics : [];
+        const topicCount = Math.min(sourceTopics.length, translatedTopics.length);
+        for (let i = 0; i < topicCount; i++) {
+          mergeTranslationEntry(cache, sourceTopics[i], lang, translatedTopics[i]);
+        }
+      }
+    }
+
+    return cache;
+  } catch {
+    return new Map();
+  }
+}
+
 const LANGUAGE_LABELS = {
   es: 'Spanish',
   pt: 'Portuguese',
@@ -444,26 +506,41 @@ async function embedBuildTimeTranslations(repos) {
     return repos;
   }
 
-  const unique = new Set();
+  const translationMap = await loadPublishedTranslationCache();
+  const missingTexts = new Set();
+
   for (const r of repos) {
     const title = String(r?.title || r?.name || '').trim();
-    if (title) unique.add(title);
+    if (title && !hasAllLangTranslations(translationMap.get(title), TRANSLATE_TO)) {
+      missingTexts.add(title);
+    }
 
     const desc = String(r?.description || '').trim();
-    if (desc) unique.add(desc);
+    if (desc && !hasAllLangTranslations(translationMap.get(desc), TRANSLATE_TO)) {
+      missingTexts.add(desc);
+    }
 
     const topics = Array.isArray(r?.topics) ? r.topics : [];
     for (const t of topics) {
       const s = String(t || '').trim();
-      if (s) unique.add(s);
+      if (s && !hasAllLangTranslations(translationMap.get(s), TRANSLATE_TO)) {
+        missingTexts.add(s);
+      }
     }
   }
 
-  const texts = Array.from(unique);
-  if (!texts.length) return repos;
+  const textsToTranslate = Array.from(missingTexts);
+  if (textsToTranslate.length) {
+    console.log(`Translating ${textsToTranslate.length} missing texts to: ${TRANSLATE_TO.join(', ')}`);
+    const generatedMap = await githubModelsTranslateMany({ texts: textsToTranslate, to: TRANSLATE_TO });
 
-  console.log(`Translating ${texts.length} unique texts to: ${TRANSLATE_TO.join(', ')}`);
-  const map = await githubModelsTranslateMany({ texts, to: TRANSLATE_TO });
+    for (const [src, perLang] of generatedMap.entries()) {
+      if (!translationMap.has(src)) translationMap.set(src, {});
+      Object.assign(translationMap.get(src), perLang);
+    }
+  } else {
+    console.log('Using published translation cache for all texts; no model requests required.');
+  }
 
   return repos.map((r) => {
     const title = String(r?.title || r?.name || '').trim();
@@ -472,11 +549,11 @@ async function embedBuildTimeTranslations(repos) {
 
     const i18n = {};
     for (const lang of TRANSLATE_TO) {
-      const translatedTitle = title ? map.get(title)?.[lang] || '' : '';
-      const translatedDesc = desc ? map.get(desc)?.[lang] || '' : '';
+      const translatedTitle = title ? translationMap.get(title)?.[lang] || '' : '';
+      const translatedDesc = desc ? translationMap.get(desc)?.[lang] || '' : '';
       const translatedTopics = topics.map((t) => {
         const s = String(t || '').trim();
-        return s ? map.get(s)?.[lang] || s : s;
+        return s ? translationMap.get(s)?.[lang] || s : s;
       });
       i18n[lang] = {
         title: translatedTitle || title,
