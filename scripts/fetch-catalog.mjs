@@ -446,15 +446,17 @@ function parseJsonArray(text) {
   }
 }
 
-async function githubModelsTranslateBatch({ texts, lang }) {
+async function githubModelsTranslateBatch({ texts, lang, modelStartIndex = 0 }) {
   const languageLabel = LANGUAGE_LABELS[lang] || lang;
 
   const retriesPerModel = TRANSLATE_MAX_RETRIES;
   const totalAttempts = Math.max(1, TRANSLATE_MODELS.length * (retriesPerModel + 1));
+  const modelCount = Math.max(1, TRANSLATE_MODELS.length);
 
   for (let attempt = 0; attempt < totalAttempts; attempt++) {
     const modelSlot = Math.floor(attempt / (retriesPerModel + 1));
-    const model = TRANSLATE_MODELS[Math.min(modelSlot, TRANSLATE_MODELS.length - 1)] || TRANSLATE_MODEL;
+    const modelIndex = (modelStartIndex + modelSlot) % modelCount;
+    const model = TRANSLATE_MODELS[modelIndex] || TRANSLATE_MODEL;
     const payload = {
       model,
       messages: [
@@ -552,9 +554,11 @@ async function githubModelsTranslateBatch({ texts, lang }) {
       throw new Error(`translate_http_${res.status}${details ? `: ${details}` : ''}`);
     }
 
-    const delayMs = getRetryDelayMs(res, attempt);
+    const hasAnotherModel = modelSlot < modelCount - 1;
+    const delayMs = hasAnotherModel ? 250 : getRetryDelayMs(res, attempt);
+    const modeText = hasAnotherModel ? 'switching model' : 'backing off';
     console.log(
-      `GitHub Models throttled (HTTP ${res.status}) on ${model}. Retry ${attempt + 1}/${totalAttempts} in ${delayMs}ms.`
+      `GitHub Models throttled (HTTP ${res.status}) on ${model}. Retry ${attempt + 1}/${totalAttempts} in ${delayMs}ms (${modeText}).`
     );
     await sleep(delayMs);
   }
@@ -562,9 +566,9 @@ async function githubModelsTranslateBatch({ texts, lang }) {
   throw new Error('translate_unexpected_retry_exit');
 }
 
-async function githubModelsTranslateBatchAdaptive({ texts, lang }) {
+async function githubModelsTranslateBatchAdaptive({ texts, lang, modelStartIndex = 0 }) {
   try {
-    return await githubModelsTranslateBatch({ texts, lang });
+    return await githubModelsTranslateBatch({ texts, lang, modelStartIndex });
   } catch (err) {
     const message = String(err?.message || '');
     const isRateLimited = message.includes('translate_http_429');
@@ -577,9 +581,9 @@ async function githubModelsTranslateBatchAdaptive({ texts, lang }) {
     const right = texts.slice(mid);
     console.log(`Splitting ${texts.length}-item batch after repeated 429 for ${lang}.`);
 
-    const leftOut = await githubModelsTranslateBatchAdaptive({ texts: left, lang });
+    const leftOut = await githubModelsTranslateBatchAdaptive({ texts: left, lang, modelStartIndex });
     if (TRANSLATE_REQUEST_SPACING_MS > 0) await sleep(TRANSLATE_REQUEST_SPACING_MS);
-    const rightOut = await githubModelsTranslateBatchAdaptive({ texts: right, lang });
+    const rightOut = await githubModelsTranslateBatchAdaptive({ texts: right, lang, modelStartIndex: (modelStartIndex + 1) % Math.max(1, TRANSLATE_MODELS.length) });
     return [...leftOut, ...rightOut];
   }
 }
@@ -591,9 +595,13 @@ async function githubModelsTranslateMany({ texts, to }) {
 
   const out = new Map();
 
-  for (const lang of to) {
-    for (const batch of chunkArray(texts, TRANSLATE_BATCH_SIZE)) {
-      const translations = await githubModelsTranslateBatchAdaptive({ texts: batch, lang });
+  for (let langIndex = 0; langIndex < to.length; langIndex++) {
+    const lang = to[langIndex];
+    const batches = chunkArray(texts, TRANSLATE_BATCH_SIZE);
+    for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+      const batch = batches[batchIndex];
+      const modelStartIndex = (langIndex + batchIndex) % Math.max(1, TRANSLATE_MODELS.length);
+      const translations = await githubModelsTranslateBatchAdaptive({ texts: batch, lang, modelStartIndex });
       for (let i = 0; i < batch.length; i++) {
         const src = String(batch[i] || '');
         if (!out.has(src)) out.set(src, {});
