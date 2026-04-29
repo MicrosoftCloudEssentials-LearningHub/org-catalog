@@ -854,9 +854,9 @@ body {
   letter-spacing: -0.01em;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   overflow: hidden;
-  min-height: 2.5em;
+  min-height: 3.75em;
 }
 
 html[data-theme="dark"] .cardTitle {
