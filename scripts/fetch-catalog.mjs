@@ -26,6 +26,7 @@ const TRANSLATE_TO = String(process.env.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko')
 
 const TRANSLATE_BATCH_SIZE = 30;
 const TRANSLATE_MAX_RETRIES = 5;
+const REQUEST_TIMEOUT_MS = 45000;
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -41,7 +42,7 @@ async function fetchPaged(url) {
   let nextUrl = url;
 
   while (nextUrl) {
-    const res = await fetch(nextUrl, { headers });
+    const res = await fetchWithTimeout(nextUrl, { headers }, REQUEST_TIMEOUT_MS);
     if (!res.ok) {
       const text = await res.text();
       throw new Error(`GitHub API error: HTTP ${res.status}. ${text}`);
@@ -245,7 +246,7 @@ function resolveReadmeImageUrl({ org, repo, branch, readmePath, imageRef }) {
 
 async function fetchReadme({ org, repo }) {
   const url = `https://api.github.com/repos/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/readme`;
-  const res = await fetch(url, { headers });
+  const res = await fetchWithTimeout(url, { headers }, REQUEST_TIMEOUT_MS);
   if (!res.ok) return null;
 
   const data = await res.json().catch(() => null);
@@ -281,6 +282,17 @@ function chunkArray(arr, size) {
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = REQUEST_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 function getRetryDelayMs(res, attempt) {
@@ -348,15 +360,32 @@ async function githubModelsTranslateBatch({ texts, lang }) {
   };
 
   for (let attempt = 0; attempt <= TRANSLATE_MAX_RETRIES; attempt++) {
-    const res = await fetch(GITHUB_MODELS_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${MODELS_TOKEN}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+    let res;
+    try {
+      res = await fetchWithTimeout(
+        GITHUB_MODELS_ENDPOINT,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${MODELS_TOKEN}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(payload),
+        },
+        REQUEST_TIMEOUT_MS
+      );
+    } catch (err) {
+      const isLastAttempt = attempt >= TRANSLATE_MAX_RETRIES;
+      if (isLastAttempt) {
+        throw new Error(`translate_network_error: ${err?.name || 'unknown_error'}`);
+      }
+
+      const delayMs = getRetryDelayMs(null, attempt);
+      console.log(`GitHub Models request error (${err?.name || 'unknown'}). Retry ${attempt + 1}/${TRANSLATE_MAX_RETRIES} in ${delayMs}ms.`);
+      await sleep(delayMs);
+      continue;
+    }
 
     const data = await res.json().catch(() => null);
     if (res.ok) {
