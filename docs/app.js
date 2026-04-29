@@ -655,6 +655,9 @@ async function ensureTranslationsForRepos({ lang, repos, extraTexts }) {
   }
 
   for (const repo of repos) {
+    const title = String(repo?.title || repo?.name || '').trim();
+    if (title && !cache.has(title)) needed.add(title);
+
     const desc = String(repo?.description || '').trim();
     if (desc && !cache.has(desc)) needed.add(desc);
 
@@ -692,15 +695,18 @@ function applyRepoContentTranslations(lang, repos) {
 
   return repos.map((repo) => {
     const topics = Array.isArray(repo?.topics) ? repo.topics : [];
+    const srcTitle = String(repo?.title || repo?.name || '').trim();
 
     // Build-time translations (preferred): scripts/fetch-catalog.mjs can embed
     // per-language content into catalog.json (no runtime backend required).
     const embedded = repo?.i18n && repo.i18n[to] ? repo.i18n[to] : null;
+    const embeddedTitle = typeof embedded?.title === 'string' ? embedded.title : '';
     const embeddedDesc = typeof embedded?.description === 'string' ? embedded.description : '';
     const embeddedTopics = Array.isArray(embedded?.topics) ? embedded.topics : null;
 
     return {
       ...repo,
+      title: embeddedTitle || translateText(to, srcTitle),
       description: embeddedDesc || translateText(to, repo?.description),
       topics: embeddedTopics || topics.map((t) => translateText(to, t)),
     };

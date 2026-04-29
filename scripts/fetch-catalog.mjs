@@ -417,6 +417,9 @@ async function embedBuildTimeTranslations(repos) {
 
   const unique = new Set();
   for (const r of repos) {
+    const title = String(r?.title || r?.name || '').trim();
+    if (title) unique.add(title);
+
     const desc = String(r?.description || '').trim();
     if (desc) unique.add(desc);
 
@@ -434,17 +437,20 @@ async function embedBuildTimeTranslations(repos) {
   const map = await githubModelsTranslateMany({ texts, to: TRANSLATE_TO });
 
   return repos.map((r) => {
+    const title = String(r?.title || r?.name || '').trim();
     const desc = String(r?.description || '').trim();
     const topics = Array.isArray(r?.topics) ? r.topics : [];
 
     const i18n = {};
     for (const lang of TRANSLATE_TO) {
+      const translatedTitle = title ? map.get(title)?.[lang] || '' : '';
       const translatedDesc = desc ? map.get(desc)?.[lang] || '' : '';
       const translatedTopics = topics.map((t) => {
         const s = String(t || '').trim();
         return s ? map.get(s)?.[lang] || s : s;
       });
       i18n[lang] = {
+        title: translatedTitle || title,
         description: translatedDesc || desc,
         topics: translatedTopics,
       };
