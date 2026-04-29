@@ -33,7 +33,7 @@ jobs:
 
       - name: Preflight GitHub Models access
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODELS_TOKEN: ${{ secrets.TRAFFIC_TOKEN_ADMIN || secrets.TRAFFIC_TOKEN || secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
         run: |
           python3 - <<'PY'
@@ -44,10 +44,10 @@ jobs:
 
           endpoint = "https://models.github.ai/inference/chat/completions"
           model = os.environ.get("TRANSLATE_MODEL", "openai/gpt-4.1-mini")
-          token = os.environ.get("GITHUB_TOKEN", "")
+          token = os.environ.get("MODELS_TOKEN", "")
 
           if not token:
-            raise SystemExit("GITHUB_TOKEN is missing. Ensure Actions has access to repository secrets.")
+            raise SystemExit("MODELS_TOKEN is missing. Configure one of: TRAFFIC_TOKEN_ADMIN, TRAFFIC_TOKEN, MODELS_TOKEN, or enable GITHUB_TOKEN Models access.")
 
           payload = {
             "model": model,
@@ -84,7 +84,7 @@ jobs:
           if status != 200:
             raise SystemExit(
               "GitHub Models preflight failed (HTTP %s). "
-              "Enable GitHub Models for the org/repo and allow Actions to access Models via GITHUB_TOKEN."
+              "Enable GitHub Models for the org/repo and ensure your PAT is valid/SSO-authorized (or allow Actions Models via GITHUB_TOKEN)."
               % status
             )
 
@@ -95,7 +95,7 @@ jobs:
         env:
           ORG_NAME: Cloud2BR-MSFTLearningHub
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODELS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODELS_TOKEN: ${{ secrets.TRAFFIC_TOKEN_ADMIN || secrets.TRAFFIC_TOKEN || secrets.MODELS_TOKEN || secrets.GITHUB_TOKEN }}
           TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL || 'openai/gpt-4.1-mini' }}
           TRANSLATE_TO: ${{ vars.TRANSLATE_TO || 'es,pt,fr,zh,ja,ko' }}
           REQUIRE_TRANSLATIONS: 'true'
