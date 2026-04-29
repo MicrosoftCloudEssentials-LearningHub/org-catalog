@@ -41,6 +41,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import json
+          import time
           import os
           import urllib.error
           import urllib.request
@@ -83,11 +84,29 @@ jobs:
             except Exception:
               return 599
 
-          status = check(token)
-          if status != 200:
+          status = None
+          for attempt in range(4):
+            status = check(token)
+            if status == 200:
+              break
+            if status in (429, 500, 502, 503, 504, 599):
+              delay = 1.5 * (2 ** attempt)
+              print(f"Transient preflight status {status}, retrying in {delay:.1f}s...")
+              time.sleep(delay)
+              continue
+            break
+
+          if status in (401, 403):
             raise SystemExit(
               "GitHub Models preflight failed (HTTP %s). "
               "Enable GitHub Models for the org/repo and ensure your PAT is valid/SSO-authorized (or allow Actions Models via GITHUB_TOKEN)."
+              % status
+            )
+
+          if status != 200:
+            print(
+              "Warning: GitHub Models preflight returned transient HTTP %s. "
+              "Continuing because translation step has retry/backoff."
               % status
             )
 
