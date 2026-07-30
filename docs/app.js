@@ -906,9 +906,11 @@ function render(list) {
     ...list.map((repo) => {
       const card = document.createElement('a');
       card.className = 'card';
-      card.href = repo.url;
+      const destination = String(repo.pagesUrl || repo.url || '');
+      card.href = destination;
       card.target = '_blank';
       card.rel = 'noreferrer';
+      card.title = repo.pagesUrl ? 'Open GitHub Pages site' : 'Open GitHub repository';
 
       if (repo.imageUrl) {
         const media = document.createElement('div');

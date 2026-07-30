@@ -79,6 +79,7 @@ function toRepoModel(r) {
     title: String(r.title || r.name || ''),
     fullName: r.full_name,
     url: r.html_url,
+    pagesUrl: r.pagesUrl ?? null,
     description: r.description ?? '',
     topics: Array.isArray(r.topics) ? r.topics : [],
     categories: Array.isArray(r.categories) ? r.categories : [],
@@ -269,6 +270,17 @@ async function fetchReadme({ org, repo }) {
   const content = Buffer.from(data.content, 'base64').toString('utf8');
   const path = typeof data.path === 'string' ? data.path : 'README.md';
   return { content, path };
+}
+
+async function fetchPagesUrl({ org, repo }) {
+  const url = `https://api.github.com/repos/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/pages`;
+  const res = await fetchWithTimeout(url, { headers }, REQUEST_TIMEOUT_MS);
+
+  if (!res.ok) return null;
+
+  const data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'pages_json').catch(() => null);
+  const pagesUrl = String(data?.html_url || '').trim();
+  return /^https:\/\//i.test(pagesUrl) ? pagesUrl : null;
 }
 
 async function mapWithConcurrency(items, limit, fn) {
@@ -701,7 +713,10 @@ async function main() {
     if (!repo) return r;
 
     try {
-      const readme = await fetchReadme({ org: ORG_NAME, repo });
+      const [readme, pagesUrl] = await Promise.all([
+        fetchReadme({ org: ORG_NAME, repo }),
+        fetchPagesUrl({ org: ORG_NAME, repo }),
+      ]);
       if (readme?.content) {
         const readmeTitle = extractReadmeTitle(readme.content);
         const text = stripMarkdownToText(readme.content);
@@ -717,13 +732,13 @@ async function main() {
             readmePath: readme.path,
             imageRef,
           });
-          return { ...r, imageUrl, title: readmeTitle || r?.name || '' };
+          return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
         }
 
-        if (readmeTitle) return { ...r, title: readmeTitle };
+        if (readmeTitle) return { ...r, pagesUrl, title: readmeTitle };
       }
 
-      return r;
+      return { ...r, pagesUrl };
     } catch {
       return r;
     }
