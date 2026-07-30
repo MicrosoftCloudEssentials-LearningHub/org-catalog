@@ -1089,7 +1089,7 @@ async function loadPublicCatalog() {
   setStatus('Loading public catalog…');
 
   try {
-    publicCatalog = await fetchJson('./catalog.json', undefined);
+    publicCatalog = await fetchJson(`./catalog.json?ts=${Date.now()}`, { cache: 'no-store' });
   } catch {
     setStatus('Could not load catalog.json. Run the GitHub Action to generate it.');
     return;
