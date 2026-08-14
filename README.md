@@ -80,7 +80,7 @@ The **Translate** dropdown can translate the app UI client-side. If you also wan
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1281-limegreen" alt="Total views">
-  <p>Refresh Date: 2026-04-28</p>
+  <img src="https://img.shields.io/badge/Total%20views-1284-limegreen" alt="Total views">
+  <p>Refresh Date: 2026-08-14</p>
 </div>
 <!-- END BADGE -->
