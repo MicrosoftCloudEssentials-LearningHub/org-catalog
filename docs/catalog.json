@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T18:19:15.714Z",
+  "generatedAt": "2026-09-02T18:22:21.673Z",
   "org": "Cloud2BR-MSFTLearningHub",
   "repos": [
     {
@@ -7,7 +7,7 @@
       "title": "Demo: Zava AI Shopping Assistant Multi-Agent Architecture with A2A Protocol - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Agentic-DevOps-AI-Shopping",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Agentic-DevOps-AI-Shopping",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Agentic-DevOps-AI-Shopping/",
       "description": "Demos and guides for building a Multimodal AI shopping assistant. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "a2a",
@@ -25,25 +25,25 @@
       ],
       "categories": [
         "a2a",
-        "agent",
-        "terraform",
         "agents",
-        "azure",
-        "chat"
+        "agent",
+        "defender",
+        "chat",
+        "default"
       ],
       "keywords": [
         "a2a",
-        "agent",
-        "terraform",
         "agents",
-        "azure",
-        "chat",
-        "container",
+        "agent",
         "defender",
+        "chat",
         "default",
+        "terraform",
         "multi",
+        "azure",
         "server",
-        "devops"
+        "devops",
+        "connector"
       ],
       "language": "Python",
       "updatedAt": "2026-09-01T16:28:52Z",
@@ -58,30 +58,30 @@
       "title": "Study Guide: GitHub Copilot (GH-300)",
       "fullName": "Cloud2BR-MSFTLearningHub/GH-300StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/GH-300StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/GH-300StudyGuide/",
       "description": "Study Guide for GH-300 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [],
       "categories": [
         "copilot",
-        "github",
         "part",
-        "fundamentals",
+        "github",
         "study",
-        "official"
+        "fundamentals",
+        "exam"
       ],
       "keywords": [
         "copilot",
-        "github",
         "part",
-        "fundamentals",
+        "github",
         "study",
-        "official",
+        "fundamentals",
         "exam",
-        "developer",
-        "productivity",
+        "official",
+        "certification",
+        "measured",
         "responsible",
         "practice",
-        "apply"
+        "productivity"
       ],
       "language": null,
       "updatedAt": "2026-08-31T23:56:50Z",
@@ -96,7 +96,7 @@
       "title": "Security Campaign",
       "fullName": "Cloud2BR-MSFTLearningHub/Security-Campaign",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Security-Campaign",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Security-Campaign/",
       "description": "Security Campaign. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "campaign",
@@ -105,25 +105,25 @@
       ],
       "categories": [
         "campaign",
-        "security",
         "condition",
-        "conditions",
-        "decision",
-        "eight"
+        "exports",
+        "phased",
+        "print",
+        "screenshots"
       ],
       "keywords": [
         "campaign",
-        "security",
         "condition",
-        "conditions",
-        "decision",
-        "eight",
-        "eligibility",
         "exports",
-        "matrix",
         "phased",
         "print",
-        "recommendation"
+        "screenshots",
+        "eight",
+        "eligibility",
+        "matrix",
+        "conditions",
+        "scenario",
+        "tracks"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-08-27T19:37:02Z",
@@ -131,14 +131,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Security-Campaign"
+      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/Security-Campaign/main/images/decision-map-desktop.png"
     },
     {
       "name": "GH-900StudyGuide",
       "title": "Study Guide: GitHub Foundations (GH-900)",
       "fullName": "Cloud2BR-MSFTLearningHub/GH-900StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/GH-900StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/GH-900StudyGuide/",
       "description": "Study Guide for GH-900 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [
         "certification",
@@ -151,26 +151,26 @@
         "study"
       ],
       "categories": [
+        "study",
         "github",
         "foundations",
-        "study",
-        "official",
         "certification",
+        "exam",
         "basics"
       ],
       "keywords": [
+        "study",
         "github",
         "foundations",
-        "study",
-        "official",
         "certification",
+        "exam",
         "basics",
         "collaborate",
-        "community",
-        "git",
+        "measured",
+        "official",
         "administration",
-        "apply",
-        "development"
+        "skills",
+        "scheduling"
       ],
       "language": null,
       "updatedAt": "2026-08-26T02:21:13Z",
@@ -185,7 +185,7 @@
       "title": "Org Catalog (GitHub Pages)",
       "fullName": "Cloud2BR-MSFTLearningHub/org-catalog",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/org-catalog",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/org-catalog/",
       "description": "Quick demo of a lightweight repo catalog designed to be hosted with GitHub Pages.",
       "topics": [
         "demo",
@@ -197,25 +197,25 @@
       ],
       "categories": [
         "catalog",
-        "github",
-        "actions",
         "oauth",
-        "private",
-        "pages"
+        "org",
+        "github",
+        "pages",
+        "generator"
       ],
       "keywords": [
         "catalog",
-        "github",
-        "actions",
         "oauth",
-        "private",
-        "pages",
         "org",
-        "optional",
+        "github",
+        "pages",
         "generator",
         "token",
         "variable",
-        "want"
+        "actions",
+        "optional",
+        "translation",
+        "worker"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-08-14T22:08:19Z",
@@ -230,7 +230,7 @@
       "title": "Study Guide: Azure AI Fundamentals (AI-900)",
       "fullName": "Cloud2BR-MSFTLearningHub/AI-900StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AI-900StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AI-900StudyGuide/",
       "description": "Study Guide for AI-900 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [
         "ai-900-questions",
@@ -246,26 +246,26 @@
         "nlp-machine-learning"
       ],
       "categories": [
-        "describe",
-        "workloads",
-        "azure",
         "certification",
+        "describe",
+        "study",
+        "answers",
         "questions",
-        "answers"
+        "workloads"
       ],
       "keywords": [
-        "describe",
-        "workloads",
-        "azure",
         "certification",
-        "questions",
-        "answers",
+        "describe",
         "study",
+        "answers",
+        "questions",
+        "workloads",
+        "fundamentals",
+        "poster",
         "artificial",
-        "features",
-        "they",
-        "computer",
-        "intelligence"
+        "exam",
+        "materials",
+        "official"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:52Z",
@@ -280,7 +280,7 @@
       "title": "Study Guide: Azure Data Fundamentals (DP-900)",
       "fullName": "Cloud2BR-MSFTLearningHub/DP-900StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/DP-900StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/DP-900StudyGuide/",
       "description": "Study Guide for DP-900 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [
         "azure",
@@ -296,26 +296,26 @@
         "virtualization"
       ],
       "categories": [
-        "azure",
-        "relational",
-        "data",
         "certification",
+        "relational",
         "describe",
-        "non"
+        "study",
+        "azure",
+        "poster"
       ],
       "keywords": [
-        "azure",
-        "relational",
-        "data",
         "certification",
+        "relational",
         "describe",
-        "non",
-        "analytics",
-        "concepts",
-        "considerations",
-        "workload",
         "study",
-        "core"
+        "azure",
+        "poster",
+        "data",
+        "concepts",
+        "materials",
+        "official",
+        "non",
+        "workload"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:49Z",
@@ -330,7 +330,7 @@
       "title": "Study Guide: Designing and Implementing a Data Science Solution on Azure (DP-100)",
       "fullName": "Cloud2BR-MSFTLearningHub/DP-100StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/DP-100StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/DP-100StudyGuide/",
       "description": "Study Guide for DS-100 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [
         "azure",
@@ -341,26 +341,26 @@
         "dp-100-study-guide"
       ],
       "categories": [
-        "models",
-        "azure",
         "certification",
-        "foundry",
-        "applications",
-        "experiments"
+        "models",
+        "study",
+        "prepare",
+        "experiments",
+        "azure"
       ],
       "keywords": [
-        "models",
-        "azure",
         "certification",
-        "foundry",
-        "applications",
-        "experiments",
-        "optimize",
-        "train",
+        "models",
+        "study",
         "prepare",
-        "data",
+        "experiments",
+        "azure",
+        "poster",
+        "foundry",
         "explore",
-        "openai"
+        "materials",
+        "official",
+        "train"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:46Z",
@@ -375,7 +375,7 @@
       "title": "Study Guide: Azure AI Engineer Associate (AI-102)",
       "fullName": "Cloud2BR-MSFTLearningHub/AI-102StudyGuide",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AI-102StudyGuide",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AI-102StudyGuide/",
       "description": "Study Guide for AI-102 Microsoft certification. Check the official Microsoft documentation for official materials.",
       "topics": [
         "ai-102-questions",
@@ -389,26 +389,26 @@
         "natural-language-processing"
       ],
       "categories": [
-        "implement",
-        "solutions",
         "certification",
+        "solutions",
+        "implement",
+        "study",
         "questions",
-        "answers",
-        "computer"
+        "answers"
       ],
       "keywords": [
-        "implement",
-        "solutions",
         "certification",
+        "solutions",
+        "implement",
+        "study",
         "questions",
         "answers",
-        "computer",
-        "vision",
-        "azure",
-        "study",
-        "official",
+        "poster",
         "materials",
-        "poster"
+        "official",
+        "vision",
+        "computer",
+        "ai-102-questions"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:42Z",
@@ -423,7 +423,7 @@
       "title": "Microsoft 365 E5 (Enterprise 5) and E7 (Enterprise 7) Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/M365-E5-E7-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/M365-E5-E7-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/M365-E5-E7-Overview/",
       "description": "Demos and guides of Microsoft M365 E5 and E7 license. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "e5",
@@ -435,25 +435,25 @@
       ],
       "categories": [
         "enterprise",
-        "microsoft",
         "m365",
+        "microsoft",
         "guidance",
-        "publish",
+        "official",
         "contact"
       ],
       "keywords": [
         "enterprise",
-        "microsoft",
         "m365",
+        "microsoft",
         "guidance",
-        "publish",
-        "contact",
-        "detailed",
-        "directly",
         "official",
-        "please",
-        "refer",
-        "support"
+        "contact",
+        "publish",
+        "e5",
+        "e7",
+        "m365-copilot",
+        "microsoft365",
+        "refer"
       ],
       "language": null,
       "updatedAt": "2026-08-04T20:03:50Z",
@@ -461,14 +461,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/M365-E5-E7-Overview"
+      "imageUrl": null
     },
     {
       "name": "Security-Copilot-Overview",
       "title": "Security-Copilot-Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Security-Copilot-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Security-Copilot-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Security-Copilot-Overview/",
       "description": "Demos and guides of Microsoft Security Copilot. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "microsoft-security-copilot",
@@ -478,24 +478,24 @@
       "categories": [
         "copilot",
         "security",
-        "model",
+        "guidance",
         "publish",
         "governance",
-        "hub"
+        "implementation"
       ],
       "keywords": [
         "copilot",
         "security",
-        "model",
+        "guidance",
         "publish",
         "governance",
-        "hub",
-        "guidance",
-        "overview",
         "implementation",
-        "operations",
-        "architecture",
-        "support"
+        "hub",
+        "microsoft-security-copilot",
+        "scu",
+        "security-copilot",
+        "model",
+        "publishes"
       ],
       "language": null,
       "updatedAt": "2026-08-04T15:21:22Z",
@@ -503,14 +503,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Security-Copilot-Overview"
+      "imageUrl": null
     },
     {
       "name": "Entra-Overview",
       "title": "Entra Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Entra-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Entra-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Entra-Overview/",
       "description": "Demos and guides of Microsoft Entra. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "entra-id",
@@ -520,24 +520,24 @@
       "categories": [
         "entra",
         "pages",
-        "site",
-        "operations",
+        "navigation",
         "microsoft",
-        "hybrid"
+        "operations",
+        "keep"
       ],
       "keywords": [
         "entra",
         "pages",
-        "site",
-        "operations",
-        "microsoft",
-        "hybrid",
-        "support",
-        "github",
-        "detailed",
         "navigation",
+        "microsoft",
+        "operations",
         "keep",
-        "overview"
+        "site",
+        "github",
+        "hybrid",
+        "acronym",
+        "channels",
+        "entra-id"
       ],
       "language": null,
       "updatedAt": "2026-08-04T15:13:22Z",
@@ -545,14 +545,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Entra-Overview"
+      "imageUrl": null
     },
     {
       "name": "Agent365-Overview",
       "title": "Agent365-Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Agent365-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Agent365-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Agent365-Overview/",
       "description": "Demos and guides of Agent 365. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "agent-365",
@@ -560,25 +560,25 @@
       ],
       "categories": [
         "markdown",
+        "agent365",
+        "header",
         "pull",
         "requests",
-        "line",
-        "header",
-        "agent365"
+        "line"
       ],
       "keywords": [
         "markdown",
+        "agent365",
+        "header",
         "pull",
         "requests",
         "line",
-        "header",
-        "agent365",
         "block",
-        "runs",
         "tracked",
+        "runs",
         "approvals",
         "fixes",
-        "site"
+        "org"
       ],
       "language": null,
       "updatedAt": "2026-08-04T14:57:10Z",
@@ -586,14 +586,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Agent365-Overview"
+      "imageUrl": null
     },
     {
       "name": "Intune-Overview",
       "title": "Intune Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Intune-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Intune-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Intune-Overview/",
       "description": "Demos and guides of Intune. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "microsoft-intune",
@@ -604,24 +604,24 @@
       "categories": [
         "intune",
         "pages",
-        "site",
         "navigation",
+        "site",
         "planning",
-        "github"
+        "byod"
       ],
       "keywords": [
         "intune",
         "pages",
-        "site",
         "navigation",
+        "site",
         "planning",
-        "github",
-        "hub",
-        "operations",
-        "across",
-        "baselines",
         "byod",
-        "claims"
+        "frontline",
+        "helpdesk",
+        "microsoft-intune",
+        "microsoft-intune-and-endpoint-protection",
+        "microsoft-intune-compliance",
+        "baselines"
       ],
       "language": null,
       "updatedAt": "2026-08-04T14:57:06Z",
@@ -629,14 +629,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Intune-Overview"
+      "imageUrl": null
     },
     {
       "name": "Purview-Setup-Overview",
       "title": "Microsoft Purview Setup and Overview Hub",
       "fullName": "Cloud2BR-MSFTLearningHub/Purview-Setup-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Purview-Setup-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Purview-Setup-Overview/",
       "description": "This repository contains demos and guides on how to setup Microsoft Purview. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "purview",
@@ -650,25 +650,25 @@
       ],
       "categories": [
         "purview",
-        "data",
         "evidence",
-        "loss",
         "prevention",
-        "audit"
+        "data",
+        "sensitivity",
+        "loss"
       ],
       "keywords": [
         "purview",
-        "data",
         "evidence",
-        "loss",
         "prevention",
-        "audit",
-        "labels",
-        "operational",
-        "sensitive",
+        "data",
         "sensitivity",
-        "control",
-        "checklist"
+        "loss",
+        "checklist",
+        "audit",
+        "accountable",
+        "ediscovery",
+        "labels",
+        "map"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:59:20Z",
@@ -676,14 +676,14 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Purview-Setup-Overview"
+      "imageUrl": null
     },
     {
       "name": "Sentinel-Setup-Overview",
       "title": "Microsoft Sentinel Setup and Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Sentinel-Setup-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Sentinel-Setup-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Sentinel-Setup-Overview/",
       "description": "This repository contains demos and guides on how to setup Sentinel for Cloud. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "microsoft-sentinel",
@@ -695,24 +695,24 @@
       "categories": [
         "sentinel",
         "microsoft",
-        "support",
+        "official",
         "contact",
-        "directly",
-        "official"
+        "microsoft-sentinel",
+        "microsoft-sentinel-kql"
       ],
       "keywords": [
         "sentinel",
         "microsoft",
-        "support",
-        "contact",
-        "directly",
         "official",
-        "security",
-        "cloud",
+        "contact",
         "microsoft-sentinel",
         "microsoft-sentinel-kql",
         "microsoft-sentinel-workbook",
-        "native"
+        "siem",
+        "soar",
+        "directly",
+        "security",
+        "checklist"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:56:35Z",
@@ -720,14 +720,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Sentinel-Setup-Overview"
+      "imageUrl": null
     },
     {
       "name": "Defender-Setup-Overview",
-      "title": "Defender-Setup-Overview",
+      "title": "Microsoft Defender Setup and Overview Hub",
       "fullName": "Cloud2BR-MSFTLearningHub/Defender-Setup-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Defender-Setup-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Defender-Setup-Overview/",
       "description": "This repository contains demos and guides on how to setup Defender for Cloud. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "defender",
@@ -744,25 +744,25 @@
       ],
       "categories": [
         "defender",
-        "microsoft-defender",
-        "microsoft-defender-for-cloud",
-        "microsoft-defender-for-endopoint",
-        "microsoft-defender-for-endpoint",
-        "microsoft-defender-for-storage"
+        "cloud",
+        "xdr",
+        "aws",
+        "sentinel",
+        "cspm"
       ],
       "keywords": [
         "defender",
-        "microsoft-defender",
-        "microsoft-defender-for-cloud",
-        "microsoft-defender-for-endopoint",
-        "microsoft-defender-for-endpoint",
-        "microsoft-defender-for-storage",
-        "microsoft-defender-free",
-        "microsoft-defender-hack",
-        "microsoft-defender-protection",
-        "microsoft-defender-xdr",
-        "contact",
-        "contains"
+        "cloud",
+        "xdr",
+        "aws",
+        "sentinel",
+        "cspm",
+        "servers",
+        "connector",
+        "microsoft",
+        "arc",
+        "vulnerability",
+        "coverage"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:39:19Z",
@@ -770,14 +770,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Defender-Setup-Overview"
+      "imageUrl": null
     },
     {
       "name": "arch-flows-designer",
-      "title": "arch-flows-designer",
+      "title": "Arch Flows Designer",
       "fullName": "Cloud2BR-MSFTLearningHub/arch-flows-designer",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/arch-flows-designer",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/arch-flows-designer/",
       "description": "Draw Azure cloud architecture diagrams, service flows, and infrastructure topologies in the browser",
       "topics": [
         "architecture",
@@ -786,26 +786,26 @@
         "flows"
       ],
       "categories": [
-        "flows",
-        "architecture",
-        "designer",
-        "diagram",
         "draw",
-        "infrastructure"
+        "canvas",
+        "designer",
+        "icons",
+        "diagram",
+        "diagrams"
       ],
       "keywords": [
-        "flows",
-        "architecture",
-        "designer",
-        "diagram",
         "draw",
-        "infrastructure",
-        "topologies",
-        "browser",
+        "canvas",
+        "designer",
+        "icons",
+        "diagram",
         "diagrams",
-        "cloud",
-        "azure",
-        "service"
+        "flows",
+        "nodes",
+        "import",
+        "asset",
+        "assets",
+        "export"
       ],
       "language": null,
       "updatedAt": "2026-07-31T21:25:33Z",
@@ -813,14 +813,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/arch-flows-designer"
+      "imageUrl": null
     },
     {
       "name": "DemosScenarios-TechTalks",
-      "title": "DemosScenarios-TechTalks",
+      "title": "Microsoft Cloud: Demos Scenarios and Tech Talks",
       "fullName": "Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/DemosScenarios-TechTalks/",
       "description": "This repository showcases demonstrations and scenarios using Microsoft Cloud technologies. Please note that these demos are intended as a guide and are based on my personal experiences. ",
       "topics": [
         "ai",
@@ -840,26 +840,26 @@
         "sharepoint"
       ],
       "categories": [
-        "ai",
-        "based",
-        "data-science",
-        "demonstrations",
-        "experiences",
-        "fabric"
+        "cloud",
+        "power",
+        "azure",
+        "microsoft",
+        "services",
+        "analytics"
       ],
       "keywords": [
-        "ai",
-        "based",
-        "data-science",
-        "demonstrations",
-        "experiences",
-        "fabric",
-        "m365",
-        "microsoft-general",
-        "ml",
-        "personal",
-        "powerapps",
-        "powerbi"
+        "cloud",
+        "power",
+        "azure",
+        "microsoft",
+        "services",
+        "analytics",
+        "computing",
+        "sharepoint",
+        "security",
+        "technologies",
+        "applications",
+        "demonstrations"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T22:42:06Z",
@@ -867,14 +867,14 @@
       "private": false,
       "stargazersCount": 4,
       "forksCount": 6,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks"
+      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks/main/0_Azure/img/migrated-assets/root-overview.png"
     },
     {
       "name": "AzureTerraformTemplates-v0.0.0",
-      "title": "AzureTerraformTemplates-v0.0.0",
+      "title": "Azure Terraform Deployment Sample Templates: Version 0.0.0",
       "fullName": "Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AzureTerraformTemplates-v0.0.0/",
       "description": "Sample Terraform templates for deploying and managing Azure resources. These templates are meant to serve as examples and should be adjusted as needed to fit specific use cases or requirements.",
       "topics": [
         "azure-terraform",
@@ -884,26 +884,26 @@
         "terraform-template"
       ],
       "categories": [
+        "azure",
+        "terraform",
         "templates",
-        "adjusted",
-        "azure-terraform",
-        "cases",
-        "core-academy",
-        "deploying"
+        "values",
+        "resources",
+        "iot"
       ],
       "keywords": [
+        "azure",
+        "terraform",
         "templates",
-        "adjusted",
-        "azure-terraform",
-        "cases",
-        "core-academy",
-        "deploying",
-        "fit",
-        "iac-terraform",
-        "insfrastructure",
-        "managing",
-        "meant",
-        "resources"
+        "values",
+        "resources",
+        "iot",
+        "specified",
+        "click",
+        "expand",
+        "variable",
+        "version",
+        "variables"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T21:39:54Z",
@@ -911,14 +911,14 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 3,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0"
+      "imageUrl": "https://github.com/user-attachments/assets/53b47aa7-134e-4cf7-b0b8-cdebdd0583ed"
     },
     {
       "name": "Fabric-EnterpriseFramework",
-      "title": "Fabric-EnterpriseFramework",
+      "title": "Microsoft Fabric: Enterprise Framework - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Fabric-EnterpriseFramework/",
       "description": "This repository contains demos and guides for building a well-architected framework for a Microsoft Fabric enterprise-level data platform. These demos are intended as a guide.  For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "best-practices",
@@ -931,26 +931,26 @@
         "observability"
       ],
       "categories": [
-        "architected",
-        "best-practices",
-        "building",
-        "cost-management",
-        "da-academy",
-        "deployment-pipelines"
+        "data",
+        "iac",
+        "fabric",
+        "purview",
+        "network",
+        "platform"
       ],
       "keywords": [
-        "architected",
-        "best-practices",
-        "building",
-        "cost-management",
-        "da-academy",
-        "deployment-pipelines",
+        "data",
+        "iac",
         "fabric",
-        "github-integration",
-        "level",
-        "microsoft-fabric",
-        "observability",
-        "well"
+        "purview",
+        "network",
+        "platform",
+        "practices",
+        "spending",
+        "networking",
+        "best",
+        "access",
+        "resources"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T21:35:14Z",
@@ -958,14 +958,14 @@
       "private": false,
       "stargazersCount": 6,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework"
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "azDataBase-Freeing-Unused-Space",
-      "title": "azDataBase-Freeing-Unused-Space",
+      "title": "Azure Databases: Optimizing Database Performance by Freeing Up Unused Space - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/azDataBase-Freeing-Unused-Space/",
       "description": "This repository contains demos and guides for Optimizing Azure Database Performance by Freeing Up Unused Space.  These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft support directly.",
       "topics": [
         "azure-databases",
@@ -976,26 +976,26 @@
         "performance"
       ],
       "categories": [
-        "performance",
-        "support",
-        "azure-databases",
-        "da-academy",
+        "unused",
+        "space",
+        "freeing",
         "database",
-        "database-strategy"
+        "azure",
+        "topic"
       ],
       "keywords": [
-        "performance",
-        "support",
-        "azure-databases",
-        "da-academy",
-        "database",
-        "database-strategy",
-        "free-space",
-        "freeing",
-        "optimization",
-        "optimizing",
+        "unused",
         "space",
-        "unused"
+        "freeing",
+        "database",
+        "azure",
+        "topic",
+        "sql",
+        "additional",
+        "databases",
+        "relational",
+        "maintenance",
+        "instance"
       ],
       "language": "TSQL",
       "updatedAt": "2026-07-29T21:29:23Z",
@@ -1003,14 +1003,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space"
+      "imageUrl": "https://github.com/user-attachments/assets/81d088ab-da80-4643-9c2c-2558709c90ff"
     },
     {
       "name": "AzureFunctionApp-TempUsage",
-      "title": "AzureFunctionApp-TempUsage",
+      "title": "Azure Function App Infrastructure - Overview Runtime and Storage Insights (Temp Files)",
       "fullName": "Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AzureFunctionApp-TempUsage/",
       "description": " Overview about how Azure Function Apps operate within App Service infrastructure, focusing on temp file creation, storage, and management. Runtime behavior, deployment impact, and optimization strategies. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "apps-academy",
@@ -1022,26 +1022,26 @@
         "temporary-usage"
       ],
       "categories": [
-        "apps-academy",
-        "azure-infrastructure",
-        "behavior",
-        "creation",
-        "focusing",
-        "function"
+        "temp",
+        "disk",
+        "decay",
+        "function",
+        "accumulation",
+        "mounted"
       ],
       "keywords": [
-        "apps-academy",
-        "azure-infrastructure",
-        "behavior",
-        "creation",
-        "focusing",
+        "temp",
+        "disk",
+        "decay",
         "function",
-        "function-app",
-        "high-decay",
-        "impact",
-        "infrastructure",
-        "operate",
-        "optimization"
+        "accumulation",
+        "mounted",
+        "app",
+        "file",
+        "writable",
+        "telemetry",
+        "deployment",
+        "functions"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T21:10:19Z",
@@ -1049,14 +1049,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage"
+      "imageUrl": "https://github.com/user-attachments/assets/4964fb4e-360c-4844-afda-7d0cddc1593c"
     },
     {
       "name": "Fabric-AI-Retail-Demo",
-      "title": "Fabric-AI-Retail-Demo",
+      "title": "Demo: Retail Intelligence with Fabric - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Fabric-AI-Retail-Demo/",
       "description": "Designed to highlight the power of Microsoft Fabric in the retail sector. How Fabric can serve not only as a unified data platform but also as a strategic foundation for preparing data for future AI-driven use cases",
       "topics": [
         "ai",
@@ -1072,25 +1072,25 @@
       ],
       "categories": [
         "fabric",
-        "retail",
-        "ai",
-        "cases",
-        "consumer-goods",
-        "da-academy"
+        "data",
+        "decision",
+        "synapse",
+        "integration",
+        "analytics"
       ],
       "keywords": [
         "fabric",
-        "retail",
-        "ai",
-        "cases",
-        "consumer-goods",
-        "da-academy",
-        "data-agent",
-        "designed",
-        "driven",
-        "future",
-        "highlight",
-        "industry"
+        "data",
+        "decision",
+        "synapse",
+        "integration",
+        "analytics",
+        "science",
+        "unified",
+        "terraform",
+        "insights",
+        "integrates",
+        "enhancing"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T21:03:23Z",
@@ -1098,14 +1098,14 @@
       "private": false,
       "stargazersCount": 2,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo"
+      "imageUrl": "https://github.com/user-attachments/assets/ef1db682-1673-421e-a9cf-370894ce7be3"
     },
     {
       "name": "Demystifying-Cloud-Evolution",
-      "title": "Demystifying-Cloud-Evolution",
+      "title": "Demystifying Cloud Evolution - Overview From Silicon to Azure (theory + self-guided practice)",
       "fullName": "Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Demystifying-Cloud-Evolution/",
       "description": "Demystifying Cloud Evolution provides an overview of cloud technologies, blending historical context with technical insights into Azure’s architecture. It covers capacity management, energy efficiency, and orchestration tools like Kubernetes, with demos and learnings for community reference",
       "topics": [
         "azure",
@@ -1115,26 +1115,26 @@
         "core-academy"
       ],
       "categories": [
-        "cloud",
-        "azure",
-        "blending",
-        "capacity",
-        "capacity-planning",
-        "cloud-computing"
+        "carbon",
+        "computing",
+        "energy",
+        "technical",
+        "later",
+        "bit"
       ],
       "keywords": [
-        "cloud",
-        "azure",
-        "blending",
-        "capacity",
-        "capacity-planning",
-        "cloud-computing",
-        "community",
-        "computing-history",
-        "core-academy",
-        "covers",
-        "demystifying",
-        "efficiency"
+        "carbon",
+        "computing",
+        "energy",
+        "technical",
+        "later",
+        "bit",
+        "aware",
+        "intensity",
+        "cpu",
+        "per",
+        "memory",
+        "regions"
       ],
       "language": null,
       "updatedAt": "2026-07-29T20:56:53Z",
@@ -1142,14 +1142,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution"
+      "imageUrl": "https://github.com/user-attachments/assets/4096eb52-7a0e-4a98-8b01-0b8e7884cdd8"
     },
     {
       "name": "AI-Agent-Infra-Blueprint",
-      "title": "AI-Agent-Infra-Blueprint",
+      "title": "Azure AI Agent: Infrastructure Blueprint - Deployment Guide",
       "fullName": "Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AI-Agent-Infra-Blueprint/",
       "description": "This demonstration showcases the complete setup of the infrastructure required to build a generative AI agent using Azure AI Foundry and Azure OpenAI Service. This example is configured within a public network; however, please ensure you adapt the implementation to align with your specific use case and best practices ",
       "topics": [
         "ai",
@@ -1161,25 +1161,25 @@
       ],
       "categories": [
         "azure",
-        "adapt",
-        "ai",
-        "ai-agent-setup",
-        "ai-agents",
-        "align"
+        "foundry",
+        "resources",
+        "network",
+        "showcases",
+        "agent"
       ],
       "keywords": [
         "azure",
-        "adapt",
-        "ai",
-        "ai-agent-setup",
-        "ai-agents",
-        "align",
-        "best",
-        "case",
-        "complete",
-        "configured",
-        "core-academy",
-        "demonstration"
+        "foundry",
+        "resources",
+        "network",
+        "showcases",
+        "agent",
+        "based",
+        "ensure",
+        "resource",
+        "consider",
+        "environment",
+        "considerations"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T20:52:52Z",
@@ -1187,14 +1187,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint"
+      "imageUrl": "https://github.com/user-attachments/assets/c8730a94-df95-4682-8b82-483c50194973"
     },
     {
       "name": "MS-Fabric-Essentials-Workshop",
-      "title": "MS-Fabric-Essentials-Workshop",
+      "title": "Microsoft Fabric: Essentials Workshop",
       "fullName": "Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/MS-Fabric-Essentials-Workshop/",
       "description": "Fabric Basic Workshop, these guides will elaborate on the standard architecture or features commonly used across industries.",
       "topics": [
         "ai-llms",
@@ -1212,26 +1212,26 @@
         "terraform"
       ],
       "categories": [
-        "ai-llms",
-        "ai-skills",
-        "azure-data-lake",
-        "azure-sql-server",
-        "basic",
-        "ci-cd"
+        "fabric",
+        "terraform",
+        "approach",
+        "infrastructure",
+        "transformer",
+        "extracting"
       ],
       "keywords": [
-        "ai-llms",
-        "ai-skills",
-        "azure-data-lake",
-        "azure-sql-server",
-        "basic",
-        "ci-cd",
-        "cicd",
-        "commonly",
-        "continous-deployment",
-        "continous-integration",
-        "da-academy",
-        "elaborate"
+        "fabric",
+        "terraform",
+        "approach",
+        "infrastructure",
+        "transformer",
+        "extracting",
+        "langchain",
+        "resources",
+        "mlflow",
+        "shows",
+        "machine",
+        "follow"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T20:41:31Z",
@@ -1239,14 +1239,14 @@
       "private": false,
       "stargazersCount": 2,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop"
+      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop/main/assets/before-fabric.png"
     },
     {
       "name": "Fabric-Date-Hierarchy-Accelerator",
-      "title": "Fabric-Date-Hierarchy-Accelerator",
+      "title": "Fabric Date Hierarchy Accelerator",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-Date-Hierarchy-Accelerator",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-Date-Hierarchy-Accelerator",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Fabric-Date-Hierarchy-Accelerator/",
       "description": "Automate and standardize reusable date hierarchies in Power BI and Microsoft Fabric models using templates, scripts, and best practices.",
       "topics": [
         "da-academy",
@@ -1257,26 +1257,26 @@
         "power-bi"
       ],
       "categories": [
-        "automate",
-        "best",
-        "da-academy",
-        "date-hierarchies",
-        "directlake-hierarchy-automation",
-        "fabric"
-      ],
-      "keywords": [
-        "automate",
-        "best",
-        "da-academy",
-        "date-hierarchies",
-        "directlake-hierarchy-automation",
         "fabric",
         "hierarchies",
-        "microsoft-azure",
-        "microsoft-fabric",
         "power",
-        "power-bi",
-        "reusable"
+        "notebook",
+        "option",
+        "lakehouse"
+      ],
+      "keywords": [
+        "fabric",
+        "hierarchies",
+        "power",
+        "notebook",
+        "option",
+        "lakehouse",
+        "direct",
+        "hierarchy",
+        "standardize",
+        "lake",
+        "scripts",
+        "prerequisites"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T20:22:10Z",
@@ -1284,14 +1284,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-Date-Hierarchy-Accelerator"
+      "imageUrl": "https://github.com/Cloud2BR-MSFTLearningHub/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Azure-DigitalTwins-Overview",
-      "title": "Azure-DigitalTwins-Overview",
+      "title": "Azure Digital Twins - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-DigitalTwins-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-DigitalTwins-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-DigitalTwins-Overview/",
       "description": "Overview about how Azure Digital Twins. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "apps-academy",
@@ -1304,26 +1304,26 @@
         "retail"
       ],
       "categories": [
-        "apps-academy",
-        "azure-digital-twins",
-        "azure-iot",
-        "consumer-goods",
         "digital",
-        "digital-twins"
+        "twins",
+        "dtdl",
+        "twin",
+        "devices",
+        "iot"
       ],
       "keywords": [
-        "apps-academy",
-        "azure-digital-twins",
-        "azure-iot",
-        "consumer-goods",
         "digital",
-        "digital-twins",
-        "industry",
-        "manufacturing",
-        "retail",
         "twins",
-        "about",
-        "contact"
+        "dtdl",
+        "twin",
+        "devices",
+        "iot",
+        "robots",
+        "sensors",
+        "shelf",
+        "azure",
+        "relationships",
+        "telemetry"
       ],
       "language": "PowerShell",
       "updatedAt": "2026-07-29T19:00:42Z",
@@ -1331,14 +1331,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-DigitalTwins-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/349ae79a-0d1f-4912-9e17-d2bfe3616f2d"
     },
     {
       "name": "Azure-App-Dev-Overview",
-      "title": "Azure-App-Dev-Overview",
+      "title": "Azure App Dev Services - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-App-Dev-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-App-Dev-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-App-Dev-Overview/",
       "description": "Azure App Dev Services. GitHub Overview. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "app",
@@ -1347,26 +1347,26 @@
         "azure-app-dev"
       ],
       "categories": [
-        "app",
-        "azure",
-        "azure-app-dev",
-        "dev",
+        "event",
         "apps",
-        "contact"
+        "azure",
+        "services",
+        "data",
+        "saas"
       ],
       "keywords": [
-        "app",
-        "azure",
-        "azure-app-dev",
-        "dev",
+        "event",
         "apps",
-        "contact",
-        "detailed",
-        "directly",
+        "azure",
         "services",
-        "official",
-        "please",
-        "refer"
+        "data",
+        "saas",
+        "bus",
+        "service",
+        "cloud",
+        "hubs",
+        "messaging",
+        "grid"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:46Z",
@@ -1374,14 +1374,14 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-App-Dev-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/7aa221fc-face-4860-919b-8207c99f4f00"
     },
     {
       "name": "Azure-MLOps-Overview",
-      "title": "Azure-MLOps-Overview",
+      "title": "Azure MLOps (Machine Learning Operations) - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-MLOps-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-MLOps-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-MLOps-Overview/",
       "description": "This demonstrates how to manage Azure MLOps. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "ai",
@@ -1394,26 +1394,26 @@
         "ops"
       ],
       "categories": [
-        "mlops",
+        "model",
+        "phase",
         "azure",
-        "ai",
-        "ai-academy",
-        "azure-ml",
-        "demonstrates"
+        "mlops",
+        "training",
+        "drift"
       ],
       "keywords": [
-        "mlops",
+        "model",
+        "phase",
         "azure",
-        "ai",
-        "ai-academy",
-        "azure-ml",
-        "demonstrates",
-        "machine-learning",
-        "ml",
-        "ops",
-        "contact",
-        "detailed",
-        "directly"
+        "mlops",
+        "training",
+        "drift",
+        "data",
+        "retraining",
+        "consideration",
+        "responsible",
+        "production",
+        "pipeline"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:33Z",
@@ -1421,14 +1421,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-MLOps-Overview"
+      "imageUrl": null
     },
     {
       "name": "GenAIOpsMaturityLevels",
-      "title": "GenAIOpsMaturityLevels",
+      "title": "Overview of Microsoft Azure GenAIOps Maturity Levels",
       "fullName": "Cloud2BR-MSFTLearningHub/GenAIOpsMaturityLevels",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/GenAIOpsMaturityLevels",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/GenAIOpsMaturityLevels/",
       "description": "This demonstrates how to manage LLMs using Microsoft Azure GenAIOps. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "ai",
@@ -1444,26 +1444,26 @@
         "ops"
       ],
       "categories": [
+        "llm",
         "genaiops",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "azure-ai",
-        "demonstrates"
+        "maturity",
+        "level",
+        "organizations",
+        "mlops"
       ],
       "keywords": [
-        "genaiops",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "azure-ai",
-        "demonstrates",
         "llm",
-        "llms",
-        "maturity-development",
-        "maturity-model",
+        "genaiops",
+        "maturity",
+        "level",
+        "organizations",
         "mlops",
-        "mlops-workflow"
+        "operations",
+        "quick",
+        "generative",
+        "optimized",
+        "practices",
+        "improvement"
       ],
       "language": "Python",
       "updatedAt": "2026-07-29T18:32:30Z",
@@ -1471,14 +1471,14 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/GenAIOpsMaturityLevels"
+      "imageUrl": "https://github.com/user-attachments/assets/f7246a17-9f56-4fd0-b554-8ebacf3f308e"
     },
     {
       "name": "org-repo-template",
       "title": "org-repo-template",
       "fullName": "Cloud2BR-MSFTLearningHub/org-repo-template",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/org-repo-template",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/org-repo-template/",
       "description": "Organizational repo template with automated pipelines (update date, update counter, notebook/markdown review, formatting checks, etc). Includes a general README structure with preferred header and counter badge. Ensures consistency, automation, and best practices across all org projects.",
       "topics": [
         "devops-best-practices",
@@ -1486,26 +1486,26 @@
         "template"
       ],
       "categories": [
+        "markdown",
+        "header",
         "counter",
-        "template",
-        "update",
-        "automated",
-        "automation",
-        "best"
+        "org",
+        "pull",
+        "requests"
       ],
       "keywords": [
+        "markdown",
+        "header",
         "counter",
-        "template",
+        "org",
+        "pull",
+        "requests",
+        "line",
         "update",
-        "automated",
-        "automation",
-        "best",
-        "checks",
-        "consistency",
-        "devops-best-practices",
-        "ensures",
-        "etc",
-        "formatting"
+        "block",
+        "pages",
+        "template",
+        "runs"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:27Z",
@@ -1513,14 +1513,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/org-repo-template"
+      "imageUrl": null
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-OpenFramework",
-      "title": "PDFs-Invoice-Processing-Fapp-OpenFramework",
+      "title": "Demo: Automated PDF Invoice Processing with Open Framework (full-code approach)",
       "fullName": "Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-OpenFramework",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-OpenFramework",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/PDFs-Invoice-Processing-Fapp-OpenFramework/",
       "description": "Example of how to create to extract PDFs from an Azure Storage Account, process them using Azure resources and Open Framework, and store the results in Cosmos DB for further analysis.",
       "topics": [
         "ai",
@@ -1539,26 +1539,26 @@
         "storage-account"
       ],
       "categories": [
+        "function",
+        "cosmos",
         "azure",
-        "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases",
-        "ai-use-cases-strategy"
+        "data",
+        "pdf",
+        "account"
       ],
       "keywords": [
-        "azure",
-        "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases",
-        "ai-use-cases-strategy",
-        "analysis",
-        "automated-extraction",
-        "consumer-goods",
+        "function",
         "cosmos",
-        "cosmos-db",
-        "create"
+        "azure",
+        "data",
+        "pdf",
+        "account",
+        "container",
+        "click",
+        "create",
+        "blob",
+        "resources",
+        "document"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:24Z",
@@ -1566,14 +1566,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-OpenFramework"
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-DocIntelligence",
-      "title": "PDFs-Invoice-Processing-Fapp-DocIntelligence",
+      "title": "Demo: Automated PDF Invoice Processing with Doc Intelligence (full-code approach)",
       "fullName": "Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-DocIntelligence",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-DocIntelligence",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/PDFs-Invoice-Processing-Fapp-DocIntelligence/",
       "description": "Example of how to create to extract PDFs from an Azure Storage Account, process them using Azure Document Intelligence, and store the results in Cosmos DB for further analysis. ",
       "topics": [
         "ai",
@@ -1592,26 +1592,26 @@
         "storage-account"
       ],
       "categories": [
+        "cosmos",
+        "document",
+        "function",
         "azure",
         "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "analysis"
+        "data"
       ],
       "keywords": [
+        "cosmos",
+        "document",
+        "function",
         "azure",
         "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "analysis",
-        "automated-extraction",
-        "consumer-goods",
-        "cosmos",
-        "cosmos-db",
+        "data",
+        "blob",
+        "click",
         "create",
-        "doc-intelligence"
+        "pdf",
+        "intelligence",
+        "container"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:20Z",
@@ -1619,14 +1619,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-DocIntelligence"
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "RAG-ChatBot-Implementation",
-      "title": "RAG-ChatBot-Implementation",
+      "title": "RAG ChatBot Implementation - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/RAG-ChatBot-Implementation",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/RAG-ChatBot-Implementation",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/RAG-ChatBot-Implementation/",
       "description": "This repository contains example of a RAG chat bot with a basic architecture (designed for scenarios without network isolation), and a standard Zero-Trust Architecture deployment. It is intended for quick demos and should be adjusted as needed to fit specific use cases or requirements.",
       "topics": [
         "ai",
@@ -1647,26 +1647,26 @@
         "use-cases"
       ],
       "categories": [
+        "azd",
         "rag",
-        "architecture",
-        "adjusted",
-        "ai",
-        "ai-academy",
-        "ai-use-cases"
+        "azure",
+        "powershell",
+        "step",
+        "trust"
       ],
       "keywords": [
+        "azd",
         "rag",
+        "azure",
+        "powershell",
+        "step",
+        "trust",
+        "gpt",
         "architecture",
-        "adjusted",
-        "ai",
-        "ai-academy",
-        "ai-use-cases",
-        "ai-use-cases-strategy",
-        "azd-templates",
-        "basic",
-        "bot",
-        "cases",
-        "chat"
+        "llm",
+        "network",
+        "sharepoint",
+        "zero"
       ],
       "language": "Bicep",
       "updatedAt": "2026-07-29T18:32:17Z",
@@ -1674,14 +1674,14 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 2,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/RAG-ChatBot-Implementation"
+      "imageUrl": "https://github.com/user-attachments/assets/5444e87c-32af-44e8-aa86-22fe4082c4f4"
     },
     {
       "name": "GitHub-Overview",
-      "title": "GitHub-Overview",
+      "title": "GitHub - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/GitHub-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/GitHub-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/GitHub-Overview/",
       "description": "GitHub Overview. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "app-academy",
@@ -1692,26 +1692,26 @@
         "pricing"
       ],
       "categories": [
-        "app-academy",
-        "demos",
-        "github-overview",
-        "pricing",
-        "apps",
-        "github"
+        "github",
+        "issues",
+        "changes",
+        "pull",
+        "branch",
+        "features"
       ],
       "keywords": [
-        "app-academy",
-        "demos",
-        "github-overview",
-        "pricing",
-        "apps",
         "github",
-        "contact",
-        "detailed",
-        "directly",
-        "official",
-        "please",
-        "refer"
+        "issues",
+        "changes",
+        "pull",
+        "branch",
+        "features",
+        "scanning",
+        "yml",
+        "git",
+        "dependabot",
+        "issue",
+        "security"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:14Z",
@@ -1719,14 +1719,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/GitHub-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/a3d413ce-b0d8-40a6-85d3-a3da825b34e3"
     },
     {
       "name": "Azure-ArtifactSigning-DevOps",
-      "title": "Azure-ArtifactSigning-DevOps",
+      "title": "Demo: Azure Artifact Signing (GitHub Actions + Terraform)",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-ArtifactSigning-DevOps",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-ArtifactSigning-DevOps",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-ArtifactSigning-DevOps/",
       "description": "This demo shows how Azure DevOps can build and digitally sign executables using a cloud‑hosted certificate where the private key never leaves Microsoft managed HSMs. No developer ever touches the certificate.  Please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "app-academy",
@@ -1739,26 +1739,26 @@
         "signing-code"
       ],
       "categories": [
+        "signing",
+        "artifact",
         "certificate",
-        "devops",
-        "app-academy",
-        "azure-artifacts",
-        "demo-app",
-        "developer"
+        "terraform",
+        "trusted",
+        "certificates"
       ],
       "keywords": [
+        "signing",
+        "artifact",
         "certificate",
-        "devops",
-        "app-academy",
-        "azure-artifacts",
-        "demo-app",
-        "developer",
-        "digitally",
-        "ever",
-        "executables",
-        "hosted",
-        "hsms",
-        "key"
+        "terraform",
+        "trusted",
+        "certificates",
+        "identity",
+        "vault",
+        "profile",
+        "github",
+        "key",
+        "oidc"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:10Z",
@@ -1766,14 +1766,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ArtifactSigning-DevOps"
+      "imageUrl": "https://github.com/user-attachments/assets/c9fc903c-04f6-4fea-93ed-ae7fe4969cde"
     },
     {
       "name": "BlobFileUpload-SummaryTool",
-      "title": "BlobFileUpload-SummaryTool",
+      "title": "Azure File Upload and Summary Generator - Accelerator",
       "fullName": "Cloud2BR-MSFTLearningHub/BlobFileUpload-SummaryTool",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/BlobFileUpload-SummaryTool",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/BlobFileUpload-SummaryTool/",
       "description": "This demonstrates how to create an automated file processing and summary generation tool using Microsoft Azure. It uses Azure AI Services, Blob Storage, Azure Functions, and Python to upload files, search for key values, and generate summaries in formats like xlsx, csv, and text. ",
       "topics": [
         "ai-services",
@@ -1787,25 +1787,25 @@
       ],
       "categories": [
         "azure",
-        "ai-services",
-        "automated",
-        "azure-cloud-services",
-        "blob",
-        "blob-storage"
+        "terraform",
+        "resources",
+        "xlsx",
+        "infrastructure",
+        "step"
       ],
       "keywords": [
         "azure",
-        "ai-services",
-        "automated",
-        "azure-cloud-services",
-        "blob",
-        "blob-storage",
-        "create",
+        "terraform",
+        "resources",
+        "xlsx",
+        "infrastructure",
+        "step",
+        "network",
+        "ensure",
+        "services",
         "csv",
-        "demonstrates",
-        "file-summary",
-        "file-upload",
-        "formats"
+        "summaries",
+        "blob"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:07Z",
@@ -1813,14 +1813,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/BlobFileUpload-SummaryTool"
+      "imageUrl": "https://github.com/user-attachments/assets/beaa73fb-e677-48d9-a3d9-a4367c3d7974"
     },
     {
       "name": "Fabric-MCP-Agent2Agent",
-      "title": "Fabric-MCP-Agent2Agent",
+      "title": "Demo: Configure the Microsoft Fabric MCP Connector in Copilot Studio",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-MCP-Agent2Agent",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-MCP-Agent2Agent",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Fabric-MCP-Agent2Agent/",
       "description": "Step by step reference implementation for setting up data agents and integrating agent with Copilot Studio",
       "topics": [
         "a2a",
@@ -1838,26 +1838,26 @@
         "retail"
       ],
       "categories": [
-        "step",
-        "agents",
-        "a2a",
-        "agent2agent",
-        "ai",
-        "consumer-goods"
+        "fabric",
+        "copilot",
+        "mcp",
+        "agent",
+        "data",
+        "studio"
       ],
       "keywords": [
-        "step",
-        "agents",
-        "a2a",
-        "agent2agent",
-        "ai",
-        "consumer-goods",
-        "copilot-agent",
-        "copilot-studio",
-        "da-academy",
         "fabric",
-        "fabric-mcp",
-        "industry"
+        "copilot",
+        "mcp",
+        "agent",
+        "data",
+        "studio",
+        "dataset",
+        "server",
+        "credits",
+        "agents",
+        "generative",
+        "semantic"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T18:32:04Z",
@@ -1865,14 +1865,14 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-MCP-Agent2Agent"
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
     },
     {
       "name": "Azure-Text-Embedding-Overview",
-      "title": "Azure-Text-Embedding-Overview",
+      "title": "Azure Text Embedding Models",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-Text-Embedding-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-Text-Embedding-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-Text-Embedding-Overview/",
       "description": "Optimize text embedding performance using Azure-native tools and models. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "ai-foundry",
@@ -1884,26 +1884,26 @@
         "text-embedding"
       ],
       "categories": [
-        "ai-foundry",
-        "ai-search",
-        "azure-openai",
-        "best-practices",
-        "embedding",
-        "marketplace"
-      ],
-      "keywords": [
-        "ai-foundry",
-        "ai-search",
-        "azure-openai",
-        "best-practices",
+        "search",
         "embedding",
         "marketplace",
-        "native",
-        "optimize",
-        "performance",
-        "terraform-deployment",
-        "text",
-        "text-embedding"
+        "azure",
+        "multilingual",
+        "semantic"
+      ],
+      "keywords": [
+        "search",
+        "embedding",
+        "marketplace",
+        "azure",
+        "multilingual",
+        "semantic",
+        "embeddings",
+        "retrieval",
+        "foundry",
+        "vector",
+        "indexing",
+        "voyage"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T17:58:48Z",
@@ -1911,14 +1911,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Text-Embedding-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/424f2d85-37e4-4e74-b303-2e8c5a23a864"
     },
     {
       "name": "azSynapse-Dynamic-RemoveBlanks",
-      "title": "azSynapse-Dynamic-RemoveBlanks",
+      "title": "Azure Synapse: Dynamically Remove Spaces",
       "fullName": "Cloud2BR-MSFTLearningHub/azSynapse-Dynamic-RemoveBlanks",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/azSynapse-Dynamic-RemoveBlanks",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/azSynapse-Dynamic-RemoveBlanks/",
       "description": "Quick overview of what is Azure Synapse and demo of how to Dynamically Remove Blank Spaces to create a view",
       "topics": [
         "automation",
@@ -1928,26 +1928,26 @@
         "remove-spaces"
       ],
       "categories": [
-        "automation",
-        "azure-synapse",
-        "blank",
-        "create",
-        "create-view",
-        "da-academy"
+        "synapse",
+        "pool",
+        "sql",
+        "views",
+        "spaces",
+        "warehousing"
       ],
       "keywords": [
-        "automation",
-        "azure-synapse",
-        "blank",
-        "create",
-        "create-view",
-        "da-academy",
-        "dynamically",
-        "quick",
-        "remove",
-        "remove-spaces",
+        "synapse",
+        "pool",
+        "sql",
+        "views",
         "spaces",
-        "synapse"
+        "warehousing",
+        "data",
+        "dynamically",
+        "analytics",
+        "remove",
+        "pools",
+        "tables"
       ],
       "language": "TSQL",
       "updatedAt": "2026-07-29T17:20:38Z",
@@ -1955,14 +1955,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/azSynapse-Dynamic-RemoveBlanks"
+      "imageUrl": "https://github.com/user-attachments/assets/9a753e36-e229-4da7-8a87-a5c21ddd70f9"
     },
     {
       "name": "MySQL-autoscale-IOPS",
-      "title": "MySQL-autoscale-IOPS",
+      "title": "Azure MySQL Autoscale IOPS - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/MySQL-autoscale-IOPS",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/MySQL-autoscale-IOPS",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/MySQL-autoscale-IOPS/",
       "description": "Quick overview of what IOPS means in a MySQL server and explore a few example scripts to configure it ",
       "topics": [
         "automation",
@@ -1973,25 +1973,25 @@
       ],
       "categories": [
         "iops",
-        "automation",
         "autoscale",
-        "da-academy",
-        "few",
-        "means"
+        "mysql",
+        "server",
+        "azure",
+        "monitor"
       ],
       "keywords": [
         "iops",
-        "automation",
         "autoscale",
-        "da-academy",
-        "few",
-        "means",
         "mysql",
-        "mysql-server",
-        "quick",
-        "scripts",
         "server",
-        "explore"
+        "azure",
+        "monitor",
+        "database",
+        "tag",
+        "video",
+        "flexible",
+        "select",
+        "enable"
       ],
       "language": "Python",
       "updatedAt": "2026-07-29T16:14:24Z",
@@ -1999,14 +1999,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/MySQL-autoscale-IOPS"
+      "imageUrl": "https://github.com/user-attachments/assets/f08afb04-e271-4ac3-8594-e3e98a9bfd2e"
     },
     {
       "name": "Azure-MCP-blueprint",
-      "title": "Azure-MCP-blueprint",
+      "title": "MCP (Model Context Protocol) Blueprint in Azure – Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-MCP-blueprint",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-MCP-blueprint",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-MCP-blueprint/",
       "description": "Blueprint sample to setup MCP server in Azure, with multiple hosting options. These demos are intended as a guide. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "ai",
@@ -2020,25 +2020,25 @@
       ],
       "categories": [
         "mcp",
-        "ai",
-        "ai-agents",
-        "ai-agents-framework",
-        "azure-mcp",
-        "blueprint"
+        "records",
+        "claims",
+        "equipment",
+        "transaction",
+        "status"
       ],
       "keywords": [
         "mcp",
-        "ai",
-        "ai-agents",
-        "ai-agents-framework",
-        "azure-mcp",
-        "blueprint",
-        "core-academy",
-        "mcp-azure-blueprint",
-        "mcp-server",
-        "multiple",
-        "options",
-        "server"
+        "records",
+        "claims",
+        "equipment",
+        "transaction",
+        "status",
+        "number",
+        "search",
+        "type",
+        "days",
+        "name",
+        "history"
       ],
       "language": "Python",
       "updatedAt": "2026-07-28T21:47:32Z",
@@ -2046,14 +2046,14 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-MCP-blueprint"
+      "imageUrl": "https://github.com/user-attachments/assets/f215d752-4212-4b2a-a0df-7018ada9a607"
     },
     {
       "name": "SAP-integration-AzLogicApps",
-      "title": "SAP-integration-AzLogicApps",
+      "title": "SAP OData Integration with Azure Logic Apps - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/SAP-integration-AzLogicApps",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/SAP-integration-AzLogicApps",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/SAP-integration-AzLogicApps/",
       "description": "Comparison of approaches for handling cookie and CSRF token management.  For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "azure-logic-apps",
@@ -2062,26 +2062,26 @@
         "sap-odata"
       ],
       "categories": [
-        "approaches",
-        "azure-logic-apps",
-        "comparison",
+        "sap",
         "cookie",
-        "csrf",
-        "da-academy"
+        "logic",
+        "header",
+        "apps",
+        "cookies"
       ],
       "keywords": [
-        "approaches",
-        "azure-logic-apps",
-        "comparison",
-        "cookie",
-        "csrf",
-        "da-academy",
-        "handling",
         "sap",
-        "sap-odata",
-        "token",
-        "management",
-        "contact"
+        "cookie",
+        "logic",
+        "header",
+        "apps",
+        "cookies",
+        "session",
+        "apim",
+        "csrf",
+        "complex",
+        "string",
+        "handling"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T17:13:59Z",
@@ -2089,14 +2089,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/SAP-integration-AzLogicApps"
+      "imageUrl": "https://github.com/user-attachments/assets/e4cb0eb8-5eff-4052-9e92-284870d08bab"
     },
     {
       "name": "AzureArcRecommendations-AI-Agent",
-      "title": "AzureArcRecommendations-AI-Agent",
+      "title": "Demo: Automating Recommendations from Azure Arc with an AI Agent",
       "fullName": "Cloud2BR-MSFTLearningHub/AzureArcRecommendations-AI-Agent",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AzureArcRecommendations-AI-Agent",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/AzureArcRecommendations-AI-Agent/",
       "description": "This repository provides an example of how to create a AI Agent using a basic architecture (without network isolation). It is designed for quick demos and should be customized as needed to meet specific use cases or requirements.",
       "topics": [
         "azure-agent",
@@ -2104,26 +2104,26 @@
         "disaster-recovery"
       ],
       "categories": [
-        "azure-agent",
-        "azure-arc",
-        "basic",
-        "cases",
-        "create",
-        "customized"
+        "recommendations",
+        "function",
+        "arc",
+        "app",
+        "enrichment",
+        "sends"
       ],
       "keywords": [
-        "azure-agent",
-        "azure-arc",
-        "basic",
-        "cases",
-        "create",
-        "customized",
-        "designed",
-        "disaster-recovery",
-        "isolation",
-        "meet",
-        "network",
-        "quick"
+        "recommendations",
+        "function",
+        "arc",
+        "app",
+        "enrichment",
+        "sends",
+        "logic",
+        "raw",
+        "account",
+        "enriched",
+        "severity",
+        "summarizes"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T17:08:50Z",
@@ -2131,14 +2131,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureArcRecommendations-AI-Agent"
+      "imageUrl": "https://github.com/user-attachments/assets/48774cdd-ba27-404c-b7fc-a124fd176e2a"
     },
     {
       "name": "Azure-ML-Overview",
-      "title": "Azure-ML-Overview",
+      "title": "Azure Machine Learning - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-ML-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-ML-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-ML-Overview/",
       "description": "This repository provides an overview of Azure Machine Learning components for demonstration purposes only.",
       "topics": [
         "ai-academy",
@@ -2151,26 +2151,26 @@
         "ml"
       ],
       "categories": [
-        "ai-academy",
-        "ai-foundry",
-        "ai-use-cases-strategy",
-        "azml",
-        "azure-deployment",
-        "azure-machine-learning"
+        "training",
+        "azure",
+        "compute",
+        "inference",
+        "data",
+        "machine"
       ],
       "keywords": [
-        "ai-academy",
-        "ai-foundry",
-        "ai-use-cases-strategy",
-        "azml",
-        "azure-deployment",
-        "azure-machine-learning",
-        "components",
-        "demonstration",
-        "fabric-ai",
-        "ml",
+        "training",
+        "azure",
+        "compute",
+        "inference",
+        "data",
         "machine",
-        "provides"
+        "jobs",
+        "notebooks",
+        "model",
+        "experiments",
+        "datasets",
+        "pipelines"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-28T14:26:15Z",
@@ -2178,14 +2178,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ML-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/dcfd2631-ed20-473c-8174-eb88387f76b8"
     },
     {
       "name": "PDFs-Layouts-Processing-Fapp-DocIntelligence",
-      "title": "PDFs-Layouts-Processing-Fapp-DocIntelligence",
+      "title": "Demo: PDF Layout Extraction with Doc Intelligence (full-code approach)",
       "fullName": "Cloud2BR-MSFTLearningHub/PDFs-Layouts-Processing-Fapp-DocIntelligence",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/PDFs-Layouts-Processing-Fapp-DocIntelligence",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/PDFs-Layouts-Processing-Fapp-DocIntelligence/",
       "description": "Example of how to create to extract tables, check boxes, and text form forms and documents from an Azure Storage Account, process them using Azure Document Intelligence, and store the results in Cosmos DB for further analysis. ",
       "topics": [
         "ai",
@@ -2204,26 +2204,26 @@
         "storage-account"
       ],
       "categories": [
+        "function",
+        "document",
         "azure",
-        "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "analysis"
+        "cosmos",
+        "pdf",
+        "blob"
       ],
       "keywords": [
+        "function",
+        "document",
         "azure",
-        "account",
-        "ai",
-        "ai-academy",
-        "ai-use-cases-strategy",
-        "analysis",
-        "automated-extraction",
-        "boxes",
-        "consumer-goods",
         "cosmos",
-        "cosmos-db",
-        "create"
+        "pdf",
+        "blob",
+        "intelligence",
+        "data",
+        "app",
+        "layout",
+        "scale",
+        "storage"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T13:10:03Z",
@@ -2231,14 +2231,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Layouts-Processing-Fapp-DocIntelligence"
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
-      "title": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
+      "title": "Demo: Azure Implementation PDF Layout Extraction with Azure AI Document Intelligence Supporting Multiple Document Versions with Visual Selection Cues (full-code approach)",
       "fullName": "Cloud2BR-MSFTLearningHub/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing/",
       "description": "Extended solution for extracting tables, checkboxes, and visually selected values (e.g., shaded cells, Xs, checkmarks) from PDFs using Azure Document Intelligence and Vision.",
       "topics": [
         "ai",
@@ -2250,26 +2250,26 @@
         "retail"
       ],
       "categories": [
-        "ai",
-        "ai-academy",
-        "ai-use-cases",
-        "cells",
-        "checkboxes",
-        "checkmarks"
+        "document",
+        "function",
+        "azure",
+        "pdf",
+        "cosmos",
+        "blob"
       ],
       "keywords": [
-        "ai",
-        "ai-academy",
-        "ai-use-cases",
-        "cells",
-        "checkboxes",
-        "checkmarks",
-        "consumer-goods",
         "document",
-        "extended",
-        "extracting",
-        "industry",
-        "pdf-extractor"
+        "function",
+        "azure",
+        "pdf",
+        "cosmos",
+        "blob",
+        "intelligence",
+        "data",
+        "structured",
+        "app",
+        "vision",
+        "storage"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T13:00:11Z",
@@ -2277,14 +2277,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing"
+      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
     },
     {
       "name": "Agentic-AI-Media-Assistant",
-      "title": "Agentic-AI-Media-Assistant",
+      "title": "Demo: Zava Media AI Assistant Multi-Agent Architecture for Image & Video Processing - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Agentic-AI-Media-Assistant",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Agentic-AI-Media-Assistant",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Agentic-AI-Media-Assistant/",
       "description": "Demos and guides for building a Multimodal AI Media assistant. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "a2a",
@@ -2299,26 +2299,26 @@
         "zero-touch-provisioning"
       ],
       "categories": [
-        "a2a",
-        "ai",
-        "ai-academy",
-        "assistant",
-        "building",
-        "demo"
+        "sweden",
+        "agents",
+        "east",
+        "generation",
+        "video",
+        "chat"
       ],
       "keywords": [
-        "a2a",
-        "ai",
-        "ai-academy",
-        "assistant",
-        "building",
-        "demo",
-        "devops",
-        "industry",
-        "media",
-        "media-assistant",
-        "multi-agent",
-        "multimodal"
+        "sweden",
+        "agents",
+        "east",
+        "generation",
+        "video",
+        "chat",
+        "central",
+        "flux",
+        "pro",
+        "agent",
+        "sora",
+        "model"
       ],
       "language": "Python",
       "updatedAt": "2026-07-28T03:12:44Z",
@@ -2326,14 +2326,14 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Agentic-AI-Media-Assistant"
+      "imageUrl": "https://github.com/user-attachments/assets/b53017b9-4229-46b2-9759-b8aab8316b89"
     },
     {
       "name": "Azure-ML-Advanced",
-      "title": "Azure-ML-Advanced",
+      "title": "Azure Machine Learning: Advanced",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-ML-Advanced",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-ML-Advanced",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-ML-Advanced/",
       "description": "This repository provides an advanced overview of Azure Machine Learning components for demonstration purposes only.",
       "topics": [
         "ai-academy",
@@ -2342,26 +2342,26 @@
         "machine-learning-e2e"
       ],
       "categories": [
-        "advanced",
-        "ai-academy",
-        "components",
-        "demonstration",
-        "machine-learning",
-        "machine-learning-algorithms"
+        "theta",
+        "frac",
+        "training",
+        "mathcal",
+        "sum",
+        "drift"
       ],
       "keywords": [
-        "advanced",
-        "ai-academy",
-        "components",
-        "demonstration",
-        "machine-learning",
-        "machine-learning-algorithms",
-        "machine-learning-e2e",
-        "machine",
-        "provides",
-        "purposes",
-        "azure",
-        "only"
+        "theta",
+        "frac",
+        "training",
+        "mathcal",
+        "sum",
+        "drift",
+        "model",
+        "minimum",
+        "recall",
+        "hat",
+        "precision",
+        "stages"
       ],
       "language": "HTML",
       "updatedAt": "2026-06-29T20:25:18Z",
@@ -2369,11 +2369,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ML-Advanced"
+      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/Azure-ML-Advanced/main/docs/assets/img/automl_diagram.svg"
     },
     {
       "name": "org-discussions",
-      "title": "org-discussions",
+      "title": "Repository that hosts the discussions (Public)",
       "fullName": "Cloud2BR-MSFTLearningHub/org-discussions",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/org-discussions",
       "pagesUrl": null,
@@ -2384,26 +2384,26 @@
         "organization"
       ],
       "categories": [
+        "welcome",
+        "community",
         "discussions",
-        "organization",
-        "answer",
-        "backend-format",
-        "broadcast",
-        "community"
+        "ideas",
+        "announcements",
+        "tell"
       ],
       "keywords": [
-        "discussions",
-        "organization",
-        "answer",
-        "backend-format",
-        "broadcast",
+        "welcome",
         "community",
-        "conversations",
-        "hold",
-        "hosts",
-        "related",
-        "wider",
-        "updates"
+        "discussions",
+        "ideas",
+        "announcements",
+        "tell",
+        "product",
+        "answer",
+        "categories",
+        "show",
+        "organization",
+        "clear"
       ],
       "language": null,
       "updatedAt": "2026-04-08T19:20:30Z",
@@ -2411,11 +2411,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/org-discussions"
+      "imageUrl": "https://github.com/user-attachments/assets/313bb41a-d11f-4f19-b5a4-7255a67e40c8"
     },
     {
       "name": ".github",
-      "title": ".github",
+      "title": ".github (Profile + Automation)",
       "fullName": "Cloud2BR-MSFTLearningHub/.github",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/.github",
       "pagesUrl": null,
@@ -2427,21 +2427,25 @@
       ],
       "categories": [
         "profile",
-        "appear",
-        "github-organization",
-        "org-level",
-        "organization",
-        "profile-repo"
+        "badge",
+        "counter",
+        "visitor",
+        "workflow",
+        "github"
       ],
       "keywords": [
         "profile",
-        "appear",
-        "github-organization",
-        "org-level",
-        "organization",
-        "profile-repo",
+        "badge",
+        "counter",
+        "visitor",
+        "workflow",
+        "github",
+        "view",
         "special",
-        "github"
+        "actions",
+        "update",
+        "schedule",
+        "organization"
       ],
       "language": null,
       "updatedAt": "2026-04-08T17:45:56Z",
@@ -2449,14 +2453,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/.github"
+      "imageUrl": "https://github.com/user-attachments/assets/6001ee86-4708-47dd-a923-ffd9905d3fd6"
     },
     {
       "name": "Azure-Capacity-Overview",
-      "title": "Azure-Capacity-Overview",
+      "title": "Azure Capacity Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-Capacity-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-Capacity-Overview",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-Capacity-Overview/",
       "description": "Azure Capacity Overview. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "azure-capacity",
@@ -2466,26 +2470,26 @@
         "refresh-dashboard"
       ],
       "categories": [
-        "azure-capacity",
-        "capacity",
-        "capacity-overview",
-        "demo",
-        "gh-pages",
-        "refresh-dashboard"
+        "covers",
+        "regional",
+        "region",
+        "presence",
+        "metadata",
+        "planning"
       ],
       "keywords": [
-        "azure-capacity",
-        "capacity",
-        "capacity-overview",
-        "demo",
-        "gh-pages",
-        "refresh-dashboard",
-        "contact",
-        "detailed",
-        "directly",
-        "official",
-        "azure",
-        "please"
+        "covers",
+        "regional",
+        "region",
+        "presence",
+        "metadata",
+        "planning",
+        "whether",
+        "helps",
+        "useful",
+        "signals",
+        "provider",
+        "families"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-04-06T21:48:55Z",
@@ -2493,14 +2497,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Capacity-Overview"
+      "imageUrl": "https://github.com/user-attachments/assets/56c98826-92ea-4ba2-ac2e-ad3b9c866c8b"
     },
     {
       "name": "Azure-Databases-Purview-Advisor",
-      "title": "Azure-Databases-Purview-Advisor",
+      "title": "Azure Databases Advisor \\& Unifying Data Governance with Microsoft Purview - Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Azure-Databases-Purview-Advisor",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Azure-Databases-Purview-Advisor",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Azure-Databases-Purview-Advisor/",
       "description": "Practical examples and guidance for working with Azure database services (setup, performance tuning, data modeling, and best practices, etc)",
       "topics": [
         "azure-database",
@@ -2514,26 +2518,26 @@
         "postgresql"
       ],
       "categories": [
-        "azure-database",
-        "azure-sql-database",
-        "azure-sql-managed-instance",
-        "best",
-        "cosmos",
-        "da-academy"
+        "azure",
+        "differentiators",
+        "mongodb",
+        "products",
+        "benefits",
+        "sql"
       ],
       "keywords": [
-        "azure-database",
-        "azure-sql-database",
-        "azure-sql-managed-instance",
-        "best",
-        "cosmos",
-        "da-academy",
-        "database",
-        "etc",
-        "gh-pages",
-        "modeling",
+        "azure",
+        "differentiators",
         "mongodb",
-        "mysql"
+        "products",
+        "benefits",
+        "sql",
+        "paas",
+        "database",
+        "related",
+        "oracle",
+        "quick",
+        "cases"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-04-06T19:52:11Z",
@@ -2541,14 +2545,14 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Databases-Purview-Advisor"
+      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/697f7265-647a-41e2-a2f5-ec4b66cf3321"
     },
     {
       "name": "Fabric-SKU-EstimationTool",
-      "title": "Fabric-SKU-EstimationTool",
+      "title": "Microsoft Fabric SKU Estimation Tool (Helper) - Ilustrative tool",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-SKU-EstimationTool",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-SKU-EstimationTool",
-      "pagesUrl": null,
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/Fabric-SKU-EstimationTool/",
       "description": "This tool is intended for estimation purposes only. A more comprehensive Microsoft tool is now public preview General Availability (GA). Please stay tuned for updates. For official guidance, support, or more detailed information, please refer to Microsoft's official documentation or contact Microsoft directly.",
       "topics": [
         "da-academy",
@@ -2558,25 +2562,25 @@
         "sku"
       ],
       "categories": [
+        "sku",
+        "fabric",
         "tool",
-        "please",
-        "comprehensive",
-        "da-academy",
         "estimation",
-        "gh-pages"
+        "estimator",
+        "contains"
       ],
       "keywords": [
-        "tool",
-        "please",
-        "comprehensive",
-        "da-academy",
-        "estimation",
-        "gh-pages",
-        "helper",
-        "microsoft-fabric",
-        "now",
-        "public",
         "sku",
+        "fabric",
+        "tool",
+        "estimation",
+        "estimator",
+        "contains",
+        "page",
+        "web",
+        "javascript",
+        "announcing",
+        "helper",
         "stay"
       ],
       "language": "JavaScript",
@@ -2585,7 +2589,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-SKU-EstimationTool"
+      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/Fabric-SKU-EstimationTool/main/assets/before-fabric.png"
     }
   ]
 }

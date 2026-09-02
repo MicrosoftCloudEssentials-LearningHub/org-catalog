@@ -927,7 +927,7 @@ function render(list) {
       img.className = 'cardThumb';
       img.loading = 'lazy';
       img.alt = '';
-      img.src = repo.imageUrl || `https://opengraph.githubassets.com/1/${repo.fullName || repo.name}`;
+      img.src = repo.imageUrl || './assets/repository-placeholder.svg';
       img.addEventListener('error', () => {
         img.src = './assets/repository-placeholder.svg';
       }, { once: true });

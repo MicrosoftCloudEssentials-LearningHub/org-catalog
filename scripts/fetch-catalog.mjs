@@ -74,10 +74,6 @@ async function fetchPaged(url) {
 }
 
 function toRepoModel(r) {
-  const repositoryPreviewUrl = r.full_name
-    ? `https://opengraph.githubassets.com/1/${r.full_name}`
-    : null;
-
   return {
     name: r.name,
     title: String(r.title || r.name || ''),
@@ -94,7 +90,7 @@ function toRepoModel(r) {
     private: Boolean(r.private),
     stargazersCount: typeof r.stargazers_count === 'number' ? r.stargazers_count : undefined,
     forksCount: typeof r.forks_count === 'number' ? r.forks_count : undefined,
-    imageUrl: r.imageUrl ?? repositoryPreviewUrl,
+    imageUrl: r.imageUrl ?? null,
   };
 }
 
@@ -261,6 +257,46 @@ function resolveReadmeImageUrl({ org, repo, branch, readmePath, imageRef }) {
     .join('/');
 
   return `https://raw.githubusercontent.com/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${encodedPath}`;
+}
+
+function resolveRepositoryImageUrl({ org, repo, branch, imagePath }) {
+  const encodedPath = String(imagePath || '')
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/');
+  return `https://raw.githubusercontent.com/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${encodedPath}`;
+}
+
+function scoreRepositoryImagePath(imagePath) {
+  const lower = String(imagePath || '').toLowerCase();
+  if (!/\.(png|jpe?g|webp|gif|svg)$/i.test(lower)) return -1;
+  if (/(^|\/)(node_modules|dist|build|site|coverage|vendor|\.git)(\/|$)/.test(lower)) return -1;
+  if (/(badge|shields|favicon)/.test(lower)) return -1;
+
+  let score = 0;
+  if (/(^|\/)(assets?|images?|img|media|screenshots?)(\/|$)/.test(lower)) score += 100;
+  if (/\.(png|jpe?g|webp|gif)$/i.test(lower)) score += 20;
+  if (/(hero|cover|overview|architecture|diagram|workflow|screenshot)/.test(lower)) score += 15;
+  if (/(logo|icon)/.test(lower)) score -= 15;
+  return score - lower.split('/').length;
+}
+
+async function fetchRepositoryImage({ org, repo, branch }) {
+  const url = `https://api.github.com/repos/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(branch)}?recursive=1`;
+  const res = await fetchWithTimeout(url, { headers }, REQUEST_TIMEOUT_MS);
+  if (!res.ok) return null;
+
+  const data = await withTimeout(res.json(), REQUEST_TIMEOUT_MS, 'tree_json').catch(() => null);
+  const candidates = Array.isArray(data?.tree)
+    ? data.tree
+      .filter((entry) => entry?.type === 'blob')
+      .map((entry) => ({ path: String(entry.path || ''), score: scoreRepositoryImagePath(entry.path) }))
+      .filter((entry) => entry.score >= 0 && entry.path)
+      .sort((a, b) => b.score - a.score || a.path.localeCompare(b.path))
+    : [];
+
+  const imagePath = candidates[0]?.path;
+  return imagePath ? resolveRepositoryImageUrl({ org, repo, branch, imagePath }) : null;
 }
 
 async function fetchReadme({ org, repo }) {
@@ -739,10 +775,17 @@ async function main() {
           return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
         }
 
-        if (readmeTitle) return { ...r, pagesUrl, title: readmeTitle };
+        const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch });
+        return {
+          ...r,
+          ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}),
+          pagesUrl,
+          ...(readmeTitle ? { title: readmeTitle } : {}),
+        };
       }
 
-      return { ...r, pagesUrl };
+      const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch });
+      return { ...r, ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}), pagesUrl };
     } catch {
       return r;
     }
