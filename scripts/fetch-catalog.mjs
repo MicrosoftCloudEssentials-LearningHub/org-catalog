@@ -267,6 +267,10 @@ function resolveRepositoryImageUrl({ org, repo, branch, imagePath }) {
   return `https://raw.githubusercontent.com/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${encodedPath}`;
 }
 
+function isRepositoryHostedImageUrl(imageUrl) {
+  return /^https:\/\/raw\.githubusercontent\.com\//i.test(String(imageUrl || ''));
+}
+
 function scoreRepositoryImagePath(imagePath) {
   const lower = String(imagePath || '').toLowerCase();
   if (!/\.(png|jpe?g|webp|gif|svg)$/i.test(lower)) return -1;
@@ -778,7 +782,7 @@ async function main() {
             readmePath: readme.path,
             imageRef,
           });
-          if (!usedImageUrls.has(imageUrl)) {
+          if (isRepositoryHostedImageUrl(imageUrl) && !usedImageUrls.has(imageUrl)) {
             usedImageUrls.add(imageUrl);
             return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
           }
