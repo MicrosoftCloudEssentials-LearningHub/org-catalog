@@ -17,6 +17,11 @@
   --radius-lg: 14px;
 
   --focus: color-mix(in oklab, var(--link) 55%, var(--bg));
+  --card-accent-blue: #0078d4;
+  --card-accent-teal: #008272;
+  --card-accent-gold: #c28c00;
+  --card-accent-coral: #c94f4f;
+  --card-accent-green: #498205;
 
   /* Header — deep navy blue */
   --header-bg: #002050;
@@ -807,6 +812,12 @@ body {
   transition: transform 140ms ease, border-color 140ms ease, opacity 140ms ease;
   animation: fadeUp 180ms ease both;
 }
+
+.card:nth-child(5n + 1) { border-color: color-mix(in oklab, var(--border) 45%, var(--card-accent-blue)); }
+.card:nth-child(5n + 2) { border-color: color-mix(in oklab, var(--border) 45%, var(--card-accent-teal)); }
+.card:nth-child(5n + 3) { border-color: color-mix(in oklab, var(--border) 45%, var(--card-accent-gold)); }
+.card:nth-child(5n + 4) { border-color: color-mix(in oklab, var(--border) 45%, var(--card-accent-coral)); }
+.card:nth-child(5n + 5) { border-color: color-mix(in oklab, var(--border) 45%, var(--card-accent-green)); }
 
 .card:focus-visible {
   outline: none;
