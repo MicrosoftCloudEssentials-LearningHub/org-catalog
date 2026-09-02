@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T18:15:18.802Z",
+  "generatedAt": "2026-09-02T18:19:15.714Z",
   "org": "Cloud2BR-MSFTLearningHub",
   "repos": [
     {
@@ -26,24 +26,24 @@
       "categories": [
         "a2a",
         "agent",
+        "terraform",
         "agents",
-        "chat",
-        "default",
-        "terraform"
+        "azure",
+        "chat"
       ],
       "keywords": [
         "a2a",
         "agent",
-        "agents",
-        "chat",
-        "default",
         "terraform",
-        "defender",
+        "agents",
         "azure",
-        "multi",
-        "protocol",
+        "chat",
         "container",
-        "optional"
+        "defender",
+        "default",
+        "multi",
+        "server",
+        "devops"
       ],
       "language": "Python",
       "updatedAt": "2026-09-01T16:28:52Z",
@@ -65,23 +65,23 @@
         "copilot",
         "github",
         "part",
-        "study",
         "fundamentals",
-        "exam"
+        "study",
+        "official"
       ],
       "keywords": [
         "copilot",
         "github",
         "part",
-        "study",
         "fundamentals",
-        "exam",
+        "study",
         "official",
+        "exam",
+        "developer",
+        "productivity",
         "responsible",
         "practice",
-        "productivity",
-        "certification",
-        "developer"
+        "apply"
       ],
       "language": null,
       "updatedAt": "2026-08-31T23:56:50Z",
@@ -105,25 +105,25 @@
       ],
       "categories": [
         "campaign",
+        "security",
         "condition",
-        "exports",
-        "phased",
-        "print",
-        "screenshots"
+        "conditions",
+        "decision",
+        "eight"
       ],
       "keywords": [
         "campaign",
+        "security",
         "condition",
-        "exports",
-        "phased",
-        "print",
-        "screenshots",
+        "conditions",
+        "decision",
         "eight",
         "eligibility",
-        "scenario",
-        "tracks",
-        "security",
-        "assessment"
+        "exports",
+        "matrix",
+        "phased",
+        "print",
+        "recommendation"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-08-27T19:37:02Z",
@@ -131,7 +131,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Security-Campaign"
     },
     {
       "name": "GH-900StudyGuide",
@@ -152,25 +152,25 @@
       ],
       "categories": [
         "github",
-        "study",
         "foundations",
-        "certification",
+        "study",
         "official",
+        "certification",
         "basics"
       ],
       "keywords": [
         "github",
-        "study",
         "foundations",
-        "certification",
+        "study",
         "official",
+        "certification",
         "basics",
         "collaborate",
-        "git",
-        "exam",
-        "administration",
         "community",
-        "measured"
+        "git",
+        "administration",
+        "apply",
+        "development"
       ],
       "language": null,
       "updatedAt": "2026-08-26T02:21:13Z",
@@ -198,24 +198,24 @@
       "categories": [
         "catalog",
         "github",
+        "actions",
         "oauth",
-        "org",
-        "pages",
-        "generator"
+        "private",
+        "pages"
       ],
       "keywords": [
         "catalog",
         "github",
+        "actions",
         "oauth",
-        "org",
+        "private",
         "pages",
+        "org",
+        "optional",
         "generator",
         "token",
-        "actions",
-        "optional",
-        "private",
-        "default",
-        "variable"
+        "variable",
+        "want"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-08-14T22:08:19Z",
@@ -247,25 +247,25 @@
       ],
       "categories": [
         "describe",
+        "workloads",
+        "azure",
         "certification",
         "questions",
-        "answers",
-        "study",
-        "workloads"
+        "answers"
       ],
       "keywords": [
         "describe",
+        "workloads",
+        "azure",
         "certification",
         "questions",
         "answers",
         "study",
-        "workloads",
-        "azure",
-        "vision",
+        "artificial",
         "features",
+        "they",
         "computer",
-        "official",
-        "artificial"
+        "intelligence"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:52Z",
@@ -296,26 +296,26 @@
         "virtualization"
       ],
       "categories": [
-        "relational",
-        "certification",
         "azure",
-        "describe",
+        "relational",
         "data",
-        "study"
+        "certification",
+        "describe",
+        "non"
       ],
       "keywords": [
-        "relational",
-        "certification",
         "azure",
-        "describe",
+        "relational",
         "data",
-        "study",
+        "certification",
+        "describe",
+        "non",
+        "analytics",
         "concepts",
-        "official",
         "considerations",
-        "poster",
         "workload",
-        "materials"
+        "study",
+        "core"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:49Z",
@@ -342,25 +342,25 @@
       ],
       "categories": [
         "models",
-        "certification",
         "azure",
+        "certification",
         "foundry",
-        "prepare",
+        "applications",
         "experiments"
       ],
       "keywords": [
         "models",
-        "certification",
         "azure",
+        "certification",
         "foundry",
-        "prepare",
+        "applications",
         "experiments",
-        "study",
-        "train",
-        "official",
-        "explore",
         "optimize",
-        "poster"
+        "train",
+        "prepare",
+        "data",
+        "explore",
+        "openai"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:46Z",
@@ -389,26 +389,26 @@
         "natural-language-processing"
       ],
       "categories": [
-        "solutions",
         "implement",
+        "solutions",
         "certification",
         "questions",
         "answers",
-        "study"
+        "computer"
       ],
       "keywords": [
-        "solutions",
         "implement",
+        "solutions",
         "certification",
         "questions",
         "answers",
-        "study",
-        "vision",
         "computer",
+        "vision",
+        "azure",
+        "study",
         "official",
-        "poster",
         "materials",
-        "practice"
+        "poster"
       ],
       "language": null,
       "updatedAt": "2026-08-10T19:13:42Z",
@@ -435,25 +435,25 @@
       ],
       "categories": [
         "enterprise",
-        "m365",
         "microsoft",
-        "publish",
+        "m365",
         "guidance",
-        "official"
+        "publish",
+        "contact"
       ],
       "keywords": [
         "enterprise",
-        "m365",
         "microsoft",
-        "publish",
+        "m365",
         "guidance",
-        "official",
+        "publish",
         "contact",
-        "directly",
         "detailed",
+        "directly",
+        "official",
+        "please",
         "refer",
-        "e5",
-        "e7"
+        "support"
       ],
       "language": null,
       "updatedAt": "2026-08-04T20:03:50Z",
@@ -461,7 +461,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/M365-E5-E7-Overview"
     },
     {
       "name": "Security-Copilot-Overview",
@@ -478,24 +478,24 @@
       "categories": [
         "copilot",
         "security",
+        "model",
         "publish",
         "governance",
-        "model",
-        "guidance"
+        "hub"
       ],
       "keywords": [
         "copilot",
         "security",
+        "model",
         "publish",
         "governance",
-        "model",
+        "hub",
         "guidance",
+        "overview",
         "implementation",
         "operations",
-        "hub",
-        "home",
-        "microsoft-security-copilot",
-        "publishes"
+        "architecture",
+        "support"
       ],
       "language": null,
       "updatedAt": "2026-08-04T15:21:22Z",
@@ -503,7 +503,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Security-Copilot-Overview"
     },
     {
       "name": "Entra-Overview",
@@ -520,24 +520,24 @@
       "categories": [
         "entra",
         "pages",
+        "site",
         "operations",
-        "navigation",
         "microsoft",
-        "github"
+        "hybrid"
       ],
       "keywords": [
         "entra",
         "pages",
-        "operations",
-        "navigation",
-        "microsoft",
-        "github",
-        "hybrid",
         "site",
-        "keep",
+        "operations",
+        "microsoft",
+        "hybrid",
+        "support",
+        "github",
         "detailed",
-        "official",
-        "support"
+        "navigation",
+        "keep",
+        "overview"
       ],
       "language": null,
       "updatedAt": "2026-08-04T15:13:22Z",
@@ -545,7 +545,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Entra-Overview"
     },
     {
       "name": "Agent365-Overview",
@@ -561,24 +561,24 @@
       "categories": [
         "markdown",
         "pull",
-        "header",
         "requests",
-        "agent365",
-        "line"
+        "line",
+        "header",
+        "agent365"
       ],
       "keywords": [
         "markdown",
         "pull",
-        "header",
         "requests",
-        "agent365",
         "line",
-        "tracked",
+        "header",
+        "agent365",
         "block",
         "runs",
+        "tracked",
         "approvals",
         "fixes",
-        "branch"
+        "site"
       ],
       "language": null,
       "updatedAt": "2026-08-04T14:57:10Z",
@@ -586,7 +586,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Agent365-Overview"
     },
     {
       "name": "Intune-Overview",
@@ -604,24 +604,24 @@
       "categories": [
         "intune",
         "pages",
-        "navigation",
         "site",
+        "navigation",
         "planning",
         "github"
       ],
       "keywords": [
         "intune",
         "pages",
-        "navigation",
         "site",
+        "navigation",
         "planning",
         "github",
+        "hub",
         "operations",
+        "across",
+        "baselines",
         "byod",
-        "claims",
-        "committing",
-        "enrollment",
-        "frontline"
+        "claims"
       ],
       "language": null,
       "updatedAt": "2026-08-04T14:57:06Z",
@@ -629,7 +629,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Intune-Overview"
     },
     {
       "name": "Purview-Setup-Overview",
@@ -650,25 +650,25 @@
       ],
       "categories": [
         "purview",
-        "evidence",
         "data",
+        "evidence",
+        "loss",
         "prevention",
-        "sensitivity",
-        "loss"
+        "audit"
       ],
       "keywords": [
         "purview",
-        "evidence",
         "data",
-        "prevention",
-        "sensitivity",
+        "evidence",
         "loss",
+        "prevention",
         "audit",
         "labels",
-        "checklist",
+        "operational",
         "sensitive",
-        "accountable",
-        "classify"
+        "sensitivity",
+        "control",
+        "checklist"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:59:20Z",
@@ -676,7 +676,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Purview-Setup-Overview"
     },
     {
       "name": "Sentinel-Setup-Overview",
@@ -695,24 +695,24 @@
       "categories": [
         "sentinel",
         "microsoft",
-        "official",
+        "support",
         "contact",
         "directly",
-        "security"
+        "official"
       ],
       "keywords": [
         "sentinel",
         "microsoft",
-        "official",
+        "support",
         "contact",
         "directly",
+        "official",
         "security",
-        "support",
+        "cloud",
         "microsoft-sentinel",
         "microsoft-sentinel-kql",
         "microsoft-sentinel-workbook",
-        "siem",
-        "soar"
+        "native"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:56:35Z",
@@ -720,11 +720,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Sentinel-Setup-Overview"
     },
     {
       "name": "Defender-Setup-Overview",
-      "title": "Microsoft Defender Setup and Overview Hub",
+      "title": "Defender-Setup-Overview",
       "fullName": "Cloud2BR-MSFTLearningHub/Defender-Setup-Overview",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Defender-Setup-Overview",
       "pagesUrl": null,
@@ -744,25 +744,25 @@
       ],
       "categories": [
         "defender",
-        "cloud",
-        "xdr",
-        "servers",
-        "aws",
-        "connector"
+        "microsoft-defender",
+        "microsoft-defender-for-cloud",
+        "microsoft-defender-for-endopoint",
+        "microsoft-defender-for-endpoint",
+        "microsoft-defender-for-storage"
       ],
       "keywords": [
         "defender",
-        "cloud",
-        "xdr",
-        "servers",
-        "aws",
-        "connector",
-        "arc",
-        "cspm",
-        "vulnerability",
-        "microsoft",
-        "sentinel",
-        "azure"
+        "microsoft-defender",
+        "microsoft-defender-for-cloud",
+        "microsoft-defender-for-endopoint",
+        "microsoft-defender-for-endpoint",
+        "microsoft-defender-for-storage",
+        "microsoft-defender-free",
+        "microsoft-defender-hack",
+        "microsoft-defender-protection",
+        "microsoft-defender-xdr",
+        "contact",
+        "contains"
       ],
       "language": null,
       "updatedAt": "2026-08-03T23:39:19Z",
@@ -770,11 +770,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Defender-Setup-Overview"
     },
     {
       "name": "arch-flows-designer",
-      "title": "Arch Flows Designer",
+      "title": "arch-flows-designer",
       "fullName": "Cloud2BR-MSFTLearningHub/arch-flows-designer",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/arch-flows-designer",
       "pagesUrl": null,
@@ -786,26 +786,26 @@
         "flows"
       ],
       "categories": [
+        "flows",
+        "architecture",
         "designer",
-        "draw",
-        "canvas",
         "diagram",
-        "icons",
-        "flows"
+        "draw",
+        "infrastructure"
       ],
       "keywords": [
-        "designer",
-        "draw",
-        "canvas",
-        "diagram",
-        "icons",
         "flows",
+        "architecture",
+        "designer",
+        "diagram",
+        "draw",
+        "infrastructure",
+        "topologies",
+        "browser",
         "diagrams",
-        "nodes",
-        "assets",
-        "asset",
-        "import",
-        "json"
+        "cloud",
+        "azure",
+        "service"
       ],
       "language": null,
       "updatedAt": "2026-07-31T21:25:33Z",
@@ -813,11 +813,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/arch-flows-designer"
     },
     {
       "name": "DemosScenarios-TechTalks",
-      "title": "Microsoft Cloud: Demos Scenarios and Tech Talks",
+      "title": "DemosScenarios-TechTalks",
       "fullName": "Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks",
       "pagesUrl": null,
@@ -840,26 +840,26 @@
         "sharepoint"
       ],
       "categories": [
-        "power",
-        "cloud",
-        "azure",
-        "services",
-        "analytics",
-        "microsoft"
+        "ai",
+        "based",
+        "data-science",
+        "demonstrations",
+        "experiences",
+        "fabric"
       ],
       "keywords": [
-        "power",
-        "cloud",
-        "azure",
-        "services",
-        "analytics",
-        "microsoft",
-        "security",
-        "applications",
-        "computing",
-        "sharepoint",
-        "apps",
-        "customer"
+        "ai",
+        "based",
+        "data-science",
+        "demonstrations",
+        "experiences",
+        "fabric",
+        "m365",
+        "microsoft-general",
+        "ml",
+        "personal",
+        "powerapps",
+        "powerbi"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T22:42:06Z",
@@ -867,11 +867,11 @@
       "private": false,
       "stargazersCount": 4,
       "forksCount": 6,
-      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks/main/0_Azure/img/migrated-assets/root-overview.png"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/DemosScenarios-TechTalks"
     },
     {
       "name": "AzureTerraformTemplates-v0.0.0",
-      "title": "Azure Terraform Deployment Sample Templates: Version 0.0.0",
+      "title": "AzureTerraformTemplates-v0.0.0",
       "fullName": "Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0",
       "pagesUrl": null,
@@ -884,26 +884,26 @@
         "terraform-template"
       ],
       "categories": [
-        "azure",
-        "terraform",
         "templates",
-        "values",
-        "click",
-        "resources"
+        "adjusted",
+        "azure-terraform",
+        "cases",
+        "core-academy",
+        "deploying"
       ],
       "keywords": [
-        "azure",
-        "terraform",
         "templates",
-        "values",
-        "click",
-        "resources",
-        "expand",
-        "version",
-        "iot",
-        "variables",
-        "file",
-        "storage"
+        "adjusted",
+        "azure-terraform",
+        "cases",
+        "core-academy",
+        "deploying",
+        "fit",
+        "iac-terraform",
+        "insfrastructure",
+        "managing",
+        "meant",
+        "resources"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T21:39:54Z",
@@ -911,11 +911,11 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 3,
-      "imageUrl": "https://github.com/user-attachments/assets/53b47aa7-134e-4cf7-b0b8-cdebdd0583ed"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureTerraformTemplates-v0.0.0"
     },
     {
       "name": "Fabric-EnterpriseFramework",
-      "title": "Microsoft Fabric: Enterprise Framework - Overview",
+      "title": "Fabric-EnterpriseFramework",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework",
       "pagesUrl": null,
@@ -931,26 +931,26 @@
         "observability"
       ],
       "categories": [
-        "data",
-        "fabric",
-        "iac",
-        "network",
-        "platform",
-        "best"
+        "architected",
+        "best-practices",
+        "building",
+        "cost-management",
+        "da-academy",
+        "deployment-pipelines"
       ],
       "keywords": [
-        "data",
+        "architected",
+        "best-practices",
+        "building",
+        "cost-management",
+        "da-academy",
+        "deployment-pipelines",
         "fabric",
-        "iac",
-        "network",
-        "platform",
-        "best",
-        "purview",
-        "practices",
-        "networking",
-        "ensures",
-        "access",
-        "spending"
+        "github-integration",
+        "level",
+        "microsoft-fabric",
+        "observability",
+        "well"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T21:35:14Z",
@@ -958,11 +958,11 @@
       "private": false,
       "stargazersCount": 6,
       "forksCount": 1,
-      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-EnterpriseFramework"
     },
     {
       "name": "azDataBase-Freeing-Unused-Space",
-      "title": "Azure Databases: Optimizing Database Performance by Freeing Up Unused Space - Overview",
+      "title": "azDataBase-Freeing-Unused-Space",
       "fullName": "Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space",
       "pagesUrl": null,
@@ -976,26 +976,26 @@
         "performance"
       ],
       "categories": [
+        "performance",
+        "support",
+        "azure-databases",
+        "da-academy",
         "database",
-        "unused",
-        "space",
-        "freeing",
-        "azure",
-        "topic"
+        "database-strategy"
       ],
       "keywords": [
+        "performance",
+        "support",
+        "azure-databases",
+        "da-academy",
         "database",
-        "unused",
-        "space",
+        "database-strategy",
+        "free-space",
         "freeing",
-        "azure",
-        "topic",
-        "sql",
-        "databases",
-        "instance",
-        "relational",
-        "managed",
-        "performance"
+        "optimization",
+        "optimizing",
+        "space",
+        "unused"
       ],
       "language": "TSQL",
       "updatedAt": "2026-07-29T21:29:23Z",
@@ -1003,11 +1003,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/81d088ab-da80-4643-9c2c-2558709c90ff"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/azDataBase-Freeing-Unused-Space"
     },
     {
       "name": "AzureFunctionApp-TempUsage",
-      "title": "Azure Function App Infrastructure - Overview Runtime and Storage Insights (Temp Files)",
+      "title": "AzureFunctionApp-TempUsage",
       "fullName": "Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage",
       "pagesUrl": null,
@@ -1022,26 +1022,26 @@
         "temporary-usage"
       ],
       "categories": [
-        "temp",
-        "function",
-        "disk",
-        "decay",
-        "functions",
-        "file"
+        "apps-academy",
+        "azure-infrastructure",
+        "behavior",
+        "creation",
+        "focusing",
+        "function"
       ],
       "keywords": [
-        "temp",
+        "apps-academy",
+        "azure-infrastructure",
+        "behavior",
+        "creation",
+        "focusing",
         "function",
-        "disk",
-        "decay",
-        "functions",
-        "file",
-        "app",
-        "accumulation",
-        "mounted",
-        "telemetry",
-        "files",
-        "deployment"
+        "function-app",
+        "high-decay",
+        "impact",
+        "infrastructure",
+        "operate",
+        "optimization"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T21:10:19Z",
@@ -1049,11 +1049,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/4964fb4e-360c-4844-afda-7d0cddc1593c"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureFunctionApp-TempUsage"
     },
     {
       "name": "Fabric-AI-Retail-Demo",
-      "title": "Demo: Retail Intelligence with Fabric - Overview",
+      "title": "Fabric-AI-Retail-Demo",
       "fullName": "Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo",
       "pagesUrl": null,
@@ -1072,25 +1072,25 @@
       ],
       "categories": [
         "fabric",
-        "data",
-        "decision",
-        "integration",
-        "synapse",
-        "analytics"
+        "retail",
+        "ai",
+        "cases",
+        "consumer-goods",
+        "da-academy"
       ],
       "keywords": [
         "fabric",
-        "data",
-        "decision",
-        "integration",
-        "synapse",
-        "analytics",
-        "real",
-        "terraform",
-        "insights",
-        "integrates",
-        "time",
-        "infrastructure"
+        "retail",
+        "ai",
+        "cases",
+        "consumer-goods",
+        "da-academy",
+        "data-agent",
+        "designed",
+        "driven",
+        "future",
+        "highlight",
+        "industry"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T21:03:23Z",
@@ -1098,11 +1098,11 @@
       "private": false,
       "stargazersCount": 2,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/ef1db682-1673-421e-a9cf-370894ce7be3"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-AI-Retail-Demo"
     },
     {
       "name": "Demystifying-Cloud-Evolution",
-      "title": "Demystifying Cloud Evolution - Overview From Silicon to Azure (theory + self-guided practice)",
+      "title": "Demystifying-Cloud-Evolution",
       "fullName": "Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution",
       "pagesUrl": null,
@@ -1115,26 +1115,26 @@
         "core-academy"
       ],
       "categories": [
-        "carbon",
-        "energy",
-        "per",
-        "computing",
-        "technical",
-        "cpu"
+        "cloud",
+        "azure",
+        "blending",
+        "capacity",
+        "capacity-planning",
+        "cloud-computing"
       ],
       "keywords": [
-        "carbon",
-        "energy",
-        "per",
-        "computing",
-        "technical",
-        "cpu",
-        "memory",
-        "later",
-        "power",
-        "latency",
-        "control",
-        "regions"
+        "cloud",
+        "azure",
+        "blending",
+        "capacity",
+        "capacity-planning",
+        "cloud-computing",
+        "community",
+        "computing-history",
+        "core-academy",
+        "covers",
+        "demystifying",
+        "efficiency"
       ],
       "language": null,
       "updatedAt": "2026-07-29T20:56:53Z",
@@ -1142,11 +1142,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/4096eb52-7a0e-4a98-8b01-0b8e7884cdd8"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Demystifying-Cloud-Evolution"
     },
     {
       "name": "AI-Agent-Infra-Blueprint",
-      "title": "Azure AI Agent: Infrastructure Blueprint - Deployment Guide",
+      "title": "AI-Agent-Infra-Blueprint",
       "fullName": "Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint",
       "pagesUrl": null,
@@ -1161,25 +1161,25 @@
       ],
       "categories": [
         "azure",
-        "foundry",
-        "resources",
-        "based",
-        "network",
-        "agent"
+        "adapt",
+        "ai",
+        "ai-agent-setup",
+        "ai-agents",
+        "align"
       ],
       "keywords": [
         "azure",
-        "foundry",
-        "resources",
-        "based",
-        "network",
-        "agent",
-        "showcases",
-        "ensure",
-        "consider",
-        "scaling",
-        "resource",
-        "environment"
+        "adapt",
+        "ai",
+        "ai-agent-setup",
+        "ai-agents",
+        "align",
+        "best",
+        "case",
+        "complete",
+        "configured",
+        "core-academy",
+        "demonstration"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T20:52:52Z",
@@ -1187,11 +1187,11 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://github.com/user-attachments/assets/c8730a94-df95-4682-8b82-483c50194973"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint"
     },
     {
       "name": "MS-Fabric-Essentials-Workshop",
-      "title": "Microsoft Fabric: Essentials Workshop",
+      "title": "MS-Fabric-Essentials-Workshop",
       "fullName": "Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop",
       "url": "https://github.com/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop",
       "pagesUrl": null,
@@ -1212,26 +1212,26 @@
         "terraform"
       ],
       "categories": [
-        "fabric",
-        "terraform",
-        "infrastructure",
-        "approach",
-        "via",
-        "models"
+        "ai-llms",
+        "ai-skills",
+        "azure-data-lake",
+        "azure-sql-server",
+        "basic",
+        "ci-cd"
       ],
       "keywords": [
-        "fabric",
-        "terraform",
-        "infrastructure",
-        "approach",
-        "via",
-        "models",
-        "integration",
-        "resources",
-        "follow",
-        "machine",
-        "azure",
-        "choosing"
+        "ai-llms",
+        "ai-skills",
+        "azure-data-lake",
+        "azure-sql-server",
+        "basic",
+        "ci-cd",
+        "cicd",
+        "commonly",
+        "continous-deployment",
+        "continous-integration",
+        "da-academy",
+        "elaborate"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T20:41:31Z",
@@ -1239,7 +1239,7 @@
       "private": false,
       "stargazersCount": 2,
       "forksCount": 0,
-      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop/main/assets/before-fabric.png"
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/MS-Fabric-Essentials-Workshop"
     },
     {
       "name": "Fabric-Date-Hierarchy-Accelerator",
@@ -1257,26 +1257,26 @@
         "power-bi"
       ],
       "categories": [
+        "automate",
+        "best",
         "da-academy",
         "date-hierarchies",
         "directlake-hierarchy-automation",
-        "hierarchies",
-        "microsoft-azure",
-        "microsoft-fabric"
+        "fabric"
       ],
       "keywords": [
+        "automate",
+        "best",
         "da-academy",
         "date-hierarchies",
         "directlake-hierarchy-automation",
+        "fabric",
         "hierarchies",
         "microsoft-azure",
         "microsoft-fabric",
+        "power",
         "power-bi",
-        "reusable",
-        "scripts",
-        "standardize",
-        "automate",
-        "best"
+        "reusable"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T20:22:10Z",
@@ -1284,7 +1284,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-Date-Hierarchy-Accelerator"
     },
     {
       "name": "Azure-DigitalTwins-Overview",
@@ -1308,21 +1308,21 @@
         "azure-digital-twins",
         "azure-iot",
         "consumer-goods",
-        "digital-twins",
-        "manufacturing"
+        "digital",
+        "digital-twins"
       ],
       "keywords": [
         "apps-academy",
         "azure-digital-twins",
         "azure-iot",
         "consumer-goods",
-        "digital-twins",
-        "manufacturing",
-        "twins",
         "digital",
+        "digital-twins",
         "industry",
+        "manufacturing",
         "retail",
-        "official",
+        "twins",
+        "about",
         "contact"
       ],
       "language": "PowerShell",
@@ -1331,7 +1331,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-DigitalTwins-Overview"
     },
     {
       "name": "Azure-App-Dev-Overview",
@@ -1347,26 +1347,26 @@
         "azure-app-dev"
       ],
       "categories": [
+        "app",
+        "azure",
         "azure-app-dev",
         "dev",
-        "app",
-        "official",
-        "contact",
-        "apps"
+        "apps",
+        "contact"
       ],
       "keywords": [
+        "app",
+        "azure",
         "azure-app-dev",
         "dev",
-        "app",
-        "official",
-        "contact",
         "apps",
-        "directly",
-        "azure",
+        "contact",
         "detailed",
-        "refer",
+        "directly",
         "services",
-        "guidance"
+        "official",
+        "please",
+        "refer"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:46Z",
@@ -1374,7 +1374,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-App-Dev-Overview"
     },
     {
       "name": "Azure-MLOps-Overview",
@@ -1395,14 +1395,15 @@
       ],
       "categories": [
         "mlops",
+        "azure",
         "ai",
         "ai-academy",
         "azure-ml",
-        "demonstrates",
-        "machine-learning"
+        "demonstrates"
       ],
       "keywords": [
         "mlops",
+        "azure",
         "ai",
         "ai-academy",
         "azure-ml",
@@ -1410,10 +1411,9 @@
         "machine-learning",
         "ml",
         "ops",
-        "official",
         "contact",
-        "directly",
-        "azure"
+        "detailed",
+        "directly"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:33Z",
@@ -1421,7 +1421,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-MLOps-Overview"
     },
     {
       "name": "GenAIOpsMaturityLevels",
@@ -1459,11 +1459,11 @@
         "azure-ai",
         "demonstrates",
         "llm",
+        "llms",
         "maturity-development",
         "maturity-model",
         "mlops",
-        "mlops-workflow",
-        "ops"
+        "mlops-workflow"
       ],
       "language": "Python",
       "updatedAt": "2026-07-29T18:32:30Z",
@@ -1471,7 +1471,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/GenAIOpsMaturityLevels"
     },
     {
       "name": "org-repo-template",
@@ -1489,23 +1489,23 @@
         "counter",
         "template",
         "update",
-        "devops-best-practices",
-        "formatting",
-        "notebook"
+        "automated",
+        "automation",
+        "best"
       ],
       "keywords": [
         "counter",
         "template",
         "update",
-        "devops-best-practices",
-        "formatting",
-        "notebook",
-        "org-repository-template",
-        "organizational",
-        "preferred",
+        "automated",
+        "automation",
+        "best",
         "checks",
         "consistency",
-        "ensures"
+        "devops-best-practices",
+        "ensures",
+        "etc",
+        "formatting"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:27Z",
@@ -1513,7 +1513,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/org-repo-template"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-OpenFramework",
@@ -1539,26 +1539,26 @@
         "storage-account"
       ],
       "categories": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases",
-        "ai-use-cases-strategy",
-        "automated-extraction",
-        "consumer-goods"
+        "ai-use-cases-strategy"
       ],
       "keywords": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases",
         "ai-use-cases-strategy",
+        "analysis",
         "automated-extraction",
         "consumer-goods",
+        "cosmos",
         "cosmos-db",
-        "extract",
-        "full-code",
-        "function-app",
-        "open-frameworks",
-        "pdf-invoice"
+        "create"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:24Z",
@@ -1566,7 +1566,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-OpenFramework"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-DocIntelligence",
@@ -1592,26 +1592,26 @@
         "storage-account"
       ],
       "categories": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases-strategy",
-        "automated-extraction",
-        "consumer-goods",
-        "cosmos-db"
+        "analysis"
       ],
       "keywords": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases-strategy",
+        "analysis",
         "automated-extraction",
         "consumer-goods",
+        "cosmos",
         "cosmos-db",
-        "doc-intelligence",
-        "extract",
-        "full-code",
-        "function-app",
-        "manufacturing",
-        "pdf-invoice"
+        "create",
+        "doc-intelligence"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:20Z",
@@ -1619,7 +1619,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Invoice-Processing-Fapp-DocIntelligence"
     },
     {
       "name": "RAG-ChatBot-Implementation",
@@ -1648,25 +1648,25 @@
       ],
       "categories": [
         "rag",
+        "architecture",
         "adjusted",
         "ai",
         "ai-academy",
-        "ai-use-cases",
-        "ai-use-cases-strategy"
+        "ai-use-cases"
       ],
       "keywords": [
         "rag",
+        "architecture",
         "adjusted",
         "ai",
         "ai-academy",
         "ai-use-cases",
         "ai-use-cases-strategy",
         "azd-templates",
+        "basic",
         "bot",
-        "chat",
-        "chatbot",
-        "consumer-goods",
-        "data-ingestion-and-infrastructure"
+        "cases",
+        "chat"
       ],
       "language": "Bicep",
       "updatedAt": "2026-07-29T18:32:17Z",
@@ -1674,7 +1674,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 2,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/RAG-ChatBot-Implementation"
     },
     {
       "name": "GitHub-Overview",
@@ -1696,22 +1696,22 @@
         "demos",
         "github-overview",
         "pricing",
-        "github",
-        "official"
+        "apps",
+        "github"
       ],
       "keywords": [
         "app-academy",
         "demos",
         "github-overview",
         "pricing",
-        "github",
-        "official",
-        "contact",
         "apps",
-        "directly",
+        "github",
+        "contact",
         "detailed",
-        "refer",
-        "guidance"
+        "directly",
+        "official",
+        "please",
+        "refer"
       ],
       "language": null,
       "updatedAt": "2026-07-29T18:32:14Z",
@@ -1719,7 +1719,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/GitHub-Overview"
     },
     {
       "name": "Azure-ArtifactSigning-DevOps",
@@ -1744,7 +1744,7 @@
         "app-academy",
         "azure-artifacts",
         "demo-app",
-        "digitally"
+        "developer"
       ],
       "keywords": [
         "certificate",
@@ -1752,13 +1752,13 @@
         "app-academy",
         "azure-artifacts",
         "demo-app",
+        "developer",
         "digitally",
         "ever",
         "executables",
         "hosted",
         "hsms",
-        "leaves",
-        "signing"
+        "key"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:10Z",
@@ -1766,7 +1766,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ArtifactSigning-DevOps"
     },
     {
       "name": "BlobFileUpload-SummaryTool",
@@ -1788,24 +1788,24 @@
       "categories": [
         "azure",
         "ai-services",
+        "automated",
         "azure-cloud-services",
-        "blob-storage",
-        "csv",
-        "demonstrates"
+        "blob",
+        "blob-storage"
       ],
       "keywords": [
         "azure",
         "ai-services",
+        "automated",
         "azure-cloud-services",
+        "blob",
         "blob-storage",
+        "create",
         "csv",
         "demonstrates",
         "file-summary",
         "file-upload",
-        "function-app",
-        "generation",
-        "summaries",
-        "table-summary"
+        "formats"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T18:32:07Z",
@@ -1813,7 +1813,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/BlobFileUpload-SummaryTool"
     },
     {
       "name": "Fabric-MCP-Agent2Agent",
@@ -1855,9 +1855,9 @@
         "copilot-agent",
         "copilot-studio",
         "da-academy",
+        "fabric",
         "fabric-mcp",
-        "integrating",
-        "manufactoring"
+        "industry"
       ],
       "language": "Jupyter Notebook",
       "updatedAt": "2026-07-29T18:32:04Z",
@@ -1865,7 +1865,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-MCP-Agent2Agent"
     },
     {
       "name": "Azure-Text-Embedding-Overview",
@@ -1898,12 +1898,12 @@
         "best-practices",
         "embedding",
         "marketplace",
+        "native",
+        "optimize",
+        "performance",
         "terraform-deployment",
         "text",
-        "text-embedding",
-        "official",
-        "optimize",
-        "contact"
+        "text-embedding"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-29T17:58:48Z",
@@ -1911,7 +1911,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Text-Embedding-Overview"
     },
     {
       "name": "azSynapse-Dynamic-RemoveBlanks",
@@ -1928,26 +1928,26 @@
         "remove-spaces"
       ],
       "categories": [
+        "automation",
         "azure-synapse",
         "blank",
+        "create",
         "create-view",
-        "da-academy",
-        "dynamically",
-        "remove-spaces"
+        "da-academy"
       ],
       "keywords": [
+        "automation",
         "azure-synapse",
         "blank",
+        "create",
         "create-view",
         "da-academy",
         "dynamically",
-        "remove-spaces",
-        "spaces",
-        "synapse",
         "quick",
         "remove",
-        "view",
-        "automation"
+        "remove-spaces",
+        "spaces",
+        "synapse"
       ],
       "language": "TSQL",
       "updatedAt": "2026-07-29T17:20:38Z",
@@ -1955,7 +1955,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/azSynapse-Dynamic-RemoveBlanks"
     },
     {
       "name": "MySQL-autoscale-IOPS",
@@ -1973,25 +1973,25 @@
       ],
       "categories": [
         "iops",
+        "automation",
+        "autoscale",
         "da-academy",
-        "means",
-        "mysql-server",
-        "scripts",
-        "autoscale"
+        "few",
+        "means"
       ],
       "keywords": [
         "iops",
-        "da-academy",
-        "means",
-        "mysql-server",
-        "scripts",
+        "automation",
         "autoscale",
+        "da-academy",
         "few",
+        "means",
         "mysql",
-        "explore",
+        "mysql-server",
         "quick",
+        "scripts",
         "server",
-        "automation"
+        "explore"
       ],
       "language": "Python",
       "updatedAt": "2026-07-29T16:14:24Z",
@@ -1999,7 +1999,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/MySQL-autoscale-IOPS"
     },
     {
       "name": "Azure-MCP-blueprint",
@@ -2024,7 +2024,7 @@
         "ai-agents",
         "ai-agents-framework",
         "azure-mcp",
-        "core-academy"
+        "blueprint"
       ],
       "keywords": [
         "mcp",
@@ -2032,13 +2032,13 @@
         "ai-agents",
         "ai-agents-framework",
         "azure-mcp",
+        "blueprint",
         "core-academy",
         "mcp-azure-blueprint",
         "mcp-server",
-        "blueprint",
-        "hosting",
-        "official",
-        "options"
+        "multiple",
+        "options",
+        "server"
       ],
       "language": "Python",
       "updatedAt": "2026-07-28T21:47:32Z",
@@ -2046,7 +2046,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-MCP-blueprint"
     },
     {
       "name": "SAP-integration-AzLogicApps",
@@ -2062,25 +2062,25 @@
         "sap-odata"
       ],
       "categories": [
+        "approaches",
         "azure-logic-apps",
         "comparison",
         "cookie",
         "csrf",
-        "da-academy",
-        "sap"
+        "da-academy"
       ],
       "keywords": [
+        "approaches",
         "azure-logic-apps",
         "comparison",
         "cookie",
         "csrf",
         "da-academy",
+        "handling",
         "sap",
         "sap-odata",
         "token",
-        "handling",
-        "official",
-        "approaches",
+        "management",
         "contact"
       ],
       "language": "HCL",
@@ -2089,7 +2089,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/SAP-integration-AzLogicApps"
     },
     {
       "name": "AzureArcRecommendations-AI-Agent",
@@ -2106,24 +2106,24 @@
       "categories": [
         "azure-agent",
         "azure-arc",
-        "customized",
-        "disaster-recovery",
-        "isolation",
-        "cases"
+        "basic",
+        "cases",
+        "create",
+        "customized"
       ],
       "keywords": [
         "azure-agent",
         "azure-arc",
+        "basic",
+        "cases",
+        "create",
         "customized",
+        "designed",
         "disaster-recovery",
         "isolation",
-        "cases",
-        "should",
         "meet",
-        "designed",
-        "quick",
-        "without",
-        "basic"
+        "network",
+        "quick"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T17:08:50Z",
@@ -2131,7 +2131,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/AzureArcRecommendations-AI-Agent"
     },
     {
       "name": "Azure-ML-Overview",
@@ -2165,11 +2165,11 @@
         "azml",
         "azure-deployment",
         "azure-machine-learning",
+        "components",
+        "demonstration",
         "fabric-ai",
         "ml",
-        "demonstration",
-        "purposes",
-        "components",
+        "machine",
         "provides"
       ],
       "language": "Jupyter Notebook",
@@ -2178,7 +2178,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ML-Overview"
     },
     {
       "name": "PDFs-Layouts-Processing-Fapp-DocIntelligence",
@@ -2204,26 +2204,26 @@
         "storage-account"
       ],
       "categories": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases-strategy",
-        "automated-extraction",
-        "boxes",
-        "consumer-goods"
+        "analysis"
       ],
       "keywords": [
+        "azure",
+        "account",
         "ai",
         "ai-academy",
         "ai-use-cases-strategy",
+        "analysis",
         "automated-extraction",
         "boxes",
         "consumer-goods",
+        "cosmos",
         "cosmos-db",
-        "doc-intelligence",
-        "extract",
-        "form",
-        "forms",
-        "full-code"
+        "create"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T13:10:03Z",
@@ -2231,7 +2231,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-Layouts-Processing-Fapp-DocIntelligence"
     },
     {
       "name": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
@@ -2265,11 +2265,11 @@
         "checkboxes",
         "checkmarks",
         "consumer-goods",
-        "pdf-extractor",
-        "selected",
-        "shaded",
-        "visually",
-        "document"
+        "document",
+        "extended",
+        "extracting",
+        "industry",
+        "pdf-extractor"
       ],
       "language": "HCL",
       "updatedAt": "2026-07-28T13:00:11Z",
@@ -2277,7 +2277,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing"
     },
     {
       "name": "Agentic-AI-Media-Assistant",
@@ -2303,22 +2303,22 @@
         "ai",
         "ai-academy",
         "assistant",
-        "demo",
-        "media-assistant"
+        "building",
+        "demo"
       ],
       "keywords": [
         "a2a",
         "ai",
         "ai-academy",
         "assistant",
+        "building",
         "demo",
-        "media-assistant",
-        "multi-agent",
-        "multimodal",
-        "zero-touch-provisioning",
+        "devops",
         "industry",
         "media",
-        "retail"
+        "media-assistant",
+        "multi-agent",
+        "multimodal"
       ],
       "language": "Python",
       "updatedAt": "2026-07-28T03:12:44Z",
@@ -2326,7 +2326,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Agentic-AI-Media-Assistant"
     },
     {
       "name": "Azure-ML-Advanced",
@@ -2342,26 +2342,26 @@
         "machine-learning-e2e"
       ],
       "categories": [
+        "advanced",
         "ai-academy",
-        "machine-learning",
-        "machine-learning-algorithms",
-        "machine-learning-e2e",
+        "components",
         "demonstration",
-        "advanced"
+        "machine-learning",
+        "machine-learning-algorithms"
       ],
       "keywords": [
+        "advanced",
         "ai-academy",
+        "components",
+        "demonstration",
         "machine-learning",
         "machine-learning-algorithms",
         "machine-learning-e2e",
-        "demonstration",
-        "advanced",
-        "purposes",
-        "components",
-        "provides",
         "machine",
-        "only",
-        "azure"
+        "provides",
+        "purposes",
+        "azure",
+        "only"
       ],
       "language": "HTML",
       "updatedAt": "2026-06-29T20:25:18Z",
@@ -2369,7 +2369,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-ML-Advanced"
     },
     {
       "name": "org-discussions",
@@ -2389,7 +2389,7 @@
         "answer",
         "backend-format",
         "broadcast",
-        "conversations"
+        "community"
       ],
       "keywords": [
         "discussions",
@@ -2397,13 +2397,13 @@
         "answer",
         "backend-format",
         "broadcast",
+        "community",
         "conversations",
         "hold",
-        "wider",
-        "community",
         "hosts",
-        "updates",
-        "related"
+        "related",
+        "wider",
+        "updates"
       ],
       "language": null,
       "updatedAt": "2026-04-08T19:20:30Z",
@@ -2411,7 +2411,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/org-discussions"
     },
     {
       "name": ".github",
@@ -2430,17 +2430,17 @@
         "appear",
         "github-organization",
         "org-level",
-        "profile-repo",
-        "special"
+        "organization",
+        "profile-repo"
       ],
       "keywords": [
         "profile",
         "appear",
         "github-organization",
         "org-level",
+        "organization",
         "profile-repo",
         "special",
-        "organization",
         "github"
       ],
       "language": null,
@@ -2449,7 +2449,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/.github"
     },
     {
       "name": "Azure-Capacity-Overview",
@@ -2467,25 +2467,25 @@
       ],
       "categories": [
         "azure-capacity",
+        "capacity",
         "capacity-overview",
         "demo",
         "gh-pages",
-        "refresh-dashboard",
-        "official"
+        "refresh-dashboard"
       ],
       "keywords": [
         "azure-capacity",
+        "capacity",
         "capacity-overview",
         "demo",
         "gh-pages",
         "refresh-dashboard",
-        "official",
-        "capacity",
         "contact",
-        "directly",
         "detailed",
-        "refer",
-        "guidance"
+        "directly",
+        "official",
+        "azure",
+        "please"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-04-06T21:48:55Z",
@@ -2493,7 +2493,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Capacity-Overview"
     },
     {
       "name": "Azure-Databases-Purview-Advisor",
@@ -2517,23 +2517,23 @@
         "azure-database",
         "azure-sql-database",
         "azure-sql-managed-instance",
-        "da-academy",
-        "gh-pages",
-        "modeling"
+        "best",
+        "cosmos",
+        "da-academy"
       ],
       "keywords": [
         "azure-database",
         "azure-sql-database",
         "azure-sql-managed-instance",
+        "best",
+        "cosmos",
         "da-academy",
+        "database",
+        "etc",
         "gh-pages",
         "modeling",
         "mongodb",
-        "tuning",
-        "etc",
-        "mysql",
-        "postgresql",
-        "working"
+        "mysql"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-04-06T19:52:11Z",
@@ -2541,7 +2541,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Azure-Databases-Purview-Advisor"
     },
     {
       "name": "Fabric-SKU-EstimationTool",
@@ -2559,25 +2559,25 @@
       ],
       "categories": [
         "tool",
+        "please",
+        "comprehensive",
         "da-academy",
         "estimation",
-        "gh-pages",
-        "helper",
-        "microsoft-fabric"
+        "gh-pages"
       ],
       "keywords": [
         "tool",
+        "please",
+        "comprehensive",
         "da-academy",
         "estimation",
         "gh-pages",
         "helper",
         "microsoft-fabric",
+        "now",
+        "public",
         "sku",
-        "stay",
-        "tuned",
-        "updates",
-        "official",
-        "please"
+        "stay"
       ],
       "language": "JavaScript",
       "updatedAt": "2026-04-06T04:08:24Z",
@@ -2585,7 +2585,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "https://opengraph.githubassets.com/1/Cloud2BR-MSFTLearningHub/Fabric-SKU-EstimationTool"
     }
   ]
 }

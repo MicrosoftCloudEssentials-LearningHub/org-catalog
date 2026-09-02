@@ -74,6 +74,10 @@ async function fetchPaged(url) {
 }
 
 function toRepoModel(r) {
+  const repositoryPreviewUrl = r.full_name
+    ? `https://opengraph.githubassets.com/1/${r.full_name}`
+    : null;
+
   return {
     name: r.name,
     title: String(r.title || r.name || ''),
@@ -90,7 +94,7 @@ function toRepoModel(r) {
     private: Boolean(r.private),
     stargazersCount: typeof r.stargazers_count === 'number' ? r.stargazers_count : undefined,
     forksCount: typeof r.forks_count === 'number' ? r.forks_count : undefined,
-    imageUrl: r.imageUrl ?? null,
+    imageUrl: r.imageUrl ?? repositoryPreviewUrl,
   };
 }
 

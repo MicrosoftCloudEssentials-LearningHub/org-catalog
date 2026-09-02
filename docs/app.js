@@ -920,19 +920,20 @@ function render(list) {
       card.rel = 'noreferrer';
       card.title = repo.pagesUrl ? 'Open GitHub Pages site' : 'Open GitHub repository';
 
-      if (repo.imageUrl) {
-        const media = document.createElement('div');
-        media.className = 'cardMedia';
+      const media = document.createElement('div');
+      media.className = 'cardMedia';
 
-        const img = document.createElement('img');
-        img.className = 'cardThumb';
-        img.loading = 'lazy';
-        img.alt = '';
-        img.src = repo.imageUrl;
+      const img = document.createElement('img');
+      img.className = 'cardThumb';
+      img.loading = 'lazy';
+      img.alt = '';
+      img.src = repo.imageUrl || `https://opengraph.githubassets.com/1/${repo.fullName || repo.name}`;
+      img.addEventListener('error', () => {
+        img.src = './assets/repository-placeholder.svg';
+      }, { once: true });
 
-        media.appendChild(img);
-        card.appendChild(media);
-      }
+      media.appendChild(img);
+      card.appendChild(media);
 
       const title = document.createElement('h2');
       title.className = 'cardTitle';
