@@ -281,7 +281,7 @@ function scoreRepositoryImagePath(imagePath) {
   return score - lower.split('/').length;
 }
 
-async function fetchRepositoryImage({ org, repo, branch }) {
+async function fetchRepositoryImage({ org, repo, branch, usedImageUrls }) {
   const url = `https://api.github.com/repos/${encodeURIComponent(org)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(branch)}?recursive=1`;
   const res = await fetchWithTimeout(url, { headers }, REQUEST_TIMEOUT_MS);
   if (!res.ok) return null;
@@ -295,7 +295,12 @@ async function fetchRepositoryImage({ org, repo, branch }) {
       .sort((a, b) => b.score - a.score || a.path.localeCompare(b.path))
     : [];
 
-  const imagePath = candidates[0]?.path;
+  const imagePath = candidates
+    .map((candidate) => candidate.path)
+    .find((candidatePath) => {
+      const imageUrl = resolveRepositoryImageUrl({ org, repo, branch, imagePath: candidatePath });
+      return !usedImageUrls?.has(imageUrl);
+    });
   return imagePath ? resolveRepositoryImageUrl({ org, repo, branch, imagePath }) : null;
 }
 
@@ -746,6 +751,7 @@ async function main() {
   // (This keeps UX lightweight while providing a quick visual hint.)
   /** @type {{repo:string, tokens:string[]}[]} */
   const tokenDocs = [];
+  const usedImageUrls = new Set();
 
   const enriched = await mapWithConcurrency(repos, 6, async (r) => {
     const repo = r?.name;
@@ -772,10 +778,14 @@ async function main() {
             readmePath: readme.path,
             imageRef,
           });
-          return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
+          if (!usedImageUrls.has(imageUrl)) {
+            usedImageUrls.add(imageUrl);
+            return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
+          }
         }
 
-        const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch });
+        const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch, usedImageUrls });
+        if (repositoryImageUrl) usedImageUrls.add(repositoryImageUrl);
         return {
           ...r,
           ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}),
@@ -784,7 +794,8 @@ async function main() {
         };
       }
 
-      const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch });
+      const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch, usedImageUrls });
+      if (repositoryImageUrl) usedImageUrls.add(repositoryImageUrl);
       return { ...r, ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}), pagesUrl };
     } catch {
       return r;

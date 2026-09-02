@@ -1,7 +1,52 @@
 {
-  "generatedAt": "2026-09-02T18:22:21.673Z",
+  "generatedAt": "2026-09-02T18:24:28.883Z",
   "org": "Cloud2BR-MSFTLearningHub",
   "repos": [
+    {
+      "name": "org-catalog",
+      "title": "Org Catalog (GitHub Pages)",
+      "fullName": "Cloud2BR-MSFTLearningHub/org-catalog",
+      "url": "https://github.com/Cloud2BR-MSFTLearningHub/org-catalog",
+      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/org-catalog/",
+      "description": "Quick demo of a lightweight repo catalog designed to be hosted with GitHub Pages.",
+      "topics": [
+        "demo",
+        "gh-pages",
+        "github-pages",
+        "github-pages-template",
+        "github-pages-website",
+        "web-site"
+      ],
+      "categories": [
+        "catalog",
+        "oauth",
+        "org",
+        "github",
+        "pages",
+        "generator"
+      ],
+      "keywords": [
+        "catalog",
+        "oauth",
+        "org",
+        "github",
+        "pages",
+        "generator",
+        "token",
+        "variable",
+        "actions",
+        "optional",
+        "translation",
+        "worker"
+      ],
+      "language": "JavaScript",
+      "updatedAt": "2026-09-02T18:23:30Z",
+      "archived": false,
+      "private": false,
+      "stargazersCount": 0,
+      "forksCount": 0,
+      "imageUrl": "https://github.com/user-attachments/assets/287faf88-7d60-44f8-926f-73fae80214e6"
+    },
     {
       "name": "Agentic-DevOps-AI-Shopping",
       "title": "Demo: Zava AI Shopping Assistant Multi-Agent Architecture with A2A Protocol - Overview",
@@ -181,51 +226,6 @@
       "imageUrl": "https://learn.microsoft.com/en-us/media/learn/certification/badges/github-foundations.svg"
     },
     {
-      "name": "org-catalog",
-      "title": "Org Catalog (GitHub Pages)",
-      "fullName": "Cloud2BR-MSFTLearningHub/org-catalog",
-      "url": "https://github.com/Cloud2BR-MSFTLearningHub/org-catalog",
-      "pagesUrl": "https://cloud2br-msftlearninghub.github.io/org-catalog/",
-      "description": "Quick demo of a lightweight repo catalog designed to be hosted with GitHub Pages.",
-      "topics": [
-        "demo",
-        "gh-pages",
-        "github-pages",
-        "github-pages-template",
-        "github-pages-website",
-        "web-site"
-      ],
-      "categories": [
-        "catalog",
-        "oauth",
-        "org",
-        "github",
-        "pages",
-        "generator"
-      ],
-      "keywords": [
-        "catalog",
-        "oauth",
-        "org",
-        "github",
-        "pages",
-        "generator",
-        "token",
-        "variable",
-        "actions",
-        "optional",
-        "translation",
-        "worker"
-      ],
-      "language": "JavaScript",
-      "updatedAt": "2026-08-14T22:08:19Z",
-      "archived": false,
-      "private": false,
-      "stargazersCount": 0,
-      "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/287faf88-7d60-44f8-926f-73fae80214e6"
-    },
-    {
       "name": "AI-900StudyGuide",
       "title": "Study Guide: Azure AI Fundamentals (AI-900)",
       "fullName": "Cloud2BR-MSFTLearningHub/AI-900StudyGuide",
@@ -368,7 +368,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": "https://github.com/user-attachments/assets/4577e8fa-6d58-4785-a749-96dedd22669b"
+      "imageUrl": null
     },
     {
       "name": "AI-102StudyGuide",
@@ -1619,7 +1619,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
+      "imageUrl": null
     },
     {
       "name": "RAG-ChatBot-Implementation",
@@ -1865,7 +1865,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": "https://github.com/brown9804/MSCloudEssentials_LPath/assets/24630902/c47ad7c0-375e-4257-b56e-7b3b89619e2f"
+      "imageUrl": null
     },
     {
       "name": "Azure-Text-Embedding-Overview",
@@ -2231,7 +2231,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
+      "imageUrl": null
     },
     {
       "name": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
@@ -2277,7 +2277,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://github.com/user-attachments/assets/3845e948-71be-4ce2-9eb6-94e52e51acde"
+      "imageUrl": null
     },
     {
       "name": "Agentic-AI-Media-Assistant",
