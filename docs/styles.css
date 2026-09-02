@@ -187,7 +187,7 @@ body {
 
 .headerGrid {
   display: grid;
-  grid-template-columns: 140px 1fr 280px;
+  grid-template-columns: 72px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
@@ -209,9 +209,31 @@ body {
 
 .headerMain {
   min-width: 0;
-  max-width: 760px;
-  justify-self: center;
+  max-width: none;
   width: 100%;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.advancedSearchToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+  background: color-mix(in oklab, var(--header-fg) 12%, transparent);
+  border-color: var(--header-border);
+  color: var(--header-fg);
+}
+
+.advancedSearchToggle:hover,
+.advancedSearchToggle[aria-expanded="true"] {
+  background: color-mix(in oklab, var(--header-fg) 20%, transparent);
 }
 
 .headerSide {
@@ -310,15 +332,7 @@ body {
 /* ── Tablet: 641px–900px ─────────────────────────────────── */
 @media (max-width: 900px) {
   .headerGrid {
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: auto auto;
-  }
-
-  .headerSide {
-    grid-column: 1 / -1;
-    padding-top: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
+    grid-template-columns: 72px minmax(0, 1fr);
   }
 
   .headerRail {
@@ -341,11 +355,6 @@ body {
   .avatar.orgAvatar {
     width: 80px;
     height: 80px;
-  }
-
-  .orgRailLink {
-    max-width: 100px;
-    font-size: 12px;
   }
 
   .title {
@@ -378,9 +387,7 @@ body {
   }
 
   .headerRail {
-    flex-direction: row;
     justify-content: flex-start;
-    gap: 12px;
     padding-top: 0;
   }
 
@@ -389,15 +396,17 @@ body {
     height: 52px;
   }
 
-  .orgRailLink {
-    max-width: none;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
   .title {
     font-size: 20px;
+  }
+
+  .titleRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .advancedSearchToggle {
+    margin-top: 0;
   }
 
   .subtitle {
@@ -461,10 +470,6 @@ body {
 
   .grid {
     grid-template-columns: 1fr;
-  }
-
-  .headerSide {
-    padding-top: 0;
   }
 
   .sideCard {

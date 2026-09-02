@@ -23,7 +23,7 @@
     <header class="header">
       <div class="container">
         <div class="headerGrid" aria-label="Header layout">
-          <div class="headerRail" aria-label="Organization icon">
+          <div class="headerRail" aria-label="Organization logo">
             <img
               class="avatar orgAvatar"
               src="https://github.com/Cloud2BR-MSFTLearningHub.png?size=256"
@@ -32,23 +32,19 @@
               height="120"
               loading="lazy"
             />
-            <a
-              class="brandOrg orgRailLink"
-              href="https://github.com/Cloud2BR-MSFTLearningHub"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Cloud2BR<br />
-              <span class="orgSubline">Microsoft Cloud Sandbox</span><br />
-              <span class="orgSubline">Learning Hub</span>
-            </a>
           </div>
 
           <div class="headerMain">
-            <h1 class="title">
-              <span data-i18n="org.title.main">Cloud2BR Open Source</span><br />
-              <span data-i18n="org.title.sub">Microsoft Cloud Sandbox - Learning Hub</span>
-            </h1>
+            <div class="titleRow">
+              <h1 class="title">
+                <span data-i18n="org.title.main">Cloud2BR Open Source</span><br />
+                <span data-i18n="org.title.sub">Microsoft Cloud Sandbox - Learning Hub</span>
+              </h1>
+              <button id="advancedSearchToggle" class="button advancedSearchToggle" type="button" aria-expanded="false" aria-controls="filtersPanel">
+                <span aria-hidden="true">⌕</span>
+                <span data-i18n="Advanced search">Advanced search</span>
+              </button>
+            </div>
             <p class="subtitle" data-i18n="org.description">
               Experimentation and playful learning, inviting users to try out Microsoft technology without fear of breaking things.
             </p>
@@ -110,31 +106,13 @@
             </div>
           </div>
 
-          <aside class="headerSide" aria-label="Owner/Founder">
-            <div class="sideCard">
-              <div class="sideLabel" data-i18n="label.ownerFounder">Owner/Founder</div>
-              <div class="sidePerson">
-                <img
-                  class="avatar founderAvatar"
-                  src="https://github.com/Cloud2BR-MSFTLearningHub.png?size=128"
-                  alt="Cloud2BR OSS - Learning Hub avatar"
-                  width="52"
-                  height="52"
-                  loading="lazy"
-                />
-                <div class="sideLinks">
-                  <a href="https://github.com/Cloud2BR-MSFTLearningHub" target="_blank" rel="noopener noreferrer">Cloud2BR OSS - Learning Hub</a>
-                </div>
-              </div>
-            </div>
-          </aside>
         </div>
 
       </div>
     </header>
 
     <main class="container">
-      <section class="filtersSection" aria-label="Filters">
+      <section id="filtersPanel" class="filtersSection" aria-label="Filters" hidden>
         <div class="sideCard filtersCard">
           <div class="sideLabel" data-i18n="label.filters">Filters</div>
           <div class="filtersRow">

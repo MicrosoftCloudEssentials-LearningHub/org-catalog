@@ -6,6 +6,8 @@ const footerMetaEl = document.getElementById('footerMeta');
 const viewPublicEl = document.getElementById('viewPublic');
 const viewPrivateEl = document.getElementById('viewPrivate');
 const themeToggleEl = document.getElementById('themeToggle');
+const advancedSearchToggleEl = document.getElementById('advancedSearchToggle');
+const filtersPanelEl = document.getElementById('filtersPanel');
 
 const uiLangEl = document.getElementById('lang');
 
@@ -18,6 +20,12 @@ if (themeToggleEl) {
 const languageFilterEl = document.getElementById('languageFilter');
 const categoryFilterEl = document.getElementById('categoryFilter');
 const updatedWithinEl = document.getElementById('updatedWithin');
+
+advancedSearchToggleEl?.addEventListener('click', () => {
+  const isOpen = advancedSearchToggleEl.getAttribute('aria-expanded') === 'true';
+  advancedSearchToggleEl.setAttribute('aria-expanded', String(!isOpen));
+  if (filtersPanelEl) filtersPanelEl.hidden = isOpen;
+});
 
 const CONFIG_URL = './config.json';
 
