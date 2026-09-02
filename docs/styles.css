@@ -192,13 +192,13 @@ body {
 
 .headerGrid {
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 24px;
   align-items: start;
 }
 
 .headerRail {
-  padding-top: 6px;
+  padding-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,7 +220,7 @@ body {
 
 .titleRow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
 }
@@ -337,7 +337,8 @@ body {
 /* ── Tablet: 641px–900px ─────────────────────────────────── */
 @media (max-width: 900px) {
   .headerGrid {
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 16px;
   }
 
   .headerRail {

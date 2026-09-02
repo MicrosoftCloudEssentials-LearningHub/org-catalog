@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T18:26:54.794Z",
+  "generatedAt": "2026-09-02T18:44:23.525Z",
   "org": "Cloud2BR-MSFTLearningHub",
   "repos": [
     {
@@ -40,12 +40,12 @@
         "worker"
       ],
       "language": "JavaScript",
-      "updatedAt": "2026-09-02T18:25:23Z",
+      "updatedAt": "2026-09-02T18:28:28Z",
       "archived": false,
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/org-catalog/main/docs/assets/repository-placeholder.svg"
+      "imageUrl": "./assets/repo-covers/org-catalog.png"
     },
     {
       "name": "Agentic-DevOps-AI-Shopping",
@@ -96,7 +96,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 3,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Agentic-DevOps-AI-Shopping.png"
     },
     {
       "name": "GH-300StudyGuide",
@@ -223,7 +223,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/GH-900StudyGuide.svg"
     },
     {
       "name": "AI-900StudyGuide",
@@ -273,7 +273,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/AI-900StudyGuide.png"
     },
     {
       "name": "DP-900StudyGuide",
@@ -323,7 +323,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/DP-900StudyGuide.png"
     },
     {
       "name": "DP-100StudyGuide",
@@ -368,7 +368,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/DP-100StudyGuide.png"
     },
     {
       "name": "AI-102StudyGuide",
@@ -416,7 +416,7 @@
       "private": false,
       "stargazersCount": 5,
       "forksCount": 3,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/AI-102StudyGuide.png"
     },
     {
       "name": "M365-E5-E7-Overview",
@@ -461,7 +461,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/M365-E5-E7-Overview-preview.png"
     },
     {
       "name": "Security-Copilot-Overview",
@@ -503,7 +503,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Security-Copilot-Overview-preview.png"
     },
     {
       "name": "Entra-Overview",
@@ -545,7 +545,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Entra-Overview-preview.png"
     },
     {
       "name": "Agent365-Overview",
@@ -586,7 +586,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Agent365-Overview-preview.png"
     },
     {
       "name": "Intune-Overview",
@@ -629,7 +629,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Intune-Overview-preview.png"
     },
     {
       "name": "Purview-Setup-Overview",
@@ -676,7 +676,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Purview-Setup-Overview-preview.png"
     },
     {
       "name": "Sentinel-Setup-Overview",
@@ -720,7 +720,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Sentinel-Setup-Overview-preview.png"
     },
     {
       "name": "Defender-Setup-Overview",
@@ -770,7 +770,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Defender-Setup-Overview-preview.png"
     },
     {
       "name": "arch-flows-designer",
@@ -813,7 +813,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/arch-flows-designer-preview.png"
     },
     {
       "name": "DemosScenarios-TechTalks",
@@ -911,7 +911,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 3,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/AzureTerraformTemplates-v0.0.0.png"
     },
     {
       "name": "Fabric-EnterpriseFramework",
@@ -958,7 +958,7 @@
       "private": false,
       "stargazersCount": 6,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Fabric-EnterpriseFramework.png"
     },
     {
       "name": "azDataBase-Freeing-Unused-Space",
@@ -1003,7 +1003,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/azDataBase-Freeing-Unused-Space.png"
     },
     {
       "name": "AzureFunctionApp-TempUsage",
@@ -1049,7 +1049,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/AzureFunctionApp-TempUsage.png"
     },
     {
       "name": "Fabric-AI-Retail-Demo",
@@ -1098,7 +1098,7 @@
       "private": false,
       "stargazersCount": 2,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Fabric-AI-Retail-Demo.png"
     },
     {
       "name": "Demystifying-Cloud-Evolution",
@@ -1142,7 +1142,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Demystifying-Cloud-Evolution.png"
     },
     {
       "name": "AI-Agent-Infra-Blueprint",
@@ -1187,7 +1187,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/AI-Agent-Infra-Blueprint/main/docs/assets/images/ai-foundry-overview.png"
+      "imageUrl": "./assets/repo-covers/AI-Agent-Infra-Blueprint.png"
     },
     {
       "name": "MS-Fabric-Essentials-Workshop",
@@ -1284,7 +1284,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Fabric-Date-Hierarchy-Accelerator-preview.png"
     },
     {
       "name": "Azure-DigitalTwins-Overview",
@@ -1331,7 +1331,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-DigitalTwins-Overview.png"
     },
     {
       "name": "Azure-App-Dev-Overview",
@@ -1374,7 +1374,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-App-Dev-Overview.png"
     },
     {
       "name": "Azure-MLOps-Overview",
@@ -1421,7 +1421,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-MLOps-Overview-preview.png"
     },
     {
       "name": "GenAIOpsMaturityLevels",
@@ -1471,7 +1471,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/GenAIOpsMaturityLevels.png"
     },
     {
       "name": "org-repo-template",
@@ -1513,7 +1513,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/org-repo-template-preview.png"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-OpenFramework",
@@ -1566,7 +1566,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/PDFs-Invoice-Processing-Fapp-OpenFramework.png"
     },
     {
       "name": "PDFs-Invoice-Processing-Fapp-DocIntelligence",
@@ -1619,7 +1619,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/PDFs-Invoice-Processing-Fapp-DocIntelligence.png"
     },
     {
       "name": "RAG-ChatBot-Implementation",
@@ -1674,7 +1674,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 2,
-      "imageUrl": "https://raw.githubusercontent.com/Cloud2BR-MSFTLearningHub/RAG-ChatBot-Implementation/main/GPT-RAG_SolutionAccelerator/media/admin-guide-architecture-scope.png"
+      "imageUrl": "./assets/repo-covers/RAG-ChatBot-Implementation.png"
     },
     {
       "name": "GitHub-Overview",
@@ -1719,7 +1719,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/GitHub-Overview.png"
     },
     {
       "name": "Azure-ArtifactSigning-DevOps",
@@ -1766,7 +1766,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-ArtifactSigning-DevOps.png"
     },
     {
       "name": "BlobFileUpload-SummaryTool",
@@ -1813,7 +1813,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/BlobFileUpload-SummaryTool.png"
     },
     {
       "name": "Fabric-MCP-Agent2Agent",
@@ -1865,7 +1865,7 @@
       "private": false,
       "stargazersCount": 3,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Fabric-MCP-Agent2Agent-preview.png"
     },
     {
       "name": "Azure-Text-Embedding-Overview",
@@ -1911,7 +1911,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-Text-Embedding-Overview.png"
     },
     {
       "name": "azSynapse-Dynamic-RemoveBlanks",
@@ -1955,7 +1955,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/azSynapse-Dynamic-RemoveBlanks.png"
     },
     {
       "name": "MySQL-autoscale-IOPS",
@@ -1999,7 +1999,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/MySQL-autoscale-IOPS.png"
     },
     {
       "name": "Azure-MCP-blueprint",
@@ -2046,7 +2046,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-MCP-blueprint.png"
     },
     {
       "name": "SAP-integration-AzLogicApps",
@@ -2089,7 +2089,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/SAP-integration-AzLogicApps.png"
     },
     {
       "name": "AzureArcRecommendations-AI-Agent",
@@ -2131,7 +2131,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/AzureArcRecommendations-AI-Agent.png"
     },
     {
       "name": "Azure-ML-Overview",
@@ -2178,7 +2178,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 2,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-ML-Overview.png"
     },
     {
       "name": "PDFs-Layouts-Processing-Fapp-DocIntelligence",
@@ -2231,7 +2231,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 1,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/PDFs-Layouts-Processing-Fapp-DocIntelligence-preview.png"
     },
     {
       "name": "PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing",
@@ -2277,7 +2277,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/PDFs-MultiLayout-VisualCue-AzureAI-Document-Processing-preview.png"
     },
     {
       "name": "Agentic-AI-Media-Assistant",
@@ -2326,7 +2326,7 @@
       "private": false,
       "stargazersCount": 1,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Agentic-AI-Media-Assistant.png"
     },
     {
       "name": "Azure-ML-Advanced",
@@ -2411,7 +2411,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/org-discussions.png"
     },
     {
       "name": ".github",
@@ -2453,7 +2453,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/.github.png"
     },
     {
       "name": "Azure-Capacity-Overview",
@@ -2497,7 +2497,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-Capacity-Overview.png"
     },
     {
       "name": "Azure-Databases-Purview-Advisor",
@@ -2545,7 +2545,7 @@
       "private": false,
       "stargazersCount": 0,
       "forksCount": 0,
-      "imageUrl": null
+      "imageUrl": "./assets/repo-covers/Azure-Databases-Purview-Advisor.png"
     },
     {
       "name": "Fabric-SKU-EstimationTool",

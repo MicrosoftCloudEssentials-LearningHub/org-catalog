@@ -271,6 +271,49 @@ function isRepositoryHostedImageUrl(imageUrl) {
   return /^https:\/\/raw\.githubusercontent\.com\//i.test(String(imageUrl || ''));
 }
 
+function imageExtensionFromContentType(contentType) {
+  const type = String(contentType || '').toLowerCase().split(';')[0].trim();
+  if (type === 'image/jpeg') return 'jpg';
+  if (type === 'image/png') return 'png';
+  if (type === 'image/webp') return 'webp';
+  if (type === 'image/gif') return 'gif';
+  if (type === 'image/svg+xml') return 'svg';
+  return '';
+}
+
+async function cacheRemoteImage({ repo, imageUrl, suffix = '' }) {
+  if (!/^https:\/\//i.test(String(imageUrl || ''))) return null;
+
+  try {
+    const res = await fetchWithTimeout(imageUrl, { headers: { Accept: 'image/*' } }, REQUEST_TIMEOUT_MS);
+    const extension = imageExtensionFromContentType(res.headers.get('content-type'));
+    if (!res.ok || !extension) return null;
+
+    const bytes = Buffer.from(await res.arrayBuffer());
+    if (!bytes.length) return null;
+
+    const directory = path.join(process.cwd(), 'docs', 'assets', 'repo-covers');
+    const fileName = `${encodeURIComponent(repo)}${suffix}.${extension}`;
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, fileName), bytes);
+    return `./assets/repo-covers/${fileName}`;
+  } catch {
+    return null;
+  }
+}
+
+function cacheReadmeImage({ repo, imageUrl }) {
+  return cacheRemoteImage({ repo, imageUrl });
+}
+
+function cacheRepositoryPreview({ repo, fullName }) {
+  return cacheRemoteImage({
+    repo,
+    imageUrl: `https://opengraph.githubassets.com/1/${fullName || repo}`,
+    suffix: '-preview',
+  });
+}
+
 function scoreRepositoryImagePath(imagePath) {
   const lower = String(imagePath || '').toLowerCase();
   if (!/\.(png|jpe?g|webp|gif|svg)$/i.test(lower)) return -1;
@@ -782,25 +825,40 @@ async function main() {
             readmePath: readme.path,
             imageRef,
           });
-          if (isRepositoryHostedImageUrl(imageUrl) && !usedImageUrls.has(imageUrl)) {
-            usedImageUrls.add(imageUrl);
-            return { ...r, imageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
+          if (!usedImageUrls.has(imageUrl)) {
+            const stableImageUrl = isRepositoryHostedImageUrl(imageUrl)
+              ? imageUrl
+              : await cacheReadmeImage({ repo, imageUrl });
+            if (stableImageUrl) {
+              usedImageUrls.add(imageUrl);
+              return { ...r, imageUrl: stableImageUrl, pagesUrl, title: readmeTitle || r?.name || '' };
+            }
           }
         }
 
         const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch, usedImageUrls });
+        const previewImageUrl = repositoryImageUrl
+          ? null
+          : await cacheRepositoryPreview({ repo, fullName: r.full_name });
         if (repositoryImageUrl) usedImageUrls.add(repositoryImageUrl);
         return {
           ...r,
-          ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}),
+          ...((repositoryImageUrl || previewImageUrl) ? { imageUrl: repositoryImageUrl || previewImageUrl } : {}),
           pagesUrl,
           ...(readmeTitle ? { title: readmeTitle } : {}),
         };
       }
 
       const repositoryImageUrl = await fetchRepositoryImage({ org: ORG_NAME, repo, branch, usedImageUrls });
+      const previewImageUrl = repositoryImageUrl
+        ? null
+        : await cacheRepositoryPreview({ repo, fullName: r.full_name });
       if (repositoryImageUrl) usedImageUrls.add(repositoryImageUrl);
-      return { ...r, ...(repositoryImageUrl ? { imageUrl: repositoryImageUrl } : {}), pagesUrl };
+      return {
+        ...r,
+        ...((repositoryImageUrl || previewImageUrl) ? { imageUrl: repositoryImageUrl || previewImageUrl } : {}),
+        pagesUrl,
+      };
     } catch {
       return r;
     }
